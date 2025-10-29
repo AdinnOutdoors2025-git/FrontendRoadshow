@@ -1,0 +1,524 @@
+/* src/components/ProductTable.css */
+.product-table {
+    width: 90%;
+    margin: 20px auto;
+    /* border: 1px solid #ccc; */
+}
+
+.product-table th td {
+    /* width: 15%; */
+}
+
+.TableProductPrice {
+    width: 100px;
+    padding: -10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 5px;
+    text-align: left;
+    color: rgba(51, 51, 51, 1);
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    align-content: center;
+    align-items: center;
+    border-bottom: 1px solid;
+    border-image-source: linear-gradient(90deg, rgba(51, 51, 51, 0) 0%, #333333 45%, rgba(51, 51, 51, 0) 100%)1;
+    border-image-slice: 1;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+
+}
+
+.adminProdRowContent td {
+    align-items: center;
+    align-content: center;
+    text-align: center;
+
+}
+
+.adminProdHeadContent th {
+    width: 16%;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+
+/* Product Checkbox with Tick mark  */
+input:checked+.Productcheckmark1 {
+    color: red;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+.Productcheckbox-container1 input {
+    display: none;
+}
+
+/* Default checkmark styling */
+.Productcheckmark1 {
+    border: 1px solid rgba(51, 51, 51, 1);
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    display: inline-block;
+    background: rgba(255, 255, 255, 1);
+    text-align: center;
+    line-height: 18px;
+    font-size: 16px;
+    color: transparent;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.productRate {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    background: rgba(237, 237, 237, 1);
+    width: 60px;
+    height: 35px;
+    border-radius: 10px;
+    margin: 0px auto;
+    align-items: center;
+    text-align: center;
+}
+
+.stars-book-admin {
+    font-size: 15px;
+    background: linear-gradient(124.03deg, #FFC700 7.19%, #FFA945 132%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+
+th {
+    color: rgba(227, 31, 37, 1);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+
+    /* background-color: #f4f4f4; */
+}
+
+.productImg {
+    width: 65px;
+    height: 65px;
+    border-radius: 4px;
+
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+}
+
+.rating img {
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+}
+
+/* PAGINATION CSS  */
+.Productpagination {
+
+    margin: 5% auto;
+    /* width: 50%; */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+    background-color: white;
+}
+
+.Productpage-number {
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(51, 51, 51, 1);
+
+    border-radius: 7px;
+    height: 40px;
+    width: 41px;
+    background: rgba(239, 239, 239, 1);
+    border: 1px solid #ddd;
+    align-content: center;
+    text-align: center;
+    text-decoration-skip-ink: none;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.Productpage-number.active {
+    border: 1.5px solid rgba(227, 31, 37, 1);
+    color: rgba(51, 51, 51, 1);
+    background: rgba(255, 255, 255, 1);
+}
+
+
+.Productprev-button,
+.Productnext-button {
+    color: rgba(255, 255, 255, 1);
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgba(228, 30, 37, 1);
+    border: none;
+    cursor: pointer;
+    width: 75px;
+    height: 60px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.Productnext-button {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+}
+
+.Productprev-button:disabled,
+.Productnext-button:disabled {
+    background: rgba(228, 30, 37, 1);
+    opacity: 50%;
+    cursor: not-allowed;
+}
+
+.paginationDots {
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.TableProductName {
+    width: 22%;
+}
+
+
+
+.actionMenuRow {
+    display: flex;
+    align-items: center;
+}
+
+.threeDotsTd {
+    cursor: pointer;
+    padding: 10px;
+}
+
+.ThreeDotsIcon {
+    height: 25px;
+    cursor: pointer;
+    position: relative;
+}
+
+.actionMenu {
+    position: absolute;
+    right: 89px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 6px;
+    background: #e1dfdf;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(20px);
+    transition: all 0.3s ease;
+    z-index: 99;
+}
+
+.actionMenu.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+}
+
+.actionMenu i {
+    cursor: pointer;
+    font-size: 15px;
+    color: #333;
+    transition: color 0.2s;
+}
+
+.actionMenu i:hover {
+    color: #007bff;
+}
+
+.product-row.disabled {
+    opacity: 0.4;
+}
+
+/* Inside each row, prevent pointer-events: none for the last <td> (actions) */
+.product-row.disabled .threeDotsTd {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+.product-row.disabled td:not(.threeDotsTd) {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.product-row.disabled .threeDotsTd {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.admin-products-loading,
+.admin-products-error,
+.admin-no-products {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+}
+
+.admin-products-loading .spinner-border {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+}
+
+.alert {
+    margin-bottom: 1rem;
+    max-width: 600px;
+}
+
+
+
+
+/* OFFERED PRODUCT TIMER  */
+.OffProdTimerMain {
+    display: flex;
+    gap: 20px;
+    background: #FFFFFF;
+    padding: 10px;
+    opacity: 1;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px 0px #00000026;
+}
+
+.OffProdNumberSetup {
+    color: #000000;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 30px;
+    line-height: 100%;
+    letter-spacing: 0%;
+}
+
+.OffProdResetBtn,
+.OffProdStartBtn {
+    color: #A1A8B5;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 5%;
+    background: #EDEFF2;
+    opacity: 1;
+    border-radius: 32px;
+    padding: 5px 10px;
+}
+
+.OffProdStartBtn {
+    color: #FFFFFF;
+    opacity: 1;
+    border-radius: 32px;
+    padding: 5px 10px;
+    background: #E31F25;
+}
+
+.offProdStartIcon{
+    font-size: 15px;
+}
+
+.offProdActionMenu{
+right: 106px;
+}
+.offProdThreeDotsTd{
+padding: 20px 30px;
+}
+
+
+/* Timer Styles */
+.OffProdTimerMain {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 12px 20px;
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 2px solid #e0e0e0;
+}
+
+.OffProdNumberSetup {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: white;
+    padding: 8px 12px;
+    border-radius: 15px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.timer-input {
+    width: 55px;
+    height: 40px;
+    border: 2px solid #667eea;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.timer-input:focus {
+    outline: none;
+    border-color: #764ba2;
+    background: white;
+    box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+    transform: scale(1.05);
+}
+
+.timer-input.disabled {
+    background: #e9ecef;
+    border-color: #adb5bd;
+    color: #6c757d;
+    cursor: not-allowed;
+}
+
+.timer-separator {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin: 0 2px;
+}
+
+.OffProdResetBtn, .OffProdStartBtn, .OffProdPauseBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    color: white;
+}
+
+.OffProdResetBtn {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+}
+
+.OffProdResetBtn:hover {
+    background: linear-gradient(135deg, #ff5252 0%, #d63031 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+}
+
+.OffProdStartBtn {
+    background: linear-gradient(135deg, #51cf66 0%, #40c057 100%);
+}
+
+.OffProdStartBtn:hover {
+    background: linear-gradient(135deg, #40c057 0%, #2f9e44 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+}
+
+.OffProdPauseBtn {
+    background: linear-gradient(135deg, #ffa726 0%, #fb8c00 100%);
+}
+
+.OffProdPauseBtn:hover {
+    background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
+}
+
+.offProdStartIcon, .offProdPauseIcon {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Timer Animation */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.OffProdTimerMain.running {
+    animation: pulse 2s infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .OffProdTimerMain {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .timer-input {
+        width: 40px;
+        height: 35px;
+        font-size: 16px;
+    }
+    
+    .OffProdResetBtn, .OffProdStartBtn, .OffProdPauseBtn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Disabled state styling */
+.OffProdResetBtn:disabled, 
+.OffProdStartBtn:disabled, 
+.OffProdPauseBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.OffProdResetBtn:disabled:hover, 
+.OffProdStartBtn:disabled:hover, 
+.OffProdPauseBtn:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}

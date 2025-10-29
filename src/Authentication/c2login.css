@@ -1,0 +1,570 @@
+.verifyOtp {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    height: auto;
+    width: max-content;
+    padding: 5px 12%;
+    backdrop-filter: blur(20px);
+    box-shadow: 0px 0px 14px 0px rgba(137, 237, 233, 0.12);
+    align-content: center;
+    text-align: center;
+    margin: 0 auto;
+    color: rgba(51, 51, 51, 1);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17.07px;
+    letter-spacing: 0%;
+}
+
+.verifySent {
+    font-weight: 500;
+    font-size: 14px;
+    margin-top: 3px;
+    letter-spacing: 0%;
+    color: rgba(113, 117, 126, 1);
+}
+
+.otpBox {
+    margin-top: 17px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.otpBox-content {
+    width: 34px;
+    height: 34px;
+    border-radius: 5px;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 0, 0, 1);
+    backdrop-filter: blur(20px);
+    box-shadow: 0px 0px 14px 0px rgba(137, 237, 233, 0.12);
+    color: rgba(51, 51, 51, 1);
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 26.82px;
+    letter-spacing: 0%;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+
+.otpBox-content:focus {
+    border: 1px solid rgba(0, 0, 0, 1);
+    outline: none;
+}
+
+
+.otpTime {
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 7px;
+    letter-spacing: 0%;
+    color: rgba(227, 31, 37, 1);
+}
+
+
+.Submit-btn {
+    margin: 25px auto;
+    padding: 7px 17%;
+    width: auto;
+    height: auto;
+    color: rgba(255, 255, 255, 1);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 32.91px;
+    letter-spacing: 0%;
+    text-align: center;
+    border: none;
+    border-radius: 32px;
+    background: linear-gradient(0deg, rgba(237, 237, 237, 0.1), rgba(237, 237, 237, 0.1)), linear-gradient(0deg, #E31F25, #E31F25);
+    backdrop-filter: blur(20px);
+    box-shadow: 0px 0px 14px 0px rgba(137, 237, 233, 0.12);
+}
+
+
+
+.otpResend {
+    font-weight: 500;
+    font-size: 13px;
+    margin-top: 10px;
+    letter-spacing: 0%;
+    color: rgba(51, 51, 51, 1);
+}
+
+.ResendHighlight {
+    color: rgba(227, 31, 37, 1);
+    cursor: pointer;
+    font-weight: bold;
+
+}
+
+.ResendHighlight:hover {
+    text-decoration: underline;
+}
+
+
+.otpBox-content.otp-error {
+    border: 1px solid rgba(227, 31, 37, 1) !important;
+    animation: shake 0.3s ease-in-out;
+}
+
+.otp-error {
+    color: rgba(227, 31, 37, 1);
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 26.82px;
+    letter-spacing: 0%;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0px);
+    }
+
+    25% {
+        transform: translateX(-3px);
+    }
+
+    50% {
+        transform: translateX(3px);
+    }
+
+    75% {
+        transform: translateX(-3px);
+    }
+
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+/* Responsive Media Queries */
+/* Extra Large Screens (2560px and above) ✅ Large Screens (4K Screens)  */
+@media (min-width: 2560px) {
+    .verifyOtp {
+        font-size: 25px;
+        padding: 14px 8%;
+    }
+
+    .verifySent {
+        font-size: 27px;
+        margin-top: 8px;
+    }
+
+    .otpResend {
+        font-weight: 500;
+        font-size: 28px;
+        margin-top: 15px;
+    }
+
+    .otpTime {
+        font-weight: 500;
+        font-size: 30px;
+        margin-top: 10px;
+    }
+
+    .otpBox {
+        margin-top: 25px;
+        gap: 27px;
+    }
+
+    .otpBox-content {
+        width: 65px;
+        height: 65px;
+        font-size: 45px;
+    }
+
+    .Submit-btn {
+        margin-top: 9%;
+        width: auto;
+        height: auto;
+        padding: 4% 17%;
+        border-radius: 52px;
+        font-size: 35px;
+        line-height: 100%;
+    }
+
+}
+
+/* Large Screens (1400px - 2559px) ✅ Large Desktop Screens 1440*/
+@media (min-width: 1440px) and (max-width: 2559px) {
+
+    .verifyOtp {
+        font-size: 16px;
+        padding: 6px 6%;
+    }
+
+    .verifySent {
+        font-size: 15px;
+        margin-top: 6px;
+    }
+
+    .otpResend {
+        font-weight: 500;
+        font-size: 16.3px;
+        margin-top: 12px;
+    }
+
+    .otpTime {
+        font-weight: 500;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    .otpBox {
+        margin-top: 15px;
+        gap: 10px;
+    }
+
+
+    .otpBox-content {
+        width: 36px;
+        height: 36px;
+        border-radius: 5px;
+        font-size: 25px;
+    }
+
+    .Submit-btn {
+        margin-top: 6%;
+        width: auto;
+        height: auto;
+        padding: 2% 18%;
+        border-radius: 52px;
+        font-size: 20px;
+    }
+}
+
+/* Laptops & Small Desktops (992px - 1024px)  ✅ Tablets (Landscape Mode) */
+@media (min-width: 992px) and (max-width: 1023px) {
+
+    .verifyOtp {
+        font-size: 15px;
+        padding: 6px 6%;
+    }
+
+    .verifySent {
+        font-size: 15px;
+        margin-top: 6px;
+    }
+
+    .otpResend {
+        font-weight: 500;
+        font-size: 15px;
+        margin-top: 12px;
+    }
+
+    .otpTime {
+        font-weight: 500;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    .otpBox {
+        margin-top: 15px;
+        gap: 10px;
+    }
+
+    .otpBox-content {
+        width: 32px;
+        height: 32px;
+        border-radius: 5px;
+        font-size: 21px;
+    }
+
+    .Submit-btn {
+        margin-top: 6%;
+        width: auto;
+        height: auto;
+        padding: 6px 18%;
+        border-radius: 52px;
+        font-size: 19px;
+    }
+
+}
+
+/* Tablets (768px - 991px) ✅ Tablets (Portrait Mode) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .verifyOtp {
+        font-size: 15px;
+        padding: 6px 6%;
+    }
+
+    .verifySent {
+        font-size: 16px;
+        margin-top: 6px;
+    }
+
+    .otpResend {
+        font-weight: 500;
+        font-size: 16px;
+        margin-top: 12px;
+    }
+
+    .otpTime {
+        font-weight: 500;
+        font-size: 15px;
+        margin-top: 10px;
+    }
+
+    .otpBox {
+        margin-top: 15px;
+        gap: 15px;
+    }
+
+    .otpBox-content {
+        width: 34px;
+        height: 34px;
+        border-radius: 5px;
+        font-size: 21px;
+    }
+
+    .Submit-btn {
+        margin-top: 6%;
+        width: auto;
+        height: auto;
+        padding: 6px 18%;
+        border-radius: 52px;
+        font-size: 19px;
+    }
+
+}
+
+/* Mobile Large Screens (480px - 767px) ✅ Small Tablets & Large Phones */
+@media (min-width: 480px) and (max-width: 767px) {
+    .verifyOtp {
+        font-size: 13px;
+        padding: 4px 5%;
+    }
+
+    .verifySent {
+        font-size: 13px;
+        margin-top: 6px;
+    }
+
+    .otpResend {
+        font-weight: 500;
+        font-size: 14px;
+        margin-top: 12px;
+    }
+
+    .otpTime {
+        font-weight: 500;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .otpBox {
+        margin-top: 15px;
+        gap: 12px;
+    }
+
+    .otpBox-content {
+        width: 30px;
+        height: 30px;
+        border-radius: 5px;
+        font-size: 19px;
+    }
+
+    .Submit-btn {
+        margin-top: 8%;
+        width: auto;
+        height: auto;
+        padding: 4px 16%;
+        border-radius: 52px;
+        font-size: 17px;
+    }
+}
+
+/* Mobile Medium Screens (425px - 479px) ✅ Medium Phones (iPhone XR, Galaxy S20) */
+@media (min-width: 425px) and (max-width: 479px) {
+    .verifyOtp {
+        font-size: 13px;
+        padding: 4px 5%;
+    }
+
+    .verifySent {
+        font-size: 13px;
+        margin-top: 6px;
+    }
+
+    .otpResend {
+        font-weight: 500;
+        font-size: 14px;
+        margin-top: 12px;
+    }
+
+    .otpTime {
+        font-weight: 500;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .otpBox {
+        margin-top: 15px;
+        gap: 12px;
+    }
+
+    .otpBox-content {
+        width: 29px;
+        height: 29px;
+        border-radius: 5px;
+        font-size: 19px;
+    }
+
+    .Submit-btn {
+        margin-top: 8%;
+        width: auto;
+        height: auto;
+        padding: 3px 16%;
+        border-radius: 52px;
+        font-size: 17px;
+    }
+
+
+}
+
+/* Mobile Small Screens (375px - 424px) ✅ Small Phones (iPhone SE, Pixel 4) */
+@media (min-width: 375px) and (max-width: 424px) {
+    .verifyOtp {
+        font-size: 13px;
+        padding: 4px 5%;
+    }
+
+    .verifySent {
+        font-size: 13px;
+        margin-top: 6px;
+    }
+
+    .otpResend {
+        font-weight: 500;
+        font-size: 14px;
+        margin-top: 12px;
+    }
+
+    .otpTime {
+        font-weight: 500;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .otpBox {
+        margin-top: 15px;
+        gap: 12px;
+    }
+
+    .otpBox-content {
+        width: 29px;
+        height: 29px;
+        border-radius: 5px;
+        font-size: 19px;
+    }
+
+    .Submit-btn {
+        margin-top: 8%;
+        width: auto;
+        height: auto;
+        padding: 3px 16%;
+        border-radius: 52px;
+        font-size: 16px;
+    }
+
+}
+
+/* Extra Small Screens (360px - 374px) ✅ Extra Small Phones */
+@media (min-width: 360px) and (max-width: 374px) {
+    .verifyOtp {
+        font-size: 13px;
+        padding: 4px 5%;
+    }
+
+    .verifySent {
+        font-size: 13px;
+        margin-top: 6px;
+    }
+
+    .otpResend {
+        font-weight: 500;
+        font-size: 14px;
+        margin-top: 12px;
+    }
+
+    .otpTime {
+        font-weight: 500;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .otpBox {
+        margin-top: 15px;
+        gap: 12px;
+    }
+
+    .otpBox-content {
+        width: 29px;
+        height: 29px;
+        border-radius: 5px;
+        font-size: 19px;
+    }
+
+    .Submit-btn {
+        margin-top: 8%;
+        width: auto;
+        height: auto;
+        padding: 3px 16%;
+        border-radius: 52px;
+        font-size: 16px;
+    }
+
+}
+
+@media (min-width: 320px) and (max-width: 359px) {
+    .verifyOtp {
+        font-size: 13px;
+        padding: 4px 5%;
+    }
+
+    .verifySent {
+        font-size: 13px;
+        margin-top: 6px;
+    }
+
+    .otpResend {
+        font-weight: 500;
+        font-size: 13.5px;
+        margin-top: 12px;
+    }
+
+    .otpTime {
+        font-weight: 500;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .otpBox {
+        margin-top: 15px;
+        gap: 12px;
+    }
+
+    .otpBox-content {
+        width: 29px;
+        height: 29px;
+        border-radius: 5px;
+        font-size: 19px;
+    }
+
+    .Submit-btn {
+        margin-top: 8%;
+        width: auto;
+        height: auto;
+        padding: 3px 16%;
+        border-radius: 52px;
+        font-size: 16px;
+    }
+
+
+}

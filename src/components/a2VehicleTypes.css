@@ -1,0 +1,106 @@
+
+* {
+    font-family: 'Montserrat';
+}
+
+.rdAvailVehDtpgOutsideMain{
+    margin:6% auto;
+    /* cursor: pointer; */
+}
+.rdAvailVehDtpgOutside{
+    margin-bottom: 2%;
+    /* cursor: pointer; */
+}
+.rdAvailVehDtpgMain {
+    background: #FFEEE8;
+    opacity: 1;
+    border-radius: 40px;
+    box-shadow: 0px 0px 15px 0px #0000001A;
+    cursor: pointer;
+
+
+}
+
+.rdAvailVehImgDtpg {
+    /* height: auto; */
+    height: 500px;
+    border-radius: 40px;
+    width: 100%;
+    background: #FFFFFF;
+}
+
+.rdAvailVehDetailsDtpg {
+    padding: 20px;
+}
+
+.rdAvailVehNameDtpg {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    background: linear-gradient(90deg, #E52B2C 0%, #943B3C 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+
+}
+
+.rdAvailVehRateDtpg,
+.rdAvailVehRatingStarDtpg,
+.rdAvailVehBtnDtpg {
+    margin-top: 20px;
+}
+
+.rdAvailVehRateDtpg {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #2B3333;
+
+}
+
+.rdAvailVehRatingStarDtpg {
+    padding: 2px 15px;
+    padding-right: 10px;
+    opacity: 1;
+    border-radius: 10px;
+    background: #61BE35;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #FFFFFF;
+    width: max-content;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    text-align: center;
+
+}
+
+.rdAvailVehRatingStarIconDtpg {
+    height: auto;
+    width: 30px;
+}
+
+.rdAvailVehBtnDtpg {
+    opacity: 1;
+    border-radius: 10px;
+    padding: 10px 15px;
+    gap: 20px;
+    background: linear-gradient(180deg, #E54472 0%, #BE1344 100%);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #FFFFFF;
+    border: none;
+}
+/* RdVehTypesNeedHelpImg Section  */
+.RdVehTypesNeedHelpImg{
+  width: 100%;
+  height: auto;
+  margin-bottom: 5%;
+}

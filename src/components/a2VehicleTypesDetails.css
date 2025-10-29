@@ -1,0 +1,517 @@
+* {
+    font-family: 'Montserrat';
+}
+
+
+/* VEHICLE DETAILS MAIN IMAGE SECTION  */
+.vehicleDetailsImgSection {
+    text-align: center;
+}
+
+/* Image section  */
+.book-images {
+    height: 95px;
+    width: 95px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+
+.book-img11,
+.book-img21,
+.book-img31 {
+    height: 95px;
+    width: 95px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.book-mainImage {
+    width: 100%;
+    height: 510px;
+    object-fit: cover;
+}
+
+
+.book-mainImg1 {
+    width: 100%;
+    /* object-fit: cover; */
+    height: 510px;
+    border-radius: 32px;
+}
+
+/* ADDITIONAL FILES CSS ADDED  */
+.book-images.selected {
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    /* transform: scale(1.05); */
+}
+
+.video-thumbnail-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+
+.video-thumbnail video {
+    transition: transform 0.3s ease;
+}
+
+
+.video-thumbnail-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 20px;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Alternative: Horizontal scrolling layout */
+.item-scroll-additional.horizontal {
+    width: 100%;
+    max-width: 100%;
+    height: 120px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    scrollbar-width: none;
+    /* For Firefox */
+    -ms-overflow-style: none;
+    padding-bottom: 10px;
+    margin-top: 15px;
+}
+
+.book-images-section.horizontal {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 10px;
+    height: 100%;
+}
+
+.book-images-section.horizontal .book-images {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 0;
+}
+
+/* Vehicle details section  */
+.rdVehProdDetailsHeading {
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 100%;
+    letter-spacing: 0%;
+}
+
+.rdAvailVehName1 {
+    font-weight: 700;
+    background: linear-gradient(90deg, #E52B2C 0%, #943B3C 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.rdAvailVehRate1 {
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #2B3333;
+}
+
+.rdAvailVehRatingStarMain1 {
+    display: flex;
+    gap: 5px;
+}
+
+
+.rdAvailVehRatingStar1 {
+    padding: 4px 15px;
+    opacity: 1;
+    border-radius: 10px;
+    background: #61BE35;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #FFFFFF;
+    align-items: center;
+    text-align: center;
+}
+
+.rdAvailVehRatingStarIcon1 {
+    height: auto;
+    width: 35px;
+}
+
+.rdAvailVehRate1,
+.rdAvailVehRatingStarMain1 {
+    margin-top: 10px;
+}
+
+.rdVehDetailsPgContent1 {
+    margin-bottom: 6%;
+}
+
+/* SELECT DATE  */
+.rdVehDetailsPgContent1Heading {
+    background: linear-gradient(90deg, #E52B2C 0%, #7F1818 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+
+}
+
+.rdVehDetailsPgContent1DateFromToMain {
+    display: flex;
+    gap: 10px;
+}
+
+.rdVehDetailsPgContent1DateFromTo {
+    font-weight: 600;
+    font-size: 24px;
+    color: #2B3333;
+}
+
+.rdVehDetailsPgContent1Date {
+    font-weight: 500;
+    font-size: 18px;
+    color: #2B3333;
+    border-bottom: 2px dashed #2B3333;
+    line-height: 40px;
+}
+
+/* REACH US  */
+.rdAvailVehDtsReachUsCallIcon {
+    height: 20px;
+    width: auto;
+}
+
+.rdAvailVehDtsReachUsBtn {
+    opacity: 1;
+    border-radius: 10px;
+    padding: 10px 15px;
+    gap: 20px;
+    background: linear-gradient(180deg, #E54472 0%, #BE1344 100%);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #FFFFFF;
+    border: none;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    align-content: center;
+    margin: 3% 0px;
+
+}
+
+.rdVehDetailsPgContent2Heading {
+    background: linear-gradient(90deg, #E52B2C 0%, #7F1818 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    margin: 7% auto;
+}
+
+.rdVehDetailedShownMain {
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #2B3333;
+}
+
+.rdVehDetailedShownContent {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0px;
+
+}
+
+.rdVehDetailedShownContentLeft {
+    /* border: 1px solid red; */
+    width: 155px;
+}
+
+.rdVehDetailedShownContentRight {
+    margin-left: 7px;
+}
+
+.rdVehProdDetailsDescription {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 34px;
+    letter-spacing: 0%;
+    text-align: justify;
+    color: #000000;
+}
+
+.rdVehProdDetailsDescriptionContent {
+    margin: 3% auto;
+}
+
+/* Past roadshow  */
+.PastRdShowMain {
+    margin: 5% auto;
+}
+
+.pastRdHeading {
+    margin: 3% 0px;
+}
+
+.PastRoadShowContent {
+    background: linear-gradient(180deg, #FFE484 0%, #C3A028 100%);
+    margin: 1% auto;
+    padding: 10% auto;
+}
+
+.PastRoadShowImg {
+    /* border: 1px solid blue; */
+    height: auto;
+    width: 80%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* VEHICLE AVAILABILITY SECTION  */
+.adminVehDetailsAvailabilityBtn {
+    background: #D8D8D8;
+    padding: 20px 30px;
+    border-radius: 10px;
+    color: #2B3333;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    border: none;
+}
+
+.rdShowAvailVehBtnContentMain {
+    /* background-color: white; */
+    background-color: gray;
+
+    border: 1px solid red;
+    color: #2B3333;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    display: flex;
+
+}
+
+.rdShowAvailVehBtnContentBelow {
+    margin: 15px auto;
+    display: flex;
+}
+
+.rdShowAvailVehBtnContentHeading {
+    width: 270px;
+    /* border: 1px solid red; */
+}
+
+.rdShowAvailVehBtnContentHypen {
+    width: 50px;
+    /* border: 1px solid red; */
+    text-align: center;
+}
+
+
+/* Button hover effect */
+.adminVehDetailsAvailabilityBtn:hover {
+    background: #c8c8c8;
+    transition: background 0.3s ease;
+}
+.rdShowAvailVehBtnContentMainCloseBtn{
+    height: 20px;
+    width: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* VEHICLE AVAILABILITY MODAL STYLES */
+.main-content.blur-background {
+    filter: blur(5px);
+    pointer-events: none;
+    user-select: none;
+    transition: filter 0.3s ease;
+}
+
+.availability-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.availability-modal {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+}
+
+.availability-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 15px;
+}
+
+.availability-header h3 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 28px;
+    background: linear-gradient(90deg, #E52B2C 0%, #7F1818 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.availability-close-btn {
+    background: none;
+    border: none;
+    font-size: 35px;
+    cursor: pointer;
+    color: #666;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.availability-close-btn:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.availability-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.availability-stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.availability-stat-item:last-child {
+    border-bottom: none;
+}
+
+.stat-label {
+    font-weight: 500;
+    font-size: 22px;
+    color: #2B3333;
+    flex: 1;
+}
+
+.stat-separator {
+    font-weight: 500;
+    font-size: 22px;
+    color: #666;
+    margin: 0 15px;
+}
+
+.stat-count {
+    font-weight: 600;
+    font-size: 24px;
+    color: #E52B2C;
+    min-width: 60px;
+    text-align: right;
+}
+
+/* VEHICLE AVAILABILITY BUTTON STYLES */
+.adminVehDetailsAvailabilityBtn {
+    background: #D8D8D8;
+    padding: 20px 30px;
+    border-radius: 10px;
+    color: #2B3333;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.adminVehDetailsAvailabilityBtn:hover {
+    background: #c8c8c8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Remove old availability styles */
+.rdShowAvailVehBtnContentMain,
+.rdShowAvailVehBtnContentBelow,
+.rdShowAvailVehBtnContentHeading,
+.rdShowAvailVehBtnContentHypen,
+.rdShowAvailVehBtnContentMainCloseBtn {
+    display: none;
+}

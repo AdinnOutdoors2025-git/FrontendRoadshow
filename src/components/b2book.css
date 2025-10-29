@@ -1,0 +1,2426 @@
+* {
+    font-family: 'Montserrat';
+}
+
+/* Image section  */
+.book-images {
+    height: 95px;
+    width: 95px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+
+.book-img11,
+.book-img21,
+.book-img31 {
+    height: 95px;
+    width: 95px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.book-mainImage {
+    width: 100%;
+    height: 510px;
+  object-fit: cover;
+}
+
+
+.book-mainImg1 {
+    width: 100%;
+    /* object-fit: cover; */
+    height: 510px;
+    border-radius: 32px;
+}
+
+/* ADDITIONAL FILES CSS ADDED  */
+.book-images.selected {
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    /* transform: scale(1.05); */
+}
+
+.video-thumbnail-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+
+.video-thumbnail video {
+    transition: transform 0.3s ease;
+}
+/* 
+.video-thumbnail:hover video {
+    transform: scale(1.05);
+}
+
+.book-images:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+} */
+
+.video-thumbnail-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 20px;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Alternative: Horizontal scrolling layout */
+.item-scroll-additional.horizontal {
+    width: 100%;
+    max-width: 100%;
+    height: 120px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+     scrollbar-width: none;
+  /* For Firefox */
+  -ms-overflow-style: none;
+    padding-bottom: 10px;
+    margin-top: 15px;
+}
+
+.book-images-section.horizontal {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 10px;
+    height: 100%;
+}
+
+.book-images-section.horizontal .book-images {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 0;
+}
+
+
+/* Image section */
+
+/* 
+.book-images {
+    height: 95px;
+    width: 95px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    flex-shrink: 0; 
+}
+
+.book-img11,
+.book-img21,
+.book-img31 {
+    height: 95px;
+    width: 95px;
+    cursor: pointer;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.book-mainImage {
+    width: 70%;
+    height: 510px;
+    flex-shrink: 0;
+}
+
+.book-mainImg1 {
+    width: 100%;
+    object-fit: cover;
+    height: 510px;
+    border-radius: 32px;
+} */
+
+
+
+/* 
+
+
+.offer-price-highlight {
+    color: #ff4444 !important;
+    font-weight: bold;
+    font-size: 20px !important;
+}
+
+.original-price-strikethrough {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 16px;
+    margin-left: 10px;
+} */
+
+/* Responsive Media Queries */
+/* Extra Large Screens (2560px and above) ✅ Large Screens (4K Screens)  */
+@media (min-width: 2560px) {
+    .Book-content1 {
+        padding-left: 18%;
+    }
+
+
+    .book-mainImage {
+        width: 100%;
+        height: 650px;
+        margin-left: 4%;
+        margin-right: 0%;
+    }
+
+
+    .book-mainImg1 {
+        width: 100%;
+        object-fit:cover;
+        height: 650px;
+        border-radius: 32px;
+    }
+
+
+    .book-images {
+        height: 135px;
+        width: 135px;
+        margin-bottom: 15px;
+    }
+
+
+    .book-img11,
+    .book-img21,
+    .book-img31 {
+        height: 135px;
+        width: 135px;
+    }
+
+
+    .Book-content2 {
+        align-content: center;
+        width: 100%;
+        padding-left: 50px;
+        padding-right: 5px;
+    }
+
+
+    .book-sideHeading {
+        font-size: 35px;
+        font-weight: 600;
+        line-height: 36.13px;
+    }
+
+
+    .book-size {
+        font-size: 29px;
+        font-weight: 400;
+        line-height: 31.26px;
+    }
+
+
+    .slash-bar {
+        margin: 0 20px;
+    }
+
+
+    .btn-type {
+        padding: 10px 20px;
+        font-size: 29px;
+        font-weight: 500;
+        line-height: 31.26px;
+    }
+
+
+    .book-type {
+        font-size: 25px;
+        font-weight: 500;
+        line-height: 17.07px;
+    }
+
+
+    .rate-board1 {
+        height: 45px;
+        width: 120px;
+    }
+
+
+    .stars1,
+    .empty-star1 {
+        font-size: 20px;
+    }
+
+
+    .rating-star {
+        bottom: 7px;
+        left: 3px;
+    }
+
+
+    .book-price {
+        width: max-content;
+        padding: 20px 15px;
+        font-size: 30px;
+        padding-left: 20px;
+        padding-right: 20px;
+        font-weight: 500;
+        line-height: 26.38px;
+    }
+
+
+    .slash-bar1 {
+        margin: 0 20px;
+    }
+
+
+    .cost-gap {
+        margin-left: 10px;
+        font-size: 26px;
+        font-weight: 600;
+        line-height: 26.38px;
+    }
+
+
+    .book-spot {
+        width: fit-content;
+        padding: 20px 15px;
+        padding: 13px 20px;
+        border-radius: 5px;
+        font-size: 32px;
+        font-weight: 500;
+        line-height: 31.26px;
+    }
+
+
+    .location-arrow {
+        width: 95px;
+        height: 25px;
+        padding-bottom: 3px;
+    }
+
+
+    .book-rate {
+        display: flex;
+        height: 100px;
+        gap: 5px;
+        margin: 7px auto;
+    }
+
+
+    .rate-perDay {
+        color: rgba(228, 30, 37, 1);
+        font-size: 38px;
+        font-weight: 600;
+    }
+
+
+    .rate-perDay1 {
+        color: black;
+        font-size: 25px;
+        font-weight: 500;
+    }
+
+
+    .book-date {
+        width: auto;
+        height: auto;
+        font-size: 25px;
+        padding: 10px 13px;
+    }
+
+
+    .calender {
+        height: 38px;
+        width: 38px;
+    }
+
+
+    .anchor {
+        color: rgba(6, 90, 209, 1);
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 20.5px;
+    }
+
+
+    .payOffer {
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 20.5px;
+    }
+
+
+    .btn-pay,
+    .btn-cart {
+        width: auto;
+        height: auto;
+        padding: 20px 35px;
+        font-size: 27px;
+        font-weight: 600;
+        line-height: 23.94px;
+        margin: 7px auto;
+    }
+
+
+    .btn-enquire {
+        border-radius: 47px;
+        width: auto;
+        height: auto;
+        padding: 30px 170px;
+        font-size: 33px;
+        font-weight: 600;
+        line-height: 29.26px;
+    }
+
+
+    .noSelected {
+        margin: 16% auto;
+        align-content: center;
+        text-align: center;
+    }
+
+
+    .noSelectedSpot {
+        color: red;
+        font-size: 40px;
+        font-weight: 600;
+    }
+
+
+    .noSelectedGoBackBtn {
+        font-size: 35px;
+        margin: 25px auto;
+        font-weight: 600;
+        line-height: 33.26px;
+        padding: 30px 150px;
+        border-radius: 55px;
+    }
+
+
+    .productLocationImg {
+        font-size: 40px;
+        margin: auto 20px;
+    }
+
+
+}
+
+
+/* Large Screens (1400px - 2559px) ✅ Large Desktop Screens 1440*/
+@media (min-width: 1440px) and (max-width: 2559px) {
+    .Book-content1 {
+        padding-left: 80px;
+    }
+
+
+    .book-images,
+    .book-img11,
+    .book-img21,
+    .book-img31 {
+        height: 95px;
+        width: 95px;
+        margin-bottom: 10px;
+    }
+
+
+    .book-img11,
+    .book-img21,
+    .book-img31 {
+        border-radius: 8px;
+    }
+
+
+    .book-mainImage,
+    .book-mainImg1 {
+        width: 100%;
+        object-fit:cover;
+        height: 510px;
+        margin-left: 2.5%;
+        margin-right: 0.5%;
+        /* border-radius: 32px; */
+    }
+
+
+    .book-mainImg1 {
+        object-fit:cover;
+        border-radius: 32px;
+    }
+
+
+    .Book-content2 {
+        width: 630px;
+        padding-left: 25px;
+        padding-right: 5px;
+    }
+
+
+    .book-sideHeading {
+        font-size: 27px;
+        font-weight: 600;
+        line-height: 34.13px;
+    }
+
+
+    .book-size {
+        font-size: 23px;
+        font-weight: 400;
+        line-height: 29.26px;
+    }
+
+
+    .slash-bar,
+    .slash-bar1 {
+        margin: 0 15px;
+    }
+
+
+    .btn-type {
+        border-radius: 10px;
+        padding: 5px 10px;
+
+
+    }
+
+
+    .book-type {
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 17.07px;
+    }
+
+
+    .rate-board1 {
+        height: 35px;
+        width: 90px;
+        /* position: relative; */
+    }
+
+
+    .stars1,
+    .empty-star1 {
+        font-size: 15px;
+    }
+
+
+    .rating-star {
+        bottom: 7px;
+        left: 3px;
+    }
+
+
+    .book-price {
+        width: max-content;
+        padding: 13px 10px;
+        font-size: 21px;
+        font-weight: 500;
+        line-height: 24.38px;
+    }
+
+
+    .cost-gap {
+        margin-left: 10px;
+        font-size: 21px;
+        font-weight: 600;
+        line-height: 24.38px;
+    }
+
+
+    .book-spot {
+        width: fit-content;
+        padding: 13px 10px;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+
+    .location-arrow {
+        width: 92px;
+        height: 25px;
+        padding-bottom: 5px;
+    }
+
+
+    .rate-perDay {
+        font-size: 33px;
+        font-weight: 600;
+    }
+
+
+    .rate-perDay1 {
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+
+    .book-date {
+        width: auto;
+        height: auto;
+        font-size: 17px;
+        padding: 10px 10px;
+        border-radius: 32px;
+    }
+
+
+    .calender {
+        height: 26px;
+        width: 26px;
+    }
+
+
+    .anchor {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19.5px;
+    }
+
+
+    .payOffer {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 19.5px;
+    }
+
+
+    .btn-pay,
+    .btn-cart {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 21.94px;
+        letter-spacing: 0.05em;
+        width: auto;
+        height: auto;
+        padding: 15px 25px;
+        border-radius: 32px;
+    }
+
+
+    .btn-enquire {
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 29.26px;
+        padding: 17px 120px 17px 120px;
+    }
+
+
+    .noSelected {
+        margin: 14% auto;
+        align-content: center;
+        text-align: center;
+    }
+
+
+    .noSelectedSpot {
+        color: red;
+        font-size: 25px;
+        font-weight: 600;
+    }
+
+
+    .noSelectedGoBackBtn {
+        font-size: 25px;
+        margin: 15px auto;
+        font-weight: 600;
+        line-height: 33.26px;
+        padding: 15px 90px;
+        border-radius: 55px;
+    }
+
+
+    .productLocationImg {
+        font-size: 28px;
+    }
+
+
+}
+
+
+/* Laptops & Small Desktops (992px - 1024px)  ✅ Tablets (Landscape Mode) */
+@media (min-width: 992px) and (max-width: 1023px) {
+    .Book-content1 {
+        padding-left: 20px;
+    }
+
+
+    .book-images,
+    .book-img11,
+    .book-img21,
+    .book-img31 {
+        height: 80px;
+        width: 80px;
+        margin-bottom: 10px;
+    }
+
+
+    .book-img11,
+    .book-img21,
+    .book-img31 {
+        border-radius: 8px;
+    }
+
+
+    .book-mainImage,
+    .book-mainImg1 {
+        object-fit:cover;
+        width: 100%;
+        height: 500px;
+        margin-left: 1.5%;
+        margin-right: 0.3%;
+        /* border-radius: 32px; */
+    }
+
+
+    .Book-content2 {
+        /* width: 738px; */
+        /* border: 1px solid red; */
+        padding-left: 10px;
+        padding-right: 5px;
+        padding-top: 15px;
+    }
+
+
+    .book-sideHeading {
+        font-size: 23px;
+        font-weight: 600;
+        line-height: 28.13px;
+    }
+
+
+    .book-size {
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 10.26px;
+    }
+
+
+    .btn-type,
+    .book-spot {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 24.26px;
+        border-radius: 10px;
+        padding: 5px 10px;
+    }
+
+
+    .book-type {
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 17.07px;
+        margin-left: 0px;
+    }
+
+
+    .rate-board1 {
+        height: 30px;
+        width: 85px;
+        /* position: relative; */
+    }
+
+
+    .stars1 {
+        font-size: 14px;
+    }
+
+
+    .rating-star {
+        bottom: 7.3px;
+        left: 4px;
+    }
+
+
+    .slash-bar,
+    .slash-bar1 {
+        margin: 0 7px;
+    }
+
+
+    .book-price {
+        width: max-content;
+        padding: 13px 10px;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 20.38px;
+    }
+
+
+    .cost-gap {
+        margin-left: 7px;
+        font-weight: 600;
+    }
+
+
+    .book-spot {
+        width: fit-content;
+        padding: 10px 10px;
+        border-radius: 8px;
+    }
+
+
+    .rate-perDay {
+        font-size: 26px;
+        font-weight: 600;
+    }
+
+
+    .rate-perDay1 {
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+
+    .book-date {
+        width: auto;
+        height: auto;
+        font-size: 16px;
+        padding: 8px 11px;
+        border-radius: 32px;
+    }
+
+
+    .anchor {
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 19.5px;
+    }
+
+
+    .payOffer {
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 19.5px;
+    }
+
+
+    .btn-pay,
+    .btn-cart {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 21.94px;
+        width: auto;
+        height: auto;
+        margin-top: 6px;
+        padding: 13px 22px;
+        border-radius: 32px;
+    }
+
+
+    .btn-enquire {
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 26.26px;
+        padding: 16px 100px;
+    }
+
+
+    .noSelected {
+        margin: 18% auto;
+        align-content: center;
+        text-align: center;
+    }
+
+
+    .noSelectedSpot {
+        color: red;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+
+    .noSelectedGoBackBtn {
+        font-size: 18px;
+        margin: 10px auto;
+        font-weight: 600;
+        line-height: 33.26px;
+        padding: 9px 90px;
+        border-radius: 55px;
+    }
+
+
+    .productLocationImg {
+        font-size: 25px;
+    }
+
+
+
+
+}
+
+
+/* Tablets (768px - 991px) ✅ Tablets (Portrait Mode) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .BookMain {
+        flex-direction: column;
+    }
+
+
+    .bookContentRow1 {
+        display: flex;
+        flex-wrap: wrap;
+        margin: auto -155px;
+    }
+
+
+    .bookContentRow2 {
+        flex-shrink: 0;
+        width: auto;
+        margin-top: var(--bs-gutter-y);
+    }
+
+
+    .book-mainImage,
+    .book-mainImg1 {
+        object-fit:cover;
+        width: 100%;
+        height: 500px;
+    }
+
+
+    .Book-content1 {
+        margin: 0 auto;
+    }
+
+
+    .Book-content2 {
+        max-width: 100%;
+        padding: auto 10%;
+        padding-left: 3.5%;
+        padding-top: 3%;
+        margin: auto;
+    }
+
+
+    .book-sideHeading {
+        font-size: 25px;
+        font-weight: 600;
+        line-height: 30.13px;
+    }
+
+
+    .book-size {
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 15.26px;
+    }
+
+
+    .btn-type,
+    .book-spot {
+        font-size: 19px;
+        font-weight: 500;
+        line-height: 25.26px;
+        border-radius: 10px;
+        padding: 5px 10px;
+    }
+
+
+    .book-type {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 17.07px;
+        text-align: center;
+        position: relative;
+    }
+
+
+    .rate-board1 {
+        height: 30px;
+        width: 85px;
+        /* position: relative; */
+    }
+
+
+    .stars1,
+    .empty-star1 {
+        font-size: 14px;
+    }
+
+
+    .rating-star {
+        bottom: 7.3px;
+        left: 4px;
+    }
+
+
+    .slash-bar,
+    .slash-bar1 {
+        margin: 0px 10px;
+    }
+
+
+    .book-price {
+        width: max-content;
+        padding: 10px 10px;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 19.38px;
+    }
+
+
+    .cost-gap {
+        font-weight: 600;
+    }
+
+
+    .btn-type,
+    .book-spot {
+        width: fit-content;
+        padding: 5px 10px;
+        font-size: 19px;
+        font-weight: 500;
+        line-height: 25.26px;
+        border-radius: 10px;
+    }
+
+
+    .rate-perDay {
+        font-size: 27px;
+        font-weight: 600;
+    }
+
+
+    .rate-perDay1 {
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+
+    .book-date {
+        width: auto;
+        height: auto;
+        font-size: 16px;
+        padding: 8px 12px;
+        border-radius: 32px;
+    }
+
+
+    .calender {
+        height: 26px;
+        width: 26px;
+    }
+
+
+    .payOffer {
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 19.5px;
+    }
+
+
+    .btn-pay,
+    .btn-cart {
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 21.94px;
+        margin-top: 5px;
+        width: auto;
+        height: auto;
+        padding: 12px 20px;
+
+
+        border-radius: 32px;
+    }
+
+
+
+
+    .btn-enquire {
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 29.26px;
+        padding: 17px 120px;
+        border-radius: 32px;
+    }
+
+
+    .noSelected {
+        margin: 22% auto;
+        align-content: center;
+        text-align: center;
+    }
+
+
+    .noSelectedSpot {
+        color: red;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+
+    .noSelectedGoBackBtn {
+        font-size: 18px;
+        margin: 10px auto;
+        font-weight: 600;
+        line-height: 33.26px;
+        padding: 9px 90px;
+        border-radius: 55px;
+    }
+
+
+    .productLocationImg {
+        font-size: 25px;
+    }
+
+
+
+
+}
+
+@media(max-width: 480px) {
+
+    /* .item-scroll-additional {
+        width: 100%;
+        overflow-x: auto; 
+        overflow-y: hidden; 
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+
+    }
+
+    .item-scroll-additional::-webkit-scrollbar {
+        display: none;
+    }
+
+    .book-images-section {
+        display: flex;
+        gap: 10px;
+        width: max-content;
+        margin: 10px 20px;
+    } */
+
+}
+ 
+/* Mobile Large Screens (480px - 767px) ✅ Small Tablets & Large Phones */
+@media (min-width: 480px) and (max-width: 767px) {
+    .BookMain {
+        flex-direction: column;
+    }
+
+
+    .bookContentRow2 {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+
+    .Book-content1 {
+        margin: 0 auto;
+        padding-left: 0px;
+    }
+
+
+    /* SCROLL ANIMATION ADDED FOR SMALL SCREENS  */
+    .item-scroll-additional {
+        width: 100%;
+        overflow-x: auto;
+        /* Enables horizontal scrolling */
+        overflow-y: hidden;
+        /* Hides vertical scrolling */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .item-scroll-additional::-webkit-scrollbar {
+        display: none;
+    }
+
+    .book-images-section {
+        display: flex;
+        width: 90%;
+        justify-content: space-between;
+        margin: 0px 30px;
+    }
+
+
+    .book-mainImage,
+    .book-mainImg1 {
+        object-fit:cover;
+        width: 100%;
+        height: 500px;
+        margin: auto 4px;
+    }
+
+
+    .bookContentRow1 {
+        display: flex;
+        flex-wrap: wrap;
+        margin: auto -15px;
+    }
+
+
+    .book-img11,
+    .book-img21,
+    .book-img31 {
+        height: 100px;
+        width: 100px;
+        cursor: pointer;
+        border-radius: 8px;
+    }
+
+    .Book-content2 {
+        max-width: 100%;
+        padding: auto 10%;
+        padding-left: 2%;
+        padding-top: 5%;
+        margin: auto;
+    }
+
+    .book-sideHeading {
+        font-size: 23px;
+        font-weight: 600;
+        line-height: 26px;
+    }
+
+
+    .book-size {
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 9.26px;
+    }
+
+
+    .btn-type,
+    .book-spot {
+        width: fit-content;
+        padding: 5px 10px;
+        font-size: 17px;
+        font-weight: 500;
+        line-height: 25.26px;
+        border-radius: 10px;
+    }
+
+
+    .book-type {
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 17.07px;
+        text-align: center;
+        position: relative;
+    }
+
+
+    .rate-board1 {
+        height: 30px;
+        width: 85px;
+    }
+
+
+    .stars1,
+    .empty-star1 {
+        font-size: 14px;
+    }
+
+
+    .rating-star {
+        bottom: 6.6px;
+        left: 4px;
+    }
+
+
+    .book-price {
+        height: auto;
+        width: auto;
+        font-size: 17px;
+        font-weight: 500;
+        line-height: 17.38px;
+        padding: 10px 0px;
+    }
+
+
+    .cost-gap {
+        font-size: 17px;
+        font-weight: 600;
+    }
+
+
+    .slash-bar {
+        margin: 0px 15px;
+
+
+
+
+    }
+
+
+    .slash-bar1 {
+        margin: 0px 2px;
+    }
+
+
+    .location-arrow {
+        width: 92px;
+        height: 25px;
+        padding-bottom: 3px;
+    }
+
+
+    .rate-perDay {
+        font-size: 23px;
+        font-weight: 600;
+    }
+
+
+    .rate-perDay1 {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+
+    .anchor {
+        color: rgba(6, 90, 209, 1);
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19.5px;
+        text-align: left;
+        text-decoration: none;
+    }
+
+
+    .book-rateContent2 {
+        margin-left: 15px;
+    }
+
+
+    .book-date {
+        width: auto;
+        height: auto;
+        font-size: 15px;
+        padding: 8px 12px;
+        border-radius: 32px;
+    }
+
+
+    .calender {
+        height: 25px;
+        width: 25px;
+    }
+
+
+    .payOffer {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 19.5px;
+    }
+
+
+    .btn-pay,
+    .btn-cart {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 18.94px;
+        margin-top: 5px;
+        width: auto;
+        height: auto;
+        padding: 12px 20px;
+        border-radius: 32px;
+    }
+
+
+    .btn-enquire {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 29.26px;
+        padding: 12px 95px;
+        border-radius: 32px;
+    }
+
+
+    .noSelected {
+        margin: 37% auto;
+        align-content: center;
+        text-align: center;
+    }
+
+
+    .noSelectedSpot {
+        color: red;
+        font-size: 17px;
+        font-weight: 600;
+    }
+
+
+    .noSelectedGoBackBtn {
+        font-size: 16px;
+        margin: 8px auto;
+        font-weight: 600;
+        line-height: 33.26px;
+        padding: 6px 70px;
+        border-radius: 55px;
+    }
+
+
+    .productLocationImg {
+        font-size: 24px;
+    }
+
+
+
+
+}
+
+
+/* Mobile Medium Screens (425px - 479px) ✅ Medium Phones (iPhone XR, Galaxy S20) */
+@media (min-width: 425px) and (max-width: 479px) {
+    .BookMain {
+        flex-direction: column;
+    }
+
+    .bookContentRow2 {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+
+    .Book-content1 {
+        margin: 0 auto;
+        padding-left: 0px;
+    }
+
+
+    /* SCROLL ANIMATION ADDED FOR SMALL SCREENS  */
+    .item-scroll-additional {
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        /* Hides vertical scrolling */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        /* border:1px solid red; */
+        margin: auto 8px;
+    }
+
+    .item-scroll-additional::-webkit-scrollbar {
+        display: none;
+    }
+
+    .book-images-section {
+        display: flex;
+        gap: 10px;
+        width: 100%;
+        justify-content: space-between;
+        margin: 0px 5px;
+        /* border: 1px solid black; */
+    }
+
+    .book-mainImage,
+    .book-mainImg1 {
+        object-fit:cover;
+        width: 100%;
+        height: 400px;
+        margin: auto 4px;
+    }
+
+    .bookContentRow1 {
+        display: flex;
+        flex-wrap: wrap;
+        margin: auto -15px;
+    }
+
+
+    .book-img11,
+    .book-img21,
+    .book-img31 {
+        height: 95px;
+        width: 100px;
+        cursor: pointer;
+        border-radius: 8px;
+    }
+
+    .Book-content2 {
+        max-width: 100%;
+        padding: auto 2%;
+        /* padding-left: 2%; */
+        padding-top: 5%;
+        margin: auto;
+    }
+
+    .book-sideHeading {
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 23px;
+    }
+
+
+    .book-size {
+        font-size: 19px;
+        font-weight: 400;
+        line-height: 9.26px;
+    }
+
+
+    .btn-type,
+    .book-spot {
+        width: auto;
+        font-size: 17px;
+        font-weight: 500;
+        line-height: 25.26px;
+        border-radius: 8px;
+        padding: 3px 9px;
+    }
+
+
+    .book-type {
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 17.07px;
+        text-align: center;
+        position: relative;
+    }
+
+
+    .rate-board1 {
+        height: 30px;
+        width: 85px;
+    }
+
+
+    .stars1,
+    .empty-star1 {
+        font-size: 14px;
+    }
+
+
+    .rating-star {
+        bottom: 7px;
+        left: 4px;
+    }
+
+
+    .book-price {
+        width: max-content;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 18.38px;
+        padding: 4px 10px;
+    }
+
+
+    .cost-gap {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+
+    .slash-bar,
+    .slash-bar1 {
+        margin: 0px 3px;
+    }
+
+
+    .location-arrow {
+        width: 82px;
+        height: 25px;
+        padding-bottom: 5px;
+    }
+
+
+    .rate-perDay {
+        font-size: 22px;
+        font-weight: 600;
+    }
+
+
+    .rate-perDay1 {
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+
+    .anchor {
+        color: rgba(6, 90, 209, 1);
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 18.5px;
+        text-align: left;
+        text-decoration: none;
+    }
+
+
+    .book-rateContent2 {
+        margin-left: 15px;
+    }
+
+
+    .book-date {
+        width: auto;
+        height: auto;
+        font-size: 14px;
+        padding: 7px 12px;
+        border-radius: 33px;
+    }
+
+
+    .calender {
+        height: 25px;
+        width: 25px;
+    }
+
+
+    .payOffer {
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 19.5px;
+    }
+
+
+    .btn-pay,
+    .btn-cart {
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 18.94px;
+        margin-top: 5px;
+        width: auto;
+        height: auto;
+        padding: 12px 20px;
+        border-radius: 32px;
+    }
+
+
+    .btn-enquire {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 29.26px;
+        padding: 11px 90px;
+        border-radius: 32px;
+    }
+
+
+    .noSelected {
+        margin: 43% auto;
+        align-content: center;
+        text-align: center;
+    }
+
+
+    .noSelectedSpot {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+
+    .noSelectedGoBackBtn {
+        font-size: 14px;
+        margin: 5px auto;
+        font-weight: 600;
+        line-height: 33.26px;
+        padding: 6px 55px;
+        border-radius: 55px;
+    }
+
+
+    .productLocationImg {
+        font-size: 23px;
+    }
+
+
+}
+
+
+/* Mobile Small Screens (375px - 424px) ✅ Small Phones (iPhone SE, Pixel 4) */
+@media (min-width: 375px) and (max-width: 424px) {
+    .BookMain {
+        flex-direction: column;
+    }
+
+
+    .bookContentRow2 {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+
+    .Book-content1 {
+        margin: 0 auto;
+        padding-left: 0px;
+    }
+
+    /* SCROLL ANIMATION ADDED FOR SMALL SCREENS  */
+    .item-scroll-additional {
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        /* Hides vertical scrolling */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        /* border:1px solid red; */
+        margin: auto 8px;
+    }
+
+    .item-scroll-additional::-webkit-scrollbar {
+        display: none;
+    }
+
+    .book-images-section {
+        display: flex;
+        gap: 10px;
+        width: 100%;
+        justify-content: space-between;
+        margin: 0px 5px;
+    }
+
+    .book-mainImage,
+    .book-mainImg1 {
+        object-fit:cover;
+        width: 100%;
+        height: 400px;
+        margin: auto 4px;
+    }
+
+
+    .bookContentRow1 {
+        display: flex;
+        flex-wrap: wrap;
+        margin: auto -15px;
+    }
+
+
+    .book-img11,
+    .book-img21,
+    .book-img31 {
+        height: 95px;
+        width: 100px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .Book-content2 {
+        max-width: 100%;
+        padding: auto 10%;
+        padding-left: 2%;
+        padding-top: 5%;
+        margin: auto;
+    }
+
+    .book-sideHeading {
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 23.13px;
+    }
+
+
+    .book-size {
+        font-size: 19px;
+        font-weight: 400;
+        line-height: 9.26px;
+    }
+
+
+    .btn-type,
+    .book-spot {
+        width: auto;
+        height: auto;
+        font-size: 17px;
+        font-weight: 500;
+        line-height: 25.26px;
+        border-radius: 8px;
+        padding: 5px 9px;
+    }
+
+
+    .book-type {
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 17.07px;
+        text-align: center;
+        position: relative;
+    }
+
+
+    .rate-board1 {
+        height: 30px;
+        width: 85px;
+    }
+
+
+    .stars1,
+    .empty-star1 {
+        font-size: 14px;
+    }
+
+
+    .rating-star {
+        bottom: 7px;
+        left: 4px;
+    }
+
+
+    .book-price {
+        height: auto;
+        width: 100%;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 18.38px;
+        padding: 4px 5px;
+    }
+
+
+    .cost-gap {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+
+    .slash-bar {
+        margin: 0px 10px;
+
+
+    }
+
+    .slash-bar1 {
+        margin: 0px 3px;
+    }
+
+
+    .location-arrow {
+        width: 82px;
+        height: 25px;
+        padding-bottom: 5px;
+    }
+
+
+    .rate-perDay {
+        font-size: 22px;
+        font-weight: 600;
+    }
+
+
+    .rate-perDay1 {
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+
+    .anchor {
+        color: rgba(6, 90, 209, 1);
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 18.5px;
+        text-align: left;
+        text-decoration: none;
+    }
+
+
+    .book-rateContent2 {
+        margin-left: 15px;
+    }
+
+
+    .book-date {
+        width: auto;
+        height: auto;
+        font-size: 14px;
+        padding: 7px 12px;
+        border-radius: 33px;
+    }
+
+
+    .calender {
+        height: 25px;
+        width: 25px;
+    }
+
+
+    .payOffer {
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 19.5px;
+    }
+
+
+    .btn-pay,
+    .btn-cart {
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 18.94px;
+        margin-top: 5px;
+        width: auto;
+        height: auto;
+        padding: 12px 20px;
+        border-radius: 32px;
+    }
+
+
+    .btn-enquire {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 29.26px;
+        padding: 11px 90px;
+        border-radius: 32px;
+    }
+
+
+    .noSelected {
+        margin: 43% auto;
+        align-content: center;
+        text-align: center;
+    }
+
+
+    .noSelectedSpot {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+
+    .noSelectedGoBackBtn {
+        font-size: 14px;
+        margin: 5px auto;
+        font-weight: 600;
+        line-height: 33.26px;
+        padding: 6px 55px;
+        border-radius: 55px;
+    }
+
+
+    .productLocationImg {
+        font-size: 24px;
+    }
+
+
+}
+
+
+/* Extra Small Screens (360px - 374px) ✅ Extra Small Phones */
+@media (min-width: 360px) and (max-width: 374px) {
+    .BookMain {
+        flex-direction: column;
+    }
+
+
+    .bookContentRow2 {
+        flex-direction: column;
+        gap: 0px;
+    }
+
+
+    .Book-content1 {
+        margin: 0 auto;
+        padding-left: 0px;
+    }
+
+    /* SCROLL ANIMATION ADDED FOR SMALL SCREENS  */
+    .item-scroll-additional {
+        width: 98%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        margin: auto 10px;
+    }
+
+    .item-scroll-additional::-webkit-scrollbar {
+        display: none;
+    }
+
+    .book-images-section {
+        display: flex;
+        gap: 10px;
+        width: 100%;
+        justify-content: space-between;
+        margin: 0px 5px;
+    }
+
+    .book-mainImage,
+    .book-mainImg1 {
+        object-fit:cover;
+        width: 100%;
+        height: 350px;
+        margin: auto 4px;
+    }
+
+
+    .bookContentRow1 {
+        display: flex;
+        flex-wrap: wrap;
+        margin: auto -15px;
+    }
+
+
+    .book-img11,
+    .book-img21,
+    .book-img31,
+    .book-images {
+        height: 90px;
+        width: 90px;
+        cursor: pointer;
+        border-radius: 8px;
+    }
+
+
+
+
+
+
+    .Book-content2 {
+        max-width: 100%;
+        /* padding-left: 1%; */
+        padding-top: 5%;
+        margin: auto;
+    }
+
+
+
+
+    .book-sideHeading {
+        font-size: 21px;
+        font-weight: 600;
+        line-height: 23px;
+    }
+
+
+    .book-size {
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 9.26px;
+    }
+
+
+    .btn-type,
+    .book-spot {
+        width: auto;
+        height: auto;
+        font-size: 17px;
+        font-weight: 500;
+        line-height: 25.26px;
+        border-radius: 8px;
+        padding: 5px 9px;
+    }
+
+
+    .book-type {
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 17.07px;
+        text-align: center;
+        position: relative;
+    }
+
+
+    .rate-board1 {
+        height: 30px;
+        width: 85px;
+    }
+
+
+    .stars1,
+    .empty-star1 {
+        font-size: 14px;
+    }
+
+
+    .rating-star {
+        bottom: 7px;
+        left: 4px;
+    }
+
+
+    .book-price {
+        height: auto;
+        width: 90%;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 18.38px;
+        padding: 4px 0px;
+        text-align: center;
+    }
+
+
+    .cost-gap {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+
+    .slash-bar {
+        margin: 0px 10px;
+
+
+    }
+
+
+    .slash-bar1 {
+        /* display: none; */
+        margin: 0px 5px;
+    }
+
+
+    .location-arrow {
+        width: 72px;
+        height: 24px;
+        padding-bottom: 5px;
+    }
+
+
+    .rate-perDay {
+        font-size: 21px;
+        font-weight: 600;
+    }
+
+
+    .rate-perDay1 {
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+
+    .anchor {
+        color: rgba(6, 90, 209, 1);
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 18.5px;
+        text-align: left;
+        text-decoration: none;
+    }
+
+
+    .book-rateContent2 {
+        margin-left: 15px;
+    }
+
+
+    .book-date {
+        width: auto;
+        height: auto;
+        font-size: 14px;
+        padding: 7px 12px;
+        border-radius: 33px;
+    }
+
+
+    .calender {
+        height: 25px;
+        width: 25px;
+    }
+
+
+    .payOffer {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 19.5px;
+    }
+
+
+    .btn-pay,
+    .btn-cart {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 18.94px;
+        margin-top: 5px;
+        width: auto;
+        height: auto;
+        padding: 12px 20px;
+        border-radius: 32px;
+    }
+
+
+    .btn-enquire {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 29.26px;
+        padding: 10px 90px;
+        border-radius: 32px;
+    }
+
+
+    .noSelected {
+        margin: 48% auto;
+        align-content: center;
+        text-align: center;
+    }
+
+
+    .noSelectedSpot {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+
+    .noSelectedGoBackBtn {
+        font-size: 16px;
+        margin: 5px auto;
+        font-weight: 600;
+        line-height: 33.26px;
+        padding: 6px 50px;
+        border-radius: 55px;
+    }
+
+
+    .productLocationImg {
+        font-size: 24px;
+    }
+
+
+}
+
+
+@media (min-width: 320px) and (max-width: 359px) {
+    .BookMain {
+        flex-direction: column;
+    }
+
+
+    .bookContentRow2 {
+        flex-direction: column;
+        gap: 0px;
+    }
+
+
+    .Book-content1 {
+        margin: 0 auto;
+        padding-left: 0px;
+    }
+
+    /* SCROLL ANIMATION ADDED FOR SMALL SCREENS  */
+    .item-scroll-additional {
+        width: 97%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        margin: auto 10px;
+    }
+
+    .item-scroll-additional::-webkit-scrollbar {
+        display: none;
+    }
+
+    .book-images-section {
+        display: flex;
+        gap: 10px;
+        width: 100%;
+        justify-content: space-between;
+        margin: 0px 5px;
+    }
+
+    .book-mainImage,
+    .book-mainImg1 {
+        object-fit:cover;
+        width: 100%;
+        height: 320px;
+        margin: auto 3px;
+    }
+
+    .bookContentRow1 {
+        display: flex;
+        flex-wrap: wrap;
+        margin: auto -25px;
+    }
+
+    .book-img11,
+    .book-img21,
+    .book-img31,
+    .book-images {
+        height: 85px;
+        width: 90px;
+        cursor: pointer;
+        border-radius: 8px;
+    }
+
+    .Book-content2 {
+        max-width: 100%;
+        padding-left: 0%;
+        padding-right: 0%;
+        padding-top: 5%;
+        margin: auto;
+    }
+
+    .book-sideHeading {
+        font-size: 21px;
+        font-weight: 600;
+        line-height: 23px;
+    }
+
+    .book-size {
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 9.26px;
+    }
+
+    .btn-type,
+    .book-spot {
+        width: auto;
+        height: auto;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 25.26px;
+        border-radius: 7px;
+        padding: 5px 6px;
+    }
+
+    .book-type {
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 17.07px;
+        text-align: center;
+        position: relative;
+    }
+
+    .rate-board1 {
+        height: 30px;
+        width: 85px;
+    }
+
+    .stars1,
+    .empty-star1 {
+        font-size: 14px;
+    }
+
+    .rating-star {
+        bottom: 7px;
+        left: 4px;
+    }
+
+    .book-price {
+        height: auto;
+        width: 90%;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 18.38px;
+        padding: 4px 0px;
+        text-align: center;
+    }
+
+
+    .cost-gap {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+
+    .slash-bar {
+        margin: 0px 10px;
+
+
+    }
+
+
+    .slash-bar1 {
+        /* display: none; */
+        margin: 0px 3px;
+    }
+
+
+    .location-arrow {
+        width: 72px;
+        height: 24px;
+        padding-bottom: 5px;
+    }
+
+
+    .book-rate {
+        display: flex;
+        height: 70px;
+    }
+
+
+    .rate-perDay {
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+
+    .rate-perDay1 {
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+
+    .anchor {
+        color: rgba(6, 90, 209, 1);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18.5px;
+        text-align: left;
+        text-decoration: none;
+    }
+
+
+    .book-rateContent2 {
+        margin-left: 12px;
+    }
+
+
+    .book-date {
+        width: auto;
+        height: auto;
+        font-size: 14px;
+        padding: 7px 10px;
+        border-radius: 35px;
+
+
+    }
+
+
+    .calender {
+        height: 25px;
+        width: 25px;
+    }
+
+
+    .payOffer {
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 19.5px;
+    }
+
+
+    .btn-pay,
+    .btn-cart {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 18.94px;
+        margin-top: 5px;
+        width: auto;
+        height: auto;
+        padding: 11px 15px;
+        border-radius: 32px;
+    }
+
+
+    .btn-enquire {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 29.26px;
+        padding: 9px 85px;
+        border-radius: 32px;
+    }
+
+
+    .noSelected {
+        margin: 53% auto;
+        align-content: center;
+        text-align: center;
+    }
+
+
+    .noSelectedSpot {
+        font-size: 17px;
+        font-weight: 600;
+    }
+
+
+    .noSelectedGoBackBtn {
+        font-size: 15px;
+        margin: 5px auto;
+        font-weight: 600;
+        line-height: 33.26px;
+        padding: 6px 50px;
+        border-radius: 55px;
+    }
+
+
+    .productLocationImg {
+        font-size: 23px;
+        margin: auto 2px;
+    }
+
+
+}

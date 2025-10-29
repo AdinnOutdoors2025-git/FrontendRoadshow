@@ -1,0 +1,91 @@
+* {
+    font-family: "Montserrat";
+}
+
+.richTextEditorMain {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.ql-tooltip,
+.ql-editing {
+    left: 109px;
+    top: 39px;
+}
+
+.BlogContentEditorMain {
+    /* height: 100%; */
+    width: auto;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+.BlogContentEditor {
+    position: relative;
+    height: 600px;
+    width: 80%;
+    overflow-y: auto;
+    background-color: white;
+    border-radius: 10px;
+}
+
+
+.BlogContentPreview {
+    background-color: white;
+    border-radius: 10px;
+    height: 600px;
+    overflow-y: auto;
+    width: 80%;
+    padding: 10px;
+}
+
+.BlogContentEditor-frame {
+    /* width: 100%; */
+    /* height: 100vh; */
+}
+
+
+.BlogContentPreview p {
+    text-align: justify;
+}
+
+
+.BlogContentPreview h1 {
+    font-size: 50px;
+}
+
+.ql-editor {
+    font-size: 20px;
+    height: 532px;
+    outline: none;
+    overflow-y: auto;
+}
+
+
+.ql-editor {
+    flex: 1;
+    font-size: 20px;
+    overflow-y: auto;
+    padding: 12px 15px;
+    box-sizing: border-box;
+    z-index: 99;
+}
+
+
+.ql-toolbar.ql-snow {
+    position: sticky;
+    top: 0px;
+    z-index: 100;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    padding: 8px;
+}
+
+.ql-container.ql-snow {
+    height: 532px;
+    overflow-x: auto;
+}

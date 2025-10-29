@@ -1,0 +1,410 @@
+/* auth.css */
+.admin-user-auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    padding: 20px;
+        animation: fadeIn 0.5s ease-in-out;
+
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.admin-user-auth-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.admin-user-auth-card:hover {
+    transform: translateY(-5px);
+}
+
+.auth-title {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    position: relative;
+}
+
+.auth-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, #ff4d4d 0%, #f95700 100%);
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.admin-user-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.admin-user-form-group label {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+.password-group {
+    position: relative;
+}
+
+.password-input-container {
+    position: relative;
+}
+
+.auth-input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.auth-input:focus {
+    border-color: #ff4d4d;
+    box-shadow: 0 0 0 2px rgba(255, 77, 77, 0.3);
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 5px;
+    transition: all 0.2s;
+}
+
+.password-toggle:hover {
+    color: #ff4d4d;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.admin-user-remember-me {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.remember-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: #ff4d4d;
+}
+
+.admin-user-auth-button {
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #ff4d4d 0%, #f95700 100%);
+    color: white;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.admin-user-auth-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 77, 77, 0.4);
+}
+
+.admin-user-auth-button:disabled {
+    background: #ccc;
+        opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.admin-user-error-message {
+    color: #ff4d4d;
+    padding: 10px;
+    background: rgba(255, 77, 77, 0.1);
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+
+
+
+
+
+/* 
+
+
+.admin-user-auth-card h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.admin-user-form-group {
+    margin-bottom: 20px;
+}
+
+.admin-user-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+.admin-user-form-group input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+    outline: none;
+}
+
+.admin-user-auth-button {
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #ff4d4d 0%, #f95700 100%);
+    color: white;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.admin-user-auth-options {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.admin-user-switch-button {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 0.9rem;
+}
+
+.admin-user-error-message {
+    color: #ff4d4d;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.admin-user-remember-me {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.admin-user-remember-me input {
+    margin-right: 10px;
+} */
+
+
+
+
+/* Add these to your existing CSS */
+
+.auth-subtitle {
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1rem;
+}
+.admin-user-error-message, 
+.admin-user-success-message {
+    /* color: #4CAF50; */
+    padding: 10px;
+    margin: 10px 0;
+    background: rgba(76, 175, 80, 0.1);
+    border-radius: 5px;
+    text-align: center;
+    /* margin-bottom: 20px; */
+    animation: fadeIn 0.5s;
+}
+
+.admin-user-error-message {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+}
+
+.admin-user-success-message {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+}
+
+.auth-footer {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+.auth-switch-button {
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-left: 5px;
+    text-decoration: underline;
+    padding: 0;
+}
+
+.auth-switch-button:hover {
+    color: #f95700;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.auth-method-selector {
+    display: flex;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+.auth-method-btn {
+    flex: 1;
+    padding: 8px 12px;
+    border: none;
+    background: #f5f5f5;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.auth-method-btn.active {
+    background: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+/* Error message mapping */
+.admin-user-error-message[data-error="USERNAME_ALREADY_EXISTS"]::before {
+    content: "Username already exists";
+}
+
+.admin-user-error-message[data-error="ADMIN_NOT_FOUND"]::before {
+    content: "Admin account not found";
+}
+
+.admin-user-error-message[data-error="INVALID_PASSWORD"]::before {
+    content: "Invalid password";
+}
+
+.admin-user-error-message[data-error="INVALID_SECRET_CODE"]::before {
+    content: "Invalid secret code";
+}
+
+.admin-user-error-message[data-error="INVALID_ADMIN_SECRET_CODE"]::before {
+    content: "Invalid admin secret code";
+}
+
+.admin-user-error-message[data-error="USERNAME_FORMAT_INVALID"]::before {
+    content: "Username must be 4-20 alphanumeric characters";
+} 
+
+

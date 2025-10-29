@@ -1,0 +1,124 @@
+.main-layout.login-open {
+    position: relative;
+    /* min-height: 100vh; */
+}
+
+.login-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 7%;
+    z-index: 201;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+/* Responsive Media Queries */
+/* Extra Large Screens (2560px and above) ✅ Large Screens (4K Screens)  */
+@media (min-width: 2560px) {
+    .login-overlay {
+        padding-top: 10%;
+    }
+}
+
+/* Large Screens (1400px - 2559px) ✅ Large Desktop Screens 1440*/
+@media (min-width: 1440px) and (max-width: 2559px) {
+    .login-overlay {
+        padding-top: 11%;
+    }
+}
+
+/* Laptops & Small Desktops (992px - 1024px)  ✅ Tablets (Landscape Mode) */
+@media (min-width: 992px) and (max-width: 1023px) {
+      .login-overlay {
+        padding-top: 19%;
+    }  
+}
+
+/* Tablets (768px - 991px) ✅ Tablets (Portrait Mode) */
+@media (min-width: 768px) and (max-width: 991px) {
+        .login-overlay {
+        padding-top: 20%;
+    }  
+}
+
+/* Mobile Large Screens (480px - 767px) ✅ Small Tablets & Large Phones */
+@media (min-width: 480px) and (max-width: 767px) {
+    .login-overlay {
+        padding-top: 30%;
+
+        /* padding-top: 10%; */
+    }
+}
+
+/* Mobile Medium Screens (425px - 479px) ✅ Medium Phones (iPhone XR, Galaxy S20) */
+@media (min-width: 425px) and (max-width: 479px) {
+     .login-overlay {
+        padding-top: 33%;
+
+        /* padding-top: 20%; */
+    }
+}
+
+/* Mobile Small Screens (375px - 424px) ✅ Small Phones (iPhone SE, Pixel 4) */
+@media (min-width: 375px) and (max-width: 424px) {
+      .login-overlay {
+        padding-top: 33%;
+        /* padding-top: 20%; */
+    }
+}
+
+/* Extra Small Screens (360px - 374px) ✅ Extra Small Phones */
+@media (min-width: 360px) and (max-width: 374px) {
+       .login-overlay {
+        padding-top: 33%;
+        /* padding-top: 20%; */
+    }
+}
+
+@media (min-width: 320px) and (max-width: 359px) {
+         .login-overlay {
+        padding-top: 33%;
+        /* padding-top: 20%; */
+    }
+}
+
+
+/* Add to c1login.css or c2login.css */
+.employee-login-notice {
+    background: #e3f2fd;
+    border: 1px solid #2196f3;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #1976d2;
+    font-weight: 500;
+}
+
+.login-mainn {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Ensure the overlay works properly */
+.login-overlay {
+    z-index: 10000;
+}
+
+.nav_user-content .navUserMain {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.nav_user-content .navUserMain:hover {
+    background-color: #f5f5f5;
+}
