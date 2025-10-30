@@ -127,7 +127,12 @@ const VehiclesListTable = () => {
                 break;
 
             case "5 Star Ratings":
-                filtered = vehicles.filter(v=> Math.floor(v.vehicleDetails.rating) === 5); // Handle decimal ratings
+                // filtered = vehicles.filter(v=> Math.floor(v.vehicleDetails.rating) === 5); // Handle decimal ratings
+                // Filter vehicles with rating exactly 5 (including 5.0)
+                filtered = vehicles.filter(v => {
+                    const rating = parseFloat(v.vehicleDetails.rating);
+                    return rating === 5;
+                });
                 break;
             default: // View All
                 filtered = vehicles;
