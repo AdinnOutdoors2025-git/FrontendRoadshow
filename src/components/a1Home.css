@@ -1,3 +1,7 @@
+
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
 * {
     font-style: "Montserrat";
 }
@@ -197,4 +201,368 @@
     height: 250px;
     width: 300px;
     border-radius: 10px;
+}
+
+
+
+/* TESTIMONIALS */
+.testimonial-container {
+    position: relative;
+}
+
+.testimonial-img {
+    width: 100%;
+    height: auto;
+}
+
+.testimonial-content {
+    position: absolute;
+    top: 38%;
+    left: 64%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 2;
+    width: 75%;
+    max-width: 700px;
+    /* border: 1px solid red; */
+}
+
+.testimonial-text {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.4;
+    float: right;
+}
+
+.testimonial-author {
+    font-size: 28px;
+    font-weight: 600;
+    float: right;
+    margin-top: 6%;
+
+}
+
+.testimonialRating {
+    height: 40px;
+    width: 40px;
+}
+
+/* GALLERY SHOWCASE SECTION  */
+/* .GalleryMain{
+    display: flex;
+    justify-content: space-around;
+    text-align: center; align-items: center; align-content: center;
+
+}
+.GalleryImg{
+    height: auto;
+    width: 100%;
+}
+.GalleryArrow{
+ border: none;
+ border-radius: 50%;
+background: linear-gradient(180deg, #E52B2C 0%, #7F1818 100%);
+padding: 15px;
+    text-align: center; align-items: center; align-content: center;
+
+}
+.GalleryArrowImg{
+    height: 30px;
+    width: auto;
+}
+    
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* GALLERY SHOWCASE SECTION */
+.GalleryMain {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
+.GalleryImg {
+    height: auto;
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 10px;
+    /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); */
+    transition: transform 0.3s ease;
+}
+
+.GalleryArrow {
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #E52B2C 0%, #7F1818 100%);
+    padding: 15px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.GalleryArrow:hover {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.GalleryArrow.prev {
+    left: -80px;
+}
+
+.GalleryArrow.next {
+    right: -80px;
+}
+
+.GalleryArrowImg {
+    height: 25px;
+    width: auto;
+    filter: brightness(0) invert(1);
+}
+
+/* Slick Carousel Custom Styles */
+.gallery-slider {
+    position: relative;
+}
+
+.gallery-slider .slick-slide {
+    padding: 0 15px;
+    transition: transform 0.3s ease;
+}
+
+.gallery-slider .slick-slide.slick-active {
+    transform: scale(1.02);
+}
+
+.gallery-slider .slick-dots {
+    bottom: -40px;
+    list-style: none;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.gallery-slider .slick-dots li {
+    margin: 0;
+}
+
+.gallery-slider .slick-dots li button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid #E52B2C;
+    background: transparent;
+    font-size: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.gallery-slider .slick-dots li.slick-active button {
+    background: #E52B2C;
+    transform: scale(1.2);
+}
+
+.gallery-slider .slick-dots li button:hover {
+    background: #E52B2C;
+    opacity: 0.7;
+}
+
+/* Slick fade animation */
+.gallery-slider .slick-slide {
+    opacity: 0.7;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.gallery-slider .slick-slide.slick-active {
+    opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .GalleryMain {
+        padding: 0 40px;
+    }
+
+    .GalleryArrow {
+        width: 50px;
+        height: 50px;
+        padding: 12px;
+    }
+
+    .GalleryArrow.prev {
+        left: -20px;
+    }
+
+    .GalleryArrow.next {
+        right: -20px;
+    }
+
+    .GalleryArrowImg {
+        height: 20px;
+    }
+
+    .GalleryImg {
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .GalleryMain {
+        padding: 0 30px;
+    }
+
+    .GalleryArrow {
+        width: 45px;
+        height: 45px;
+        padding: 10px;
+    }
+
+    .GalleryArrow.prev {
+        left: -15px;
+    }
+
+    .GalleryArrow.next {
+        right: -15px;
+    }
+
+    .GalleryArrowImg {
+        height: 18px;
+    }
+
+    .gallery-slider .slick-dots {
+        bottom: -30px;
+    }
+
+    .gallery-slider .slick-dots li button {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+/* Loading state */
+.gallery-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    background: #f5f5f5;
+    border-radius: 10px;
+}
+
+/* Custom fade animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.gallery-slider .slick-active .GalleryImg {
+    animation: fadeIn 0.5s ease;
+}
+
+
+
+
+/* FAQ SECTION  */
+.FAQMain {
+    display: flex;
+    justify-content: space-around;
+    border-radius: 10px;
+    padding: 15px;
+    background: #30A6A8;
+    margin-bottom: 20px;
+     cursor: pointer;
+    transition: all 0.3s ease;
+}
+.FAQMain:hover {
+    background: #2a9597;
+}
+.FAQQuestion {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #FFFFFF;
+}
+
+.FAQAnswer {
+    /* font-weight: 400;
+    font-size: 18px;
+    color: #FFFFFF;
+    margin-top: 10px;
+     transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease; */
+     font-weight: 400;
+    font-size: 18px;
+    color: #FFFFFF;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 1s ease;
+    margin-top: 0;
+    width: 90%;
+
+    text-align: justify;
+}
+.FAQAnswer.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.FAQDownArrow {
+    color: #FFFFFF;
+    font-size: 25px;
+
+}
+.flex-grow-1 {
+    flex-grow: 1;
 }

@@ -7,12 +7,14 @@ import slugify from 'slugify';
 import { baseUrl } from '../Authentication/BASE_URL';
 import { useVehicle } from './A_VehicleContext';
 import { MainLayout } from '../Authentication/MainLayout';
-
+import Gallery from './a1GalleryCarousel';
 function RdHome() {
     const navigate = useNavigate();
     const [vehicleData, setVehicleData] = useState([]);
     const [isLoading, setIsLoading] = useState(true); // Changed from null to true
     const { setSelectedVehicle } = useVehicle();
+ //FAQ USE STATE
+    const [activeFaq, setActiveFaq] = useState(null);
 
     const fetchVehicles = async () => {
         try {
@@ -37,7 +39,7 @@ function RdHome() {
                 vehicleHeight: vehicle.vehicleDetails.vehicleSize.height,
                 VehicleSizeSquareFeet: vehicle.vehicleDetails.vehicleSize.VehicleSizeSquareFeet,
                 image: vehicle.vehicleDetails.image,
-                 overAllCount: vehicle.vehicleDetails.vehicleCount.OverAllCount,
+                overAllCount: vehicle.vehicleDetails.vehicleCount.OverAllCount,
                 bookedCount: vehicle.vehicleDetails.vehicleCount.BookedCount,
                 balanceCount: vehicle.vehicleDetails.vehicleCount.BalanceCount,
                 additionalFiles: vehicle.vehicleDetails.additionalFiles,
@@ -75,7 +77,7 @@ function RdHome() {
             vehicleHeight: vehicle.vehicleHeight,
             VehicleSizeSquareFeet: vehicle.VehicleSizeSquareFeet,
             image: vehicle.image,
-             overAllCount: vehicle.overAllCount,
+            overAllCount: vehicle.overAllCount,
             bookedCount: vehicle.bookedCount,
             balanceCount: vehicle.balanceCount,
             additionalFiles: vehicle.additionalFiles,
@@ -100,136 +102,254 @@ function RdHome() {
         );
     }
 
+
+    
+
+    // FAQ SECTION 
+    const faqQuestions = [
+        {
+            id: 1,
+            Question: "What's included in a standard roadshow package?",
+            Answer: "Typically: branded vehicle, driver, fuel, basic audio, permissions support, promoters (if scoped), branding print/installation, GPS tracking, daily photos/videos, and a post-campaign report. Exclusions often include venue rentals, premium activations, and special permits."
+        },
+        {
+            id: 2,
+            Question: "How much lead time do you need?",
+            Answer: "We typically require 2-4 weeks of lead time for standard roadshows to ensure proper planning, permissions, and logistics. For more complex activations, we recommend 4-6 weeks."
+        },
+        {
+            id: 3,
+            Question: "Who handles permissions?",
+            Answer: "Our team handles all necessary permissions and permits required for your roadshow. We coordinate with local authorities and venue management to ensure compliance with all regulations."
+        },
+        {
+            id: 4,
+            Question: "Are there time or noise restrictions?",
+            Answer: "Yes, most locations have specific time and noise restrictions. We conduct thorough site surveys and coordinate with local authorities to ensure we operate within permitted hours and noise levels."
+        },
+        {
+            id: 5,
+            Question: "Are there time or noise restrictions?",
+            Answer: "Yes, most locations have specific time and noise restrictions. We conduct thorough site surveys and coordinate with local authorities to ensure we operate within permitted hours and noise levels."
+        },
+    ]
+
+
+    const handleFaqClick = (index) => {
+        setActiveFaq(activeFaq === index ? null : index);
+    }
+
+
+
     return (
         <MainLayout>
 
-        <div>
-            {/* Roadshow Navbar section */}
-            <Navbar />
-<div>
-            {/* Roadshow banner*/}
             <div>
-                <img src='./images/RoadshowBanner.png' className='rdshowHomeBanner' alt="Roadshow Banner" />
-            </div>
+                {/* Roadshow Navbar section */}
+                <Navbar />
+                <div>
+                    {/* Roadshow banner*/}
+                    <div>
+                        <img src='./images/RoadshowBanner.png' className='rdshowHomeBanner' alt="Roadshow Banner" />
+                    </div>
 
-            {/* Available Vehicle section */}
-            <div className='container rdAvailableVehMain'>
-                <div className='RdShowHomeSideHeading'>
-                    Available Vehicles
-                </div>
-                <div className='rdAvailableContentMain'>
-                    {vehicleData.map((vehicle) => (
-                        <div key={vehicle._id} className='rdAvailContentInside' onClick={() => handleVehicleDetails(vehicle)}>
-                            <div>
-                                {/* Vehicle Image */}
-                                <div className='rdAvailVehImg'>
-                                    <img src={vehicle.image} alt={vehicle.name} className='rdAvailVehImg' />
-                                </div>
+                    {/* Available Vehicle section */}
+                    <div className='container rdAvailableVehMain'>
+                        <div className='RdShowHomeSideHeading'>
+                            Available Vehicles
+                        </div>
+                        <div className='rdAvailableContentMain'>
+                            {vehicleData.map((vehicle) => (
+                                <div key={vehicle._id} className='rdAvailContentInside' onClick={() => handleVehicleDetails(vehicle)}>
+                                    <div>
+                                        {/* Vehicle Image */}
+                                        <div className='rdAvailVehImg'>
+                                            <img src={vehicle.image} alt={vehicle.name} className='rdAvailVehImg' />
+                                        </div>
 
-                                {/* Vehicle Details */}
-                                <div className='rdAvailVehDetails'>
-                                    <div className='rdAvailVehName'> {vehicle.name}</div>
-                                    <div className='rdAvailVehRate'>₹ {vehicle.amount.toLocaleString()} / Per Day</div>
-                                    <div className='rdAvailVehRatingStar' >
-                                        <div> {vehicle.rating} </div>
-                                        <div>
-                                            <img src='./images/AvailVehRatingStar.png' className='rdAvailVehRatingStarIcon' alt="Rating Star" />
+                                        {/* Vehicle Details */}
+                                        <div className='rdAvailVehDetails'>
+                                            <div className='rdAvailVehName'> {vehicle.name}</div>
+                                            <div className='rdAvailVehRate'>₹ {vehicle.amount.toLocaleString()} / Per Day</div>
+                                            <div className='rdAvailVehRatingStar' >
+                                                <div> {vehicle.rating} </div>
+                                                <div>
+                                                    <img src='./images/AvailVehRatingStar.png' className='rdAvailVehRatingStarIcon' alt="Rating Star" />
+                                                </div>
+                                            </div>
+
+                                            {/* View Details Button */}
+                                            <button className='rdAvailVehBtn' onClick={() => handleVehicleDetails(vehicle)} >
+                                                View Details
+                                            </button>
                                         </div>
                                     </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
 
-                                    {/* View Details Button */}
-                                    <button className='rdAvailVehBtn' onClick={() => handleVehicleDetails(vehicle)} >
-                                        View Details
-                                    </button>
+                    <div className='container'>
+                        <button className='rdAvailVehBtn rdAvailVehViewBtn' onClick={() => navigate('/vehicleTypes')} >
+                            View All
+                        </button>
+                    </div>
+
+                    {/* Rest of your existing JSX remains the same */}
+                    {/* Live RoadShow Activity */}
+                    <div className='LiveRdShowMain container' >
+                        <div className='LiveRdShowContentLeft'>
+                            <div className='LiveRdShowContentHeading'>Live Roadshow Activity</div>
+                            <div className='LiveRdShowContentPara'>Real-time updates of our active roadshow vehicles across cities.</div>
+                            <div className='LiveRdShowContentPara'>Currently, 5 vehicles are on the road across Madurai, Coimbatore, Salem, Trichy, and Chennai.</div>
+                        </div>
+                        <div className='LiveRdShowContentRight'>
+                            <img src='./images/LiveRoadActivityImg.png' className='LiveRdShowContentRight' alt="Live Road Activity" />
+                        </div>
+                    </div>
+
+                    {/* Why Choose Us */}
+                    <div className='container my-5'>
+                        <div className='RdShowHomeSideHeading'>
+                            Why Choose Us
+                        </div>
+                        <div className='row justify-content-center'>
+                            <div className='col-md-3 col-sm-6 text-center mb-4'>
+                                <div>
+                                    <img src='./images/WhyChooseImg1.png' className='img-fluid why-choose-img' alt='RTO Certified' />
+                                    <div className='whyChooseContent'>RTO Certified</div>
+                                </div>
+                            </div>
+                            <div className='col-md-3 col-sm-6 text-center mb-4'>
+                                <div>
+                                    <img src='./images/WhyChooseImg2.png' className='img-fluid why-choose-img' alt='One-Stop Solution' />
+                                    <div className='whyChooseContent'> One-Stop Solution</div>
+                                </div>
+                            </div>
+                            <div className='col-md-3 col-sm-6 text-center mb-4'>
+                                <div>
+                                    <img src='./images/WhyChooseImg3.png' className='img-fluid why-choose-img' alt='24/7 Support' />
+                                    <div className='whyChooseContent'>24/7 Support</div>
+                                </div>
+                            </div>
+                            <div className='col-md-3 col-sm-6 text-center mb-4'>
+                                <div>
+                                    <img src='./images/WhyChooseImg4.png' className='img-fluid why-choose-img' alt='Fast Delivery' />
+                                    <div className='whyChooseContent'>Fast Delivery</div>
                                 </div>
                             </div>
                         </div>
-                    ))}
-                </div>
-            </div>
+                    </div>
 
-            <div className='container'>
-                <button className='rdAvailVehBtn rdAvailVehViewBtn' onClick={() => navigate('/vehicleTypes')} >
-                    View All
-                </button>
-            </div>
+                    {/* HOW IT WORKS */}
+                    <div className='container my-5'>
+                        <div className='RdShowHomeSideHeading'>
+                            How It Works
+                        </div>
+                        <div className='row justify-content-center howItWorksMain'>
+                            <div className='col-md-4 col-sm-6 text-center '>
+                                <div>
+                                    <img src='./images/HowItWorksImg1.png' className='img-fluid howItWorksImg' alt='Select' />
+                                    <div className='whyChooseContent howItWorksContent'>Select</div>
+                                </div>
+                            </div>
+                            <div className='col-md-4 col-sm-6 text-center '>
+                                <div>
+                                    <img src='./images/HowItWorksImg2.png' className='img-fluid howItWorksImg' alt='Book' />
+                                    <div className='whyChooseContent howItWorksContent'>Book</div>
+                                </div>
+                            </div>
+                            <div className='col-md-4 col-sm-6 text-center '>
+                                <div>
+                                    <img src='./images/HowItWorksImg3.png' className='img-fluid howItWorksImg' alt='Go Live' />
+                                    <div className='whyChooseContent howItWorksContent'>Go Live</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-            {/* Rest of your existing JSX remains the same */}
-            {/* Live RoadShow Activity */}
-            <div className='LiveRdShowMain container' >
-                <div className='LiveRdShowContentLeft'>
-                    <div className='LiveRdShowContentHeading'>Live Roadshow Activity</div>
-                    <div className='LiveRdShowContentPara'>Real-time updates of our active roadshow vehicles across cities.</div>
-                    <div className='LiveRdShowContentPara'>Currently, 5 vehicles are on the road across Madurai, Coimbatore, Salem, Trichy, and Chennai.</div>
-                </div>
-                <div className='LiveRdShowContentRight'>
-                    <img src='./images/LiveRoadActivityImg.png' className='LiveRdShowContentRight' alt="Live Road Activity" />
-                </div>
-            </div>
 
-            {/* Why Choose Us */}
-            <div className='container my-5'>
-                <div className='RdShowHomeSideHeading'>
-                    Why Choose Us
-                </div>
-                <div className='row justify-content-center'>
-                    <div className='col-md-3 col-sm-6 text-center mb-4'>
-                        <div>
-                            <img src='./images/WhyChooseImg1.png' className='img-fluid why-choose-img' alt='RTO Certified' />
-                            <div className='whyChooseContent'>RTO Certified</div>
-                        </div>
-                    </div>
-                    <div className='col-md-3 col-sm-6 text-center mb-4'>
-                        <div>
-                            <img src='./images/WhyChooseImg2.png' className='img-fluid why-choose-img' alt='One-Stop Solution' />
-                            <div className='whyChooseContent'> One-Stop Solution</div>
-                        </div>
-                    </div>
-                    <div className='col-md-3 col-sm-6 text-center mb-4'>
-                        <div>
-                            <img src='./images/WhyChooseImg3.png' className='img-fluid why-choose-img' alt='24/7 Support' />
-                            <div className='whyChooseContent'>24/7 Support</div>
-                        </div>
-                    </div>
-                    <div className='col-md-3 col-sm-6 text-center mb-4'>
-                        <div>
-                            <img src='./images/WhyChooseImg4.png' className='img-fluid why-choose-img' alt='Fast Delivery' />
-                            <div className='whyChooseContent'>Fast Delivery</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            {/* HOW IT WORKS */}
-            <div className='container my-5'>
-                <div className='RdShowHomeSideHeading'>
-                    How It Works
+
+                    
+
+                    {/* TESTIMONIALS */}
+                    <div className='container my-5'>
+                        <div className='RdShowHomeSideHeading mb-4'>
+                            Testimonials
+                        </div>
+
+                        <div className='testimonial-container'>
+                            <div> <img src='/images/Testimonials_img.png' className='testimonial-img' alt="Testimonial background" /> </div>
+
+                            <div className='testimonial-content'>
+                                <div className='testimonial-text'>
+                                    Our brand got noticed instantly. The LED display and live updates created a huge buzz in the city
+                                </div>
+
+
+                                <div className='testimonial-author'>
+                                    <span><img src='/images/AvailVehRatingStar.png' className='testimonialRating'></img></span>
+                                    <span><img src='/images/AvailVehRatingStar.png' className='testimonialRating'></img></span>
+                                    <span><img src='/images/AvailVehRatingStar.png' className='testimonialRating'></img></span>
+                                    <span><img src='/images/AvailVehRatingStar.png' className='testimonialRating'></img></span>
+                                    <span><img src='/images/AvailVehRatingStar.png' className='testimonialRating'></img></span>
+
+                                    <div>Client from Madurai</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* GALLERY SHOWCASE  */}
+                    <Gallery />
+
+                  
+                    {/* FAQ SECTION */}
+                    <div className='container my-5'>
+                        <div className='RdShowHomeSideHeading mb-4'>
+                            FAQs
+                        </div>
+                        <div className='row'>
+                            <div className='col-md-4'>
+                                <img src='/images/FAQImg.png' className='img-fluid'></img>
+                            </div>
+                            <div className='col-md-8'>
+                                {faqQuestions.map((ques, index) => (
+                                    <div className='FAQMain' key={ques.id} onClick={() => handleFaqClick(index)}>
+                                        <div className='flex-grow-1'>
+                                            <div className='FAQQuestion'>{ques.Question}</div>
+                                            <div
+                                                className={`FAQAnswer ${activeFaq === index ? 'show' : ''}`}
+                                                style={{
+                                                    maxHeight: activeFaq === index ? '1000px' : '0',
+                                                    overflow: 'hidden',
+                                                    // transition: 'max-height 0.3s ease, margin-top 0.3s ease',
+                                                    marginTop: activeFaq === index ? '10px' : '0'
+                                                }}
+                                            >
+                                                {ques.Answer}
+                                            </div>
+                                        </div>
+                                        <div className='d-flex align-items-center'>
+                                            {activeFaq === index ? (
+                                                <i className='fa-solid fa-angle-up FAQDownArrow'></i>
+                                            ) : (
+                                                <i className='fa-solid fa-angle-down FAQDownArrow'></i>
+                                            )}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+
+
                 </div>
-                <div className='row justify-content-center howItWorksMain'>
-                    <div className='col-md-4 col-sm-6 text-center '>
-                        <div>
-                            <img src='./images/HowItWorksImg1.png' className='img-fluid howItWorksImg' alt='Select' />
-                            <div className='whyChooseContent howItWorksContent'>Select</div>
-                        </div>
-                    </div>
-                    <div className='col-md-4 col-sm-6 text-center '>
-                        <div>
-                            <img src='./images/HowItWorksImg2.png' className='img-fluid howItWorksImg' alt='Book' />
-                            <div className='whyChooseContent howItWorksContent'>Book</div>
-                        </div>
-                    </div>
-                    <div className='col-md-4 col-sm-6 text-center '>
-                        <div>
-                            <img src='./images/HowItWorksImg3.png' className='img-fluid howItWorksImg' alt='Go Live' />
-                            <div className='whyChooseContent howItWorksContent'>Go Live</div>
-                        </div>
-                    </div>
-                </div>
+                {/* Roadshow Footer */}
+                <Footer />
             </div>
-</div>
-            {/* Roadshow Footer */}
-            <Footer />
-        </div>
         </MainLayout>
 
     )
