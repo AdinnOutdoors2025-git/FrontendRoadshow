@@ -92,18 +92,15 @@ function RdHome() {
         navigate(`/vehicleTypesDetails/${vehicleData._id}-${slugify(vehicleData.name)}`);
     }
 
-    if (isLoading) {
-        return (
-            <div className="text-center py-5">
-                <div className="spinner-border text-primary" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
-            </div>
-        );
-    }
-
-
-    
+    // if (isLoading) {
+    //     return (
+    //         <div className="text-center py-5">
+    //             <div className="spinner-border text-primary" role="status">
+    //                 <span className="visually-hidden">Loading...</span>
+    //             </div>
+    //         </div>
+    //     );
+    // }
 
     // FAQ SECTION 
     const faqQuestions = [
@@ -134,16 +131,12 @@ function RdHome() {
         },
     ]
 
-
     const handleFaqClick = (index) => {
         setActiveFaq(activeFaq === index ? null : index);
     }
-
-
-
+   
     return (
         <MainLayout>
-
             <div>
                 {/* Roadshow Navbar section */}
                 <Navbar />
@@ -268,11 +261,6 @@ function RdHome() {
                         </div>
                     </div>
 
-
-
-
-                    
-
                     {/* TESTIMONIALS */}
                     <div className='container my-5'>
                         <div className='RdShowHomeSideHeading mb-4'>
@@ -304,7 +292,6 @@ function RdHome() {
                     {/* GALLERY SHOWCASE  */}
                     <Gallery />
 
-                  
                     {/* FAQ SECTION */}
                     <div className='container my-5'>
                         <div className='RdShowHomeSideHeading mb-4'>

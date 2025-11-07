@@ -18,7 +18,9 @@ import { VehicleProvider } from './components/A_VehicleContext.jsx';
 
 //ADMIN VEHICLE DETAILS PAGE
 import AdminVehicleDetailsPg from './components/AdminVehicleDetails.jsx';
-import VehicleDetailsWrapper from './Authentication/VehicleDetailsWrapper.jsx'
+import VehicleDetailsWrapper from './Authentication/VehicleDetailsWrapper.jsx';
+//ABOUT US SECTION
+import AboutUs from './components/a4About.jsx';
 
 function App() {
   const [load, upadateLoad] = useState(true);
@@ -42,6 +44,8 @@ function App() {
               <Route path="*" element={<NotFound />} />
               <Route path="/" element={<Home />} />
               <Route path='/navbar' element={<Navbar />} />
+              <Route path='/aboutUs' element={<AboutUs />} />
+
               <Route path="/vehicleTypes" element={<VehicleTypes />} />
               {/* <Route path="/vehicleTypesDetails/:vehicleId" element={<VehicleTypesDetails />} />
               

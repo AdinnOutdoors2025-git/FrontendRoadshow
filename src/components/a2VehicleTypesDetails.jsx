@@ -1,142 +1,3 @@
-// import React from 'react'
-// import Navbar from './a1Navbar'
-// import Footer from './a3Footer'
-// import './a2VehicleTypesDetails.css';
-
-// function VehicleTypesDetails() {
-//     return (
-//         <div>
-//             <Navbar />
-
-//             <div className='container my-5'>
-//                 <div className='row '>
-//                     <div className='col-md-6'>
-//                         <div>
-//                             <img src='./images/RdVehicleDetailsMainImg.png' className='RdVehicleDetailsMainImg' ></img>
-//                         </div>
-//                         <div className='RdVehicleDetailsSubImgMain'>
-//                             <div> <img src='./images/RdVehicleDetailsSubImg1.png' className='RdVehicleDetailsSubImg' ></img></div>
-//                             <div> <img src='./images/RdVehicleDetailsSubImg2.png' className='RdVehicleDetailsSubImg' ></img></div>
-//                             <div> <img src='./images/RdVehicleDetailsSubImg3.png' className='RdVehicleDetailsSubImg' ></img></div>
-//                             <div> <img src='./images/RdVehicleDetailsSubImg4.png' className='RdVehicleDetailsSubImg' ></img></div>
-//                         </div>
-//                     </div>
-
-
-//                     <div className='col-md-6'>
-//                         {/* 1 */}
-//                         <div className='rdVehDetailsPgContent1'>
-//                             <div className='rdAvailVehName1 rdVehProdDetailsHeading'> LED Roadshow Vehicle</div>
-//                             <div className='rdAvailVehRate1'>₹ 25,000/Per Day</div>
-//                             <div className='rdAvailVehRatingStarMain1' >
-//                                 <div className='rdAvailVehRatingStar1'> 4.3 </div>
-//                                 <div>  <img src='./images/AvailVehRatingStar.png' className='rdAvailVehRatingStarIcon1' ></img></div>
-//                             </div>
-//                             {/* <div>  <img src='./images/AvailVehRatingStar.png' className='rdAvailVehRatingStarIcon' ></img></div> */}
-//                         </div>
-
-//                         {/* 2 */}
-//                         <div className='rdVehDetailsPgContent1'>
-//                             <div className='rdVehDetailsPgContent1Heading rdVehProdDetailsHeading'>Select Date</div>
-//                             <div className='rdVehDetailsPgContent1DateFromToMain' >
-//                                 <div>
-//                                     <div className='rdVehDetailsPgContent1DateFromTo'>From</div>
-//                                     <div className='rdVehDetailsPgContent1Date'>4/8/205</div>
-//                                 </div>
-//                                 <div>
-//                                     <div className='rdVehDetailsPgContent1DateFromTo'>To</div>
-//                                     <div className='rdVehDetailsPgContent1Date'>25/8/205</div>
-//                                 </div>
-//                             </div>
-
-//                         </div>
-//                         {/* 3 */}
-//                         <div className='rdVehDetailsPgContent1'>
-//                             <button className='rdAvailVehDtsReachUsBtn'>
-//                                 <div><img src='./images/rdAvailVehDtsReachUsCallIcon.png' className='rdAvailVehDtsReachUsCallIcon'></img></div>
-//                                 <div>Reach Us</div>
-//                             </button>
-//                         </div>
-//                         <div className='rdVehDetailsPgContent1'>
-//                             <div className='rdVehProdDetailsHeading rdVehDetailsPgContent2Heading'>Product Details</div>
-//                             <div className='rdVehDetailedShownMain'>
-//                                 <div className='rdVehDetailedShownContent'>
-//                                     <div className='rdVehDetailedShownContentLeft'>Delivery</div>
-//                                     <div> : </div>
-//                                     <div className='rdVehDetailedShownContentRight'>1-Day </div>
-//                                 </div>
-//                                 <div className='rdVehDetailedShownContent'>
-//                                     <div className='rdVehDetailedShownContentLeft'>LED Screen</div>
-//                                     <div> : </div>
-//                                     <div className='rdVehDetailedShownContentRight'>10x8 ft, P4 Pixel</div>
-//                                 </div>
-//                                 <div className='rdVehDetailedShownContent'>
-//                                     <div className='rdVehDetailedShownContentLeft'>Audio</div>
-//                                     <div> : </div>
-//                                     <div className='rdVehDetailedShownContentRight'>PA System + Mic</div>
-//                                 </div>
-//                                 <div className='rdVehDetailedShownContent'>
-//                                     <div className='rdVehDetailedShownContentLeft'>Branding</div>
-//                                     <div> : </div>
-//                                     <div className='rdVehDetailedShownContentRight'>3-Side Flex Wrap</div>
-//                                 </div>
-//                                 <div className='rdVehDetailedShownContent'>
-//                                     <div className='rdVehDetailedShownContentLeft'>Power</div>
-//                                     <div> : </div>
-//                                     <div className='rdVehDetailedShownContentRight'>Generator Included</div>
-//                                 </div>
-//                             </div>
-//                             <div className='rdVehProdDetailsDescription'>
-//                                 <div className='rdVehProdDetailsDescriptionContent'>Our Roadshow Vehicles are like a moving stage for your brand. With big LED screens, clear sound system, comfortable seating, and full branding options, they easily grab attention on the road or at any spot.</div>
-
-//                                 <div className='rdVehProdDetailsDescriptionContent'>Perfect for new product launches, store openings, promotions, awareness programs, or local events, these vehicles bring your brand directly to people.</div>
-
-//                                 <div className='rdVehProdDetailsDescriptionContent'>You can choose from Basic, Standard, or Premium packages, and also add services like flyer distribution, support staff, photography/video, and branded giveaways — making your campaign more effective and memorable.</div>
-//                             </div>
-//                         </div>
-
-//                     </div>
-
-//                 </div>
-
-//             </div>
-//             {/* Past Roadshow  */}
-//             <div className='container'>
-//                 <div className='PastRdShowMain'>
-//                     <div className='rdVehProdDetailsHeading rdVehDetailsPgContent1Heading pastRdHeading'>Past Roadshow</div>
-//                     <div className='row'>
-//                         <div className='col-md-12 PastRoadShowContent' >
-//                             <center>
-//                                 <img src='./images/PastRoadShowImg1.png' className='PastRoadShowImg'></img>
-//                             </center>
-//                         </div>
-//                         <div className='col-md-12 PastRoadShowContent' >
-//                             <center>
-//                                 <img src='./images/PastRoadShowImg2.png' className='PastRoadShowImg'></img>
-//                             </center>
-//                         </div>
-//                         <div className='col-md-12 PastRoadShowContent' >
-//                             <center>
-//                                 <img src='./images/PastRoadShowImg3.png' className='PastRoadShowImg'></img>
-//                             </center>
-//                         </div>
-
-//                     </div>
-//                 </div>
-//             </div>
-//             <Footer />
-//         </div>
-
-//     )
-// }
-
-// export default VehicleTypesDetails
-
-
-
-
-
-
 import React, { useState, useRef, useEffect } from 'react'
 import Navbar from './a1Navbar'
 import Footer from './a3Footer'
@@ -261,15 +122,15 @@ function VehicleTypesDetails() {
         return selectedFileIndex === -1;
     };
 
-    if (isLoading) {
-        return (
-            <div className="text-center py-5">
-                <div className="spinner-border text-primary" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
-            </div>
-        );
-    }
+    // if (isLoading) {
+    //     return (
+    //         <div className="text-center py-5">
+    //             <div className="spinner-border text-primary" role="status">
+    //                 <span className="visually-hidden">Loading...</span>
+    //             </div>
+    //         </div>
+    //     );
+    // }
 
     if (!currentVehicle) {
         return (
@@ -278,7 +139,6 @@ function VehicleTypesDetails() {
             </div>
         );
     }
-
 
     return (
                 <MainLayout>

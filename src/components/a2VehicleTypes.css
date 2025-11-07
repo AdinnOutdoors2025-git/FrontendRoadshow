@@ -2,6 +2,15 @@
 * {
     font-family: 'Montserrat';
 }
+.Book-loading-gif{
+    height: 100px;
+    align-items:center;
+    align-content: center;
+    text-align: center;
+    margin: auto;
+    top: 0;
+    left: 0;
+}
 
 .rdAvailVehDtpgOutsideMain{
     margin:6% auto;

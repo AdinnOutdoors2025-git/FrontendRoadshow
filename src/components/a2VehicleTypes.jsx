@@ -1,99 +1,3 @@
-// import React from 'react';
-// // import 'bootstrap/dist/css/bootstrap.min.css';
-// import Navbar from './a1Navbar';
-// import './a2VehicleTypes.css';
-// import Footer from './a3Footer';
-// import { useNavigate } from 'react-router-dom';
-
-// function VehicleTypes() {
-//     const cards = [
-//         { id: 1, image: './images/AvailVehImg1.png', name: 'LED Roadshow Vehicle', ratePerDay: 25000, rating: '4.3' },
-//         { id: 2, image: './images/AvailVehImg1.png', name: 'LED Roadshow Vehicle', ratePerDay: 25000, rating: '4.4' },
-//         { id: 3, image: './images/AvailVehImg1.png', name: 'LED Roadshow Vehicle', ratePerDay: 25000, rating: '4.5' },
-//         { id: 4, image: './images/AvailVehImg1.png', name: 'LED Roadshow Vehicle', ratePerDay: 25000, rating: '4.5' },
-//         { id: 5, image: './images/AvailVehImg1.png', name: 'LED Roadshow Vehicle', ratePerDay: 25000, rating: '4.5' },
-//         { id: 6, image: './images/AvailVehImg1.png', name: 'LED Roadshow Vehicle', ratePerDay: 25000, rating: '4.5' },
-
-//     ];
-// const navigate = useNavigate();
-//     return (
-
-//         <div>
-//             <Navbar />
-//             <div className='container rdAvailVehDtpgOutsideMain  '>
-//                 <div className="row">
-//                     {cards.map((card) => (
-//                         <div key={card.id} className="col-md-6  rdAvailVehDtpgOutside"   onClick={()=>navigate('/vehicleTypesDetails')}>
-//                             <div className='rdAvailVehDtpgMain' >
-//                                 <div>
-//                                     <div className='rdAvailVehImgDtpg'>
-//                                         <img src={card.image} alt={card.name} className='rdAvailVehImgDtpg' />
-//                                     </div>
-//                                     <div className='rdAvailVehDetailsDtpg'>
-//                                         <div className='rdAvailVehNameDtpg'> {card.name}</div>
-//                                         <div className='rdAvailVehRateDtpg'>₹ {card.ratePerDay.toLocaleString()}/Per Day</div>
-//                                         <div className='rdAvailVehRatingStarDtpg' >
-//                                             <div> {card.rating} </div>
-
-//                                             <div>  <img src='./images/AvailVehRatingStar.png' className='rdAvailVehRatingStarIcon' ></img></div> </div>
-
-//                                         {/* View Details Button */}
-//                                         <button className='rdAvailVehBtnDtpg'
-//                                           onClick={()=>navigate('/vehicleTypesDetails')}
-//                                         >
-//                                             View Details
-//                                         </button>
-//                                     </div>
-
-
-
-//                                     {/* <p className="card-text text-primary fw-bold fs-4">{card.price}</p>
-//                                     <div className="mt-auto">
-//                                         <button className="btn btn-primary">View Details</button>
-//                                     </div> */}
-//                                 </div>
-//                             </div>
-//                         </div>
-//                     ))}
-
-
-
-
-
-
-//                 </div>
-
-//             </div>
-
-//             {/* RdVehTypesNeedHelp section  */}
-//             <div className='container'>
-//                 <img src='./images/RdVehTypesNeedHelpImg.png' className='RdVehTypesNeedHelpImg'></img>
-//             </div>
-//             {/* Roadshow Footer  */}
-//             <Footer />
-//         </div>
-//     );
-// }
-
-// export default VehicleTypes;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { useEffect, useState } from 'react';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './a1Navbar';
@@ -202,13 +106,17 @@ function VehicleTypes() {
 
     if (isLoading) {
         return (
-            <div className="text-center py-5">
-                <div className="spinner-border text-primary" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
+            // <div className="text-center py-5">
+            //     <div className="spinner-border text-primary" role="status">
+            //         <span className="visually-hidden">Loading...</span>
+            //     </div>
+            // </div>
+            <div className="col-12 text-center loading-container">
+                <img src='./images/BookLoading.svg' alt="Loading..." className="Book-loading-gif" />
             </div>
         );
     }
+
 
     return (
         <MainLayout>
