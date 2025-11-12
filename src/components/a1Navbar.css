@@ -275,3 +275,174 @@ color: #000000;
     max-width: 100%;
     max-height: 100%;
 } */
+
+/* ==========================================================
+   Navbar Stylesheet — RESPONSIVE + TABLET/MOBILE EXTENSION
+   ========================================================== */
+
+/* 🟢 Added: Universal box-sizing for consistency */
+* {
+    box-sizing: border-box;
+}
+
+/* ==========================================================
+   Mobile & Tablet (≤ 767px)
+   ========================================================== */
+@media screen and (max-width: 767px) {
+    body {
+        padding-top: 70px;
+    }
+
+    /* Hide desktop versions */
+    .rdshowNavMain,
+    .rdshowNavMain1 {
+        display: none;
+    }
+
+    /* Mobile navbar base */
+    .mobile-navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        padding: 0 60px;
+    }
+
+    
+
+    /* Center capsule nav */
+    .mobile-navbar-center {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+    }
+
+    .mobile-navbar-center-capsule {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: #fff;
+        border-radius: 50px;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+        width: clamp(180px, 50vw, 250px);
+        padding: 8px 10px;
+        font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+        color: #2b3333;
+        gap: 10px;
+        white-space: nowrap;
+    }
+
+    /* Right icons */
+    .mobile-navbar-right .NavbarIcon1 {
+        width: 30px;
+        height: 30px;
+    }
+
+    /* Dropdown adjustment for small screens */
+    .mobile-navbar-right .nav_user-content {
+        top: calc(100% + 10px);
+        width: 220px;
+    }
+}
+@media(max-width: 670px){
+    .mobile-navbar {
+         padding: 0 40px;
+    }
+}
+@media(max-width: 600px){
+    .mobile-navbar {
+         padding: 0 20px;
+    }
+}
+@media(max-width: 500px){
+/* Left logo */
+    .mobile-navbar-left .NavRoadShowLogo {
+        width: 80px;
+    }
+    .mobile-navbar {
+         padding: 0 20px;
+    }
+}
+@media(max-width: 360px){
+/* Left logo */
+    .mobile-navbar-left .NavRoadShowLogo {
+        width: 60px;
+    }
+    .mobile-navbar-center-capsule{
+        font-size: 10px;
+    }
+    .mobile-navbar{
+        height: 60px;
+    }
+}
+
+/* ==========================================================
+   Tablet (768px–1199px)
+   ========================================================== */
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+    .rdshowNavMain {
+        height: 75px;
+        padding: 0 10px;
+        gap: 15px;
+    }
+
+    .rdshowNavMain1 {
+        top: 85px;
+        width: 75%;
+        max-width: 850px;
+        padding: 18px 50px;
+        font-size: 18px;
+    }
+
+    .rdNavContentMain ul {
+        gap: 30px;
+    }
+
+    .rdNavContentMain li a {
+        font-size: 20px;
+    }
+
+    .NavRoadShowLogo {
+        width: 90px;
+    }
+
+    .NavbarIcon1 {
+        width: 40px;
+        height: 40px;
+    }
+      .mobile-navbar{
+        display:none;
+      }
+}
+
+/* ==========================================================
+   Desktop Restoration (≥ 1200px)
+   ========================================================== */
+@media screen and (min-width: 1200px) {
+    .mobile-navbar {
+        display: none;
+    }
+
+    .rdshowNavMain,
+    .rdshowNavMain1 {
+        display: flex;
+    }
+}
+
+/* ==========================================================
+   Utility
+   ========================================================== */
+html {
+    scroll-behavior: smooth;
+}
+
+.navUserMain img {
+    object-fit: contain;
+}

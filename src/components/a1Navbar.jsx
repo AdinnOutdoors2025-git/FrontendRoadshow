@@ -2,6 +2,10 @@ import React, { useState, useEffect, useRef } from 'react'
 import './a1Navbar.css'
 import { useNavigate } from 'react-router-dom';
 import { useLogin } from '../Authentication/LoginContext';
+import BottomNavMenu from './BottomNavMenu';
+
+// Stand-alone navigate placeholder (removed dependency)
+const navigate = (path) => console.log(`Navigating to: ${path}`);
 
 function Navbar() {
     const navigate = useNavigate();
@@ -80,7 +84,7 @@ function Navbar() {
         }
         setIsOpen(false);
     };
- // Combined logout handler for the logout button
+
     const handleLogout = () => {
         if (employeeUser) {
             logoutEmployee();
@@ -93,11 +97,12 @@ function Navbar() {
         }
         setIsOpen(false);
     };
- // Check if any user is logged in (employee or customer)
+
     const isLoggedIn = employeeUser || user;
 
     return (
         <div>
+            {/* ⚪ Desktop / Tablet Navbar */}
             <div className='rdshowNavMain container'>
                 <div className='NavRoadShowLogo' onClick={() => navigate('/')}> 
                     <img src='/images/RoadShowLogo.png' className='NavRoadShowLogo' alt='Logo' /> 
@@ -109,8 +114,8 @@ function Navbar() {
                             <img src='/images/NavbarIcon1.png' className='NavbarIcon1' alt='Home' /> 
                             <a>Home</a>
                         </li>
-                        <li className='rdNavContentInside' onClick={() => navigate('/aboutUs')} style={{ cursor: 'pointer' }}> 
-                            <img src='/images/NavbarIcon2.png' className='NavbarIcon1' alt='About Us' /> 
+                        <li className="rdNavContentInside" onClick={() => navigate('/about')} style={{ cursor: 'pointer' }}>
+                            <img src='/images/NavbarIcon2.png' className='NavbarIcon1' alt='About Us' />
                             <a>About Us</a>
                         </li>
                         <li className='rdNavContentInside' onClick={() => navigate('/')} style={{ cursor: 'pointer' }}> 
@@ -142,8 +147,7 @@ function Navbar() {
                                 </div>
                                 <div> Profile & Settings </div>
                             </div>
-                            
-                            {/* Employee Login/Logout - Show email if logged in */}
+
                             <div className='navUserMain' onClick={handleEmployeeLogin}>
                                 <div className='navUserImg'> 
                                     <img src='/images/NavUserImg3.png' className='navUserImg' alt='Employee' />
@@ -151,12 +155,8 @@ function Navbar() {
                                 <div> 
                                     {employeeUser ? (
                                         <>
-                                            <div >
-                                            {/* ✓ Logged in as */}
-                                            Hello {employeeUser.userName}
-                                            </div>
-                                            <div >{employeeUser.email}</div>
-                                            
+                                            <div>Hello {employeeUser.userName}</div>
+                                            <div>{employeeUser.email}</div>
                                         </>
                                     ) : 'Employee Log In / Sign Up'}
                                 </div>
@@ -178,14 +178,7 @@ function Navbar() {
                                     ) : 'Customer Log In / Sign Up'}
                                 </div>
                             </div>
-{/* LOGOUT BUTTON  */}
-                            {/* <div className='navUserMain'>
-                                <div className='navUserImg'> 
-                                    <img src='/images/NavUserImg5.png' className='navUserImg' alt='Profile' />
-                                </div>
-                                <div>Log Out </div>
-                            </div> */}
-                             {/* LOGOUT BUTTON - Only show when someone is logged in */}
+
                             {isLoggedIn && (
                                 <div className='navUserMain' onClick={handleLogout}>
                                     <div className='navUserImg'> 
@@ -201,12 +194,75 @@ function Navbar() {
                 </div>
             </div>
 
-            {/* Secondary Navigation */}
+            {/* ⚪ Secondary Navigation */}
             <div className='rdshowNavMain1 container'>
                 <div onClick={() => navigate('/vehicleTypes')} style={{ cursor: 'pointer' }}> Vehicle Types </div>
                 <div onClick={() => navigate('/vehicleTypes')} style={{ cursor: 'pointer' }}> Packages </div>
                 <div onClick={() => navigate('/vehicleTypes')} style={{ cursor: 'pointer' }}> Offers </div>
             </div>
+
+            {/* 🟢 NEW: Mobile / Tablet Navbar */}
+            <header className="mobile-navbar">
+                {/* 🟢 NEW: Left Logo */}
+                <div className="mobile-navbar-left" onClick={() => navigate('/')}>
+                    <img src="/images/RoadShowLogo.png" alt="Logo" className="NavRoadShowLogo" />
+                </div>
+
+                {/* 🟢 NEW: Capsule Center */}
+                <div className="mobile-navbar-center">
+                    <div className="mobile-navbar-center-capsule">
+                        <div onClick={() => navigate('/vehicleTypes')}>Vehicles</div>
+                        <div onClick={() => navigate('/vehicleTypes')}>Packages</div>
+                        <div onClick={() => navigate('/vehicleTypes')}>Offers</div>
+                    </div>
+                </div>
+
+                {/* 🟢 NEW: Right Menu */}
+                <div className="mobile-navbar-right" ref={dropdownRef}>
+                    <img
+                        src="/images/NavbarIcon4Hamburger.png"
+                        alt="Menu"
+                        className="NavbarIcon1"
+                        onClick={() => setIsOpen(!isOpen)}
+                    />
+                    <div className={`nav_user-content ${isOpen ? 'open' : ''}`}>
+                        <div className='navUserMain'>
+                            <div className='navUserImg'> 
+                                <img src='/images/NavUserImg1.png' className='navUserImg' alt='Bookings' />
+                            </div>
+                            <div>My Bookings</div>
+                        </div>
+                        <div className='navUserMain'>
+                            <div className='navUserImg'> 
+                                <img src='/images/NavUserImg2.png' className='navUserImg' alt='Profile' />
+                            </div>
+                            <div>Profile & Settings</div>
+                        </div>
+                        <div className='navUserMain' onClick={handleEmployeeLogin}>
+                            <div className='navUserImg'> 
+                                <img src='/images/NavUserImg3.png' className='navUserImg' alt='Employee' />
+                            </div>
+                            <div>{employeeUser ? `Hello ${employeeUser.userName}` : 'Employee Log In'}</div>
+                        </div>
+                        <div className='navUserMain' onClick={handleCustomerLogin}>
+                            <div className='navUserImg'> 
+                                <img src='/images/NavUserImg4.png' className='navUserImg' alt='Login' />
+                            </div>
+                            <div>{user ? `Hello ${user.userName}` : 'Customer Log In'}</div>
+                        </div>
+                        {isLoggedIn && (
+                            <div className='navUserMain' onClick={handleLogout}>
+                                <div className='navUserImg'> 
+                                    <img src='/images/NavUserImg5.png' className='navUserImg' alt='Logout' />
+                                </div>
+                                <div style={{ color: '#ff4444', fontWeight: 'bold' }}>Log Out</div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </header>
+             {/* Mobile Bottom Navigation */}
+      <BottomNavMenu />
         </div>
     )
 }
