@@ -1,0 +1,68 @@
+/* Container for the bottom navigation */
+.bottom-nav {
+  display: none; /* hidden by default, shown on mobile */
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+  .bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #ffffff;
+    box-shadow: 0px -3px 5px 0px #00000026; 
+    padding: 12px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+  }
+
+  .bottom-nav-item {
+    text-align: center;
+    color: #2b3333;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .bottom-nav-icon {
+    width: 26px;
+    height: 26px;
+    margin-bottom: 4px;
+  }
+
+  .bottom-nav-text {
+    font-size: 0.9rem;
+  }
+
+  /* Active menu item */
+  .bottom-nav-item.active {
+    color: #d4145a;
+  }
+  /* Optional: add space at bottom of page content so nav doesn't cover it */
+body {
+  padding-bottom: 80px; /* adjust based on nav height */
+}
+
+  /* Small devices */
+  @media screen and (max-width: 400px) {
+    .bottom-nav-item {
+      font-size: 0.8rem;
+    }
+
+    .bottom-nav-icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+
