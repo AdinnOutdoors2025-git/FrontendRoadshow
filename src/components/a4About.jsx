@@ -7,53 +7,52 @@ import "./a4About.css";
 import { gsap } from "gsap";                // ✅ ADD THIS
 import { ScrollTrigger } from "gsap/ScrollTrigger"; // ✅ ADD THIS
 
-// gsap.registerPlugin(ScrollTrigger);
-
+// gsap.registerPlugin(ScrollTrigger); 
 
 const About = () => {
 
-useEffect(() => {
-  if (window.innerWidth <= 1199) {
-    gsap.registerPlugin(ScrollTrigger);
+  useEffect(() => {
+    if (window.innerWidth <= 1199) {
+      gsap.registerPlugin(ScrollTrigger);
 
-    const boxes = gsap.utils.toArray(".mission-box");
-    const section = document.querySelector(".about-mission-section");
-    const totalBoxes = boxes.length;
+      const boxes = gsap.utils.toArray(".mission-box");
+      const section = document.querySelector(".about-mission-section");
+      const totalBoxes = boxes.length;
 
-    // total scroll distance = number of boxes * viewport height
-    const totalScroll = window.innerHeight * totalBoxes;
+      // total scroll distance = number of boxes * viewport height
+      const totalScroll = window.innerHeight * totalBoxes;
 
-    // ✅ Vertical slide animation for 3 boxes
-    gsap.to(boxes, {
-      yPercent: -100 * (boxes.length - 1),
-      ease: "none",
-      scrollTrigger: {
-        trigger: section,
-        pin: true,
-        scrub: 1, // smoother scrolling
-        start: "top top",
-        end: `+=${totalScroll}`,
-        anticipatePin: 1,
-      },
-    });
-
-    
-
-    // ✅ Cleanup
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-  }
-}, []);
+      // ✅ Vertical slide animation for 3 boxes
+      gsap.to(boxes, {
+        yPercent: -100 * (boxes.length - 1),
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          pin: true,
+          scrub: 1, // smoother scrolling
+          start: "top top",
+          end: `+=${totalScroll}`,
+          anticipatePin: 1,
+        },
+      });
 
 
-const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
-useEffect(() => {
-  const handleResize = () => setIsMobile(window.innerWidth <= 768);
-  window.addEventListener("resize", handleResize);
-  return () => window.removeEventListener("resize", handleResize);
-}, []);
+      // ✅ Cleanup
+      return () => {
+        ScrollTrigger.getAll().forEach((t) => t.kill());
+      };
+    }
+  }, []);
+
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <MainLayout>
@@ -63,12 +62,11 @@ useEffect(() => {
 
         {/* About Banner Section */}
         <div className="aboutus-row">
-          
-<img
-  src={isMobile ? "/images/about-banner-mobile.png" : "/images/about-banner1.png"}
-  className="rdshowHomeBanner1"
-  alt="Roadshow Banner"
-/>
+          <img
+            src={isMobile ? "/images/about-banner-mobile.png" : "/images/about-banner1.png"}
+            className="rdshowHomeBanner1"
+            alt="Roadshow Banner"
+          />
           <div className="aboutus-content">
             <h1>Driving Brands, Building Connections</h1>
             <p className="aboutus-para">
@@ -80,7 +78,7 @@ useEffect(() => {
         </div>
 
         {/* ✅ Who We Are Section */}
-        <div className="row align-items-center aboutus-section" style={{ padding: "60px 90px", margin:'auto' }}>
+        <div className="row align-items-center aboutus-section" style={{ padding: "60px 90px", margin: 'auto' }}>
           <div className="col-md-6 mb-4" style={{ textAlign: "left" }}>
             <h2 className="aboutus-heading">Who We Are</h2>
             <p className="aboutus-para">
@@ -138,7 +136,6 @@ useEffect(() => {
           </div>
           {/* </div> */}
         </div>
-
 
         {/* ✅ Vision Section */}
         <div
@@ -267,8 +264,7 @@ useEffect(() => {
 
         </div>
 
-
-        <div className="row align-items-center aboutus-section1" style={{ padding: "60px 90px", margin:'auto' }}>
+        <div className="row align-items-center aboutus-section1" style={{ padding: "60px 90px", margin: 'auto' }}>
           <div className="col-md-12 mb-4" style={{ textAlign: "Left" }}>
             <div className="about-section">
               <h2 className="aboutus-heading">What We Stand For</h2>
@@ -320,6 +316,7 @@ useEffect(() => {
             </div>
           </div>
         </div>
+
         {/* ✅ Footer */}
         <Footer />
       </div>
