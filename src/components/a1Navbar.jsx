@@ -114,7 +114,7 @@ function Navbar() {
                             <img src='/images/NavbarIcon1.png' className='NavbarIcon1' alt='Home' /> 
                             <a>Home</a>
                         </li>
-                        <li className="rdNavContentInside" onClick={() => navigate('/about')} style={{ cursor: 'pointer' }}>
+                        <li className="rdNavContentInside" onClick={() => navigate('/aboutUs')} style={{ cursor: 'pointer' }}>
                             <img src='/images/NavbarIcon2.png' className='NavbarIcon1' alt='About Us' />
                             <a>About Us</a>
                         </li>
