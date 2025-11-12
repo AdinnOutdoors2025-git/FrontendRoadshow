@@ -4,9 +4,7 @@ import './a3Footer.css';
 function Footer() {
     return (
         <div className='container-fluid RdFooterMain'>
-            <div className='container'>
-
-                <div className='row'>
+            <div className='container'>                <div className='row'>
                     {/* Column 1 - Company Info */}
                     <div className='RdFooterContent1 col-md-4 col-sm-12 mb-4'>
                         <div>
