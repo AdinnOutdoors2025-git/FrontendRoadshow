@@ -245,9 +245,10 @@ const VehiclesListTable = () => {
                             <th>Vehicle ID</th>
                             <th>Price</th>
                             <th>Size</th>
-                            <th>Day</th>
+                            {/* <th>Day</th> */}
                             <th>Audio</th>
-                            <th>Branding</th>
+                            <th>Screen Resolution</th>
+                            {/* <th>Branding</th> */}
                             <th>Power</th>
                             <th>Ratings</th>
 
@@ -271,9 +272,10 @@ const VehiclesListTable = () => {
                                             <td>{vehicle.vehicleDetails.vehicleID}</td>
                                             <td className='TableProductPrice'>{vehicle.vehicleDetails.amount}</td>
                                             <td>{vehicle.vehicleDetails.vehicleSize.width} X {vehicle.vehicleDetails.vehicleSize.height} | {vehicle.vehicleDetails.vehicleSize.VehicleSizeSquareFeet} Sq.ft </td>
-                                            <td className='TableProductPrice'>{vehicle.vehicleDetails.deliveryDay}</td>
+                                            {/* <td className='TableProductPrice'>{vehicle.vehicleDetails.deliveryDay}</td> */}
                                             <td className='TableProductPrice'>{vehicle.vehicleDetails.audio}</td>
-                                            <td className='TableProductPrice'>{vehicle.vehicleDetails.branding}</td>
+                                            <td className='TableProductPrice'>{vehicle.vehicleDetails.screenresolution}</td>
+                                            {/* <td className='TableProductPrice'>{vehicle.vehicleDetails.branding}</td> */}
                                             <td className='TableProductPrice'>{vehicle.vehicleDetails.power}</td>
 
                                             <td>

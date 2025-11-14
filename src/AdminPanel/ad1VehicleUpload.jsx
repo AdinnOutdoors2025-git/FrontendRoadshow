@@ -101,9 +101,10 @@ function VehicleUpload() {
     const [vehicleName, setVehicleName] = useState("");
     const [vehicleAmount, setVehicleAmount] = useState("");
     const [vehicleID, setVehicleId] = useState("");
-    const [vehicleDeliveryDay, setVehicleDeliveryDay] = useState("");
+    // const [vehicleDeliveryDay, setVehicleDeliveryDay] = useState("");
+    const [vehicleScreenresolution, setScreenresolution] = useState("");
     const [vehicleAudio, setVehicleAudio] = useState("");
-    const [vehicleBranding, setVehicleBranding] = useState("");
+    // const [vehicleBranding, setVehicleBranding] = useState("");
     const [vehiclePower, setVehiclePower] = useState("");
     const [vehicleRating, setVehicleRating] = useState("4.3");
     const [vehicleWidth, setVehicleWidth] = useState('');
@@ -138,9 +139,10 @@ function VehicleUpload() {
         vehicleName: false,
         vehicleAmount: false,
         vehicleID: false,
-        vehicleDeliveryDay: false,
+        // vehicleDeliveryDay: false,
+        vehicleScreenresolution: false,
         vehicleAudio: false,
-        vehicleBranding: false,
+        // vehicleBranding: false,
         vehiclePower: false,
         vehicleRating: false,
         vehicleHeight: false,
@@ -198,9 +200,10 @@ function VehicleUpload() {
                 setVehicleId(details.vehicleID || '');
                 setVehicleName(details.name || '');
                 setVehicleAmount(details.amount || '');
-                setVehicleDeliveryDay(details.deliveryDay || '');
+                // setVehicleDeliveryDay(details.deliveryDay || '');
+                setVehicleScreenresolution(details.screenresolution || '');
                 setVehicleAudio(details.audio || '');
-                setVehicleBranding(details.branding || '');
+                // setVehicleBranding(details.branding || '');
                 setVehiclePower(details.power || '');
                 setVehicleRating(details.rating || '');
                 setVehicleWidth(details.vehicleSize?.width || '');
@@ -407,9 +410,10 @@ function VehicleUpload() {
             vehicleName: !vehicleName,
             vehicleAmount: !vehicleAmount,
             vehicleID: !vehicleID,
-            vehicleDeliveryDay: !vehicleDeliveryDay,
+            // vehicleDeliveryDay: !vehicleDeliveryDay,
+            vehicleScreenresolution: !vehicleScreenresolution,
             vehicleAudio: !vehicleAudio,
-            vehicleBranding: !vehicleBranding,
+            // vehicleBranding: !vehicleBranding,
             vehiclePower: !vehiclePower,
             vehicleRating: !vehicleRating,
             vehicleHeight: !vehicleHeight,
@@ -552,9 +556,10 @@ function VehicleUpload() {
                         vehicleID: vehicleID,
                         name: vehicleName,
                         amount: parseFloat(vehicleAmount),
-                        deliveryDay: parseInt(vehicleDeliveryDay),
+                        // deliveryDay: parseInt(vehicleDeliveryDay),
+                         screenresolution: vehicleScreenresolution,
                         audio: vehicleAudio,
-                        branding: vehicleBranding,
+                        // branding: vehicleBranding,
                         power: vehiclePower,
                         rating: vehicleRating,
                         vehicleSize: {
@@ -626,9 +631,10 @@ function VehicleUpload() {
         setVehicleId('');
         setVehicleName('');
         setVehicleAmount('');
-        setVehicleDeliveryDay('');
+        // setVehicleDeliveryDay('');
+        setVehicleScreenresolution('');
         setVehicleAudio('');
-        setVehicleBranding('');
+        // setVehicleBranding('');
         setVehiclePower('');
         setVehicleRating('');
         setVehicleWidth('');
@@ -741,18 +747,22 @@ function VehicleUpload() {
                                 <div className='ManageProdLeftHeading'>LED Screen Size</div>
                                 <div className='ManageProdRightContent'>{vehicleWidth} X {vehicleHeight} | {ProdSquareFeet()} Sq.ft </div>
                             </div>
-                            <div className="ManageProdDetails">
+                            {/* <div className="ManageProdDetails">
                                 <div className='ManageProdLeftHeading'>Delivery</div>
                                 <div className='ManageProdRightContent'>{vehicleDeliveryDay} - Day</div>
+                            </div> */}
+                             <div className="ManageProdDetails">
+                                <div className='ManageProdLeftHeading'>Screen Resolution</div>
+                                <div className='ManageProdRightContent'>{vehicleScreenresolution}</div>
                             </div>
                             <div className="ManageProdDetails">
                                 <div className='ManageProdLeftHeading'>Audio</div>
                                 <div className='ManageProdRightContent'>{vehicleAudio}</div>
                             </div>
-                            <div className="ManageProdDetails">
+                            {/* <div className="ManageProdDetails">
                                 <div className='ManageProdLeftHeading'>Branding</div>
                                 <div className='ManageProdRightContent'>{vehicleBranding}</div>
-                            </div>
+                            </div> */}
                             <div className="ManageProdDetails">
                                 <div className='ManageProdLeftHeading'>Power</div>
                                 <div className='ManageProdRightContent'>{vehiclePower}</div>
@@ -889,7 +899,7 @@ function VehicleUpload() {
                                         {errors.vehicleAmount && <div className="AdminProderror-message">Vehicle Amount is required</div>}
                                     </div>
 
-                                    <div className='clientDetailSection'>
+                                    {/* <div className='clientDetailSection'>
                                         <div className='clientDetailHeading'>Delivery Day</div>
                                         <select style={{ width: '100px' }}
                                             className={`clientDetailsInput ratingInput ${errors.vehicleDeliveryDay ? 'AdminProdinput-error' : ''}`}
@@ -908,9 +918,23 @@ function VehicleUpload() {
                                             <option value="9">9</option>
                                         </select>
                                         {errors.vehicleDeliveryDay && <div className="AdminProderror-message">Vehicle Delivery Day is required</div>}
+                                    </div> */}
+                                      <div className='clientDetailSection'>
+                                        <div className='clientDetailHeading'>Screen Resolution</div>
+                                        <input
+                                            type='text'
+                                            placeholder='Enter screenresolution'
+                                            value={vehicleScreenresolution}
+                                            onChange={(e) => {
+                                                setVehicleScreenresolution(e.target.value);
+                                                setErrors(prev => ({ ...prev, vehicleScreenresolution: false }));
+                                            }}
+                                            className={`clientDetailsInput ${errors.vehicleScreenresolution ? 'AdminProdinput-error' : ''}`}
+                                        />
+                                        {errors.vehicleScreenresolution && <div className="AdminProderror-message">Vehicle ScreenResolution is required</div>}
                                     </div>
-
-                                    <div className='clientDetailSection'>
+                                   
+                                    {/* <div className='clientDetailSection'>
                                         <div className='clientDetailHeading'>Branding</div>
                                         <input
                                             type='text'
@@ -923,7 +947,7 @@ function VehicleUpload() {
                                             className={`clientDetailsInput ${errors.vehicleBranding ? 'AdminProdinput-error' : ''}`}
                                         />
                                         {errors.vehicleBranding && <div className="AdminProderror-message">Vehicle Branding is required</div>}
-                                    </div>
+                                    </div> */}
                                 </div>
 
                                 <div className='manageClientInfoRight'>
