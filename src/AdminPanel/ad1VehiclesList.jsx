@@ -246,8 +246,8 @@ const VehiclesListTable = () => {
                             <th>Price</th>
                             <th>Size</th>
                             {/* <th>Day</th> */}
+                             <th>Screen Resolution</th>
                             <th>Audio</th>
-                            <th>Screen Resolution</th>
                             {/* <th>Branding</th> */}
                             <th>Power</th>
                             <th>Ratings</th>

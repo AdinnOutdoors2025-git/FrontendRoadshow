@@ -102,7 +102,7 @@ function VehicleUpload() {
     const [vehicleAmount, setVehicleAmount] = useState("");
     const [vehicleID, setVehicleId] = useState("");
     // const [vehicleDeliveryDay, setVehicleDeliveryDay] = useState("");
-    const [vehicleScreenresolution, setScreenresolution] = useState("");
+const [vehicleScreenresolution, setVehicleScreenresolution] = useState("");
     const [vehicleAudio, setVehicleAudio] = useState("");
     // const [vehicleBranding, setVehicleBranding] = useState("");
     const [vehiclePower, setVehiclePower] = useState("");
@@ -933,7 +933,20 @@ function VehicleUpload() {
                                         />
                                         {errors.vehicleScreenresolution && <div className="AdminProderror-message">Vehicle ScreenResolution is required</div>}
                                     </div>
-                                   
+                                   <div className='clientDetailSection'>
+                                        <div className='clientDetailHeading'>Power</div>
+                                        <input
+                                            type='text'
+                                            placeholder='Enter Power'
+                                            value={vehiclePower}
+                                            onChange={(e) => {
+                                                setVehiclePower(e.target.value);
+                                                setErrors(prev => ({ ...prev, vehiclePower: false }));
+                                            }}
+                                            className={`clientDetailsInput ${errors.vehiclePower ? 'AdminProdinput-error' : ''}`}
+                                        />
+                                        {errors.vehiclePower && <div className="AdminProderror-message">Vehicle Power is required</div>}
+                                    </div>
                                     {/* <div className='clientDetailSection'>
                                         <div className='clientDetailHeading'>Branding</div>
                                         <input
@@ -967,9 +980,9 @@ function VehicleUpload() {
                                     </div>
 
                                     <div className='clientDetailSection'>
-                                        <div className='clientDetailHeading'>Size</div>
+                                        <div className='clientDetailHeading'>Screen Size</div>
                                         <div className='sizeWidthValues'>
-                                            W : <input
+                                            {/* W : <input
                                                 type='number'
                                                 value={vehicleWidth}
                                                 onChange={(e) => {
@@ -989,8 +1002,18 @@ function VehicleUpload() {
                                                 className={`sizeWidthInput ${errors.vehicleHeight ? 'AdminProdinput-error' : ''}`}
                                             />
                                             <span className='sizeWidthSlash'> | </span>
-                                            <label> {ProdSquareFeet()} </label>Sq.ft
-                                            {(errors.vehicleWidth || errors.vehicleHeight) && <div className="AdminProderror-message">Vehicle Height & Width is required</div>}
+                                            <label> {ProdSquareFeet()} </label>Sq.ft */}
+                                            <input
+  type='text'
+  placeholder='Enter Screen Resolution'
+  value={vehicleScreenresolution}
+  onChange={(e) => {
+    setVehicleScreenresolution(e.target.value);
+    setErrors(prev => ({ ...prev, vehicleScreenresolution: false }));
+  }}
+  className={`clientDetailsInput ${errors.vehicleScreenresolution ? 'AdminProdinput-error' : ''}`}
+/>
+ {(errors.vehicleWidth || errors.vehicleHeight) && <div className="AdminProderror-message">Vehicle Height & Width is required</div>}
                                         </div>
                                     </div>
 
@@ -1009,20 +1032,7 @@ function VehicleUpload() {
                                         {errors.vehicleAudio && <div className="AdminProderror-message">Vehicle Audio is required</div>}
                                     </div>
 
-                                    <div className='clientDetailSection'>
-                                        <div className='clientDetailHeading'>Power</div>
-                                        <input
-                                            type='text'
-                                            placeholder='Enter Power'
-                                            value={vehiclePower}
-                                            onChange={(e) => {
-                                                setVehiclePower(e.target.value);
-                                                setErrors(prev => ({ ...prev, vehiclePower: false }));
-                                            }}
-                                            className={`clientDetailsInput ${errors.vehiclePower ? 'AdminProdinput-error' : ''}`}
-                                        />
-                                        {errors.vehiclePower && <div className="AdminProderror-message">Vehicle Power is required</div>}
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
