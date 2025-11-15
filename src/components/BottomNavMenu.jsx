@@ -8,7 +8,7 @@ const BottomNavMenu = () => {
 
   const navLinks = [
     { path: "/", text: "Home", icon: "/images/NavbarIcon1.png" },
-    { path: "/about", text: "About", icon: "/images/NavbarIcon2.png" },
+    { path: "/aboutus", text: "About", icon: "/images/NavbarIcon2.png" },
     { path: "/projects", text: "Projects", icon: "/images/NavbarIcon3.png" },
   ];
 
