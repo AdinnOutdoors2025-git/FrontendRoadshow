@@ -982,7 +982,7 @@ const [vehicleScreenresolution, setVehicleScreenresolution] = useState("");
                                     <div className='clientDetailSection'>
                                         <div className='clientDetailHeading'>Screen Size</div>
                                         <div className='sizeWidthValues'>
-                                            {/* W : <input
+                                            W : <input
                                                 type='number'
                                                 value={vehicleWidth}
                                                 onChange={(e) => {
@@ -1002,8 +1002,8 @@ const [vehicleScreenresolution, setVehicleScreenresolution] = useState("");
                                                 className={`sizeWidthInput ${errors.vehicleHeight ? 'AdminProdinput-error' : ''}`}
                                             />
                                             <span className='sizeWidthSlash'> | </span>
-                                            <label> {ProdSquareFeet()} </label>Sq.ft */}
-                                            <input
+                                            <label> {ProdSquareFeet()} </label>Sq.ft
+                                            {/* <input
   type='text'
   placeholder='Enter Screen Resolution'
   value={vehicleScreenresolution}
@@ -1012,7 +1012,7 @@ const [vehicleScreenresolution, setVehicleScreenresolution] = useState("");
     setErrors(prev => ({ ...prev, vehicleScreenresolution: false }));
   }}
   className={`clientDetailsInput ${errors.vehicleScreenresolution ? 'AdminProdinput-error' : ''}`}
-/>
+/> */}
  {(errors.vehicleWidth || errors.vehicleHeight) && <div className="AdminProderror-message">Vehicle Height & Width is required</div>}
                                         </div>
                                     </div>
