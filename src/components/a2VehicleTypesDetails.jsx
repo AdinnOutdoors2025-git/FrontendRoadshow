@@ -55,9 +55,10 @@ function VehicleTypesDetails() {
                         vehicleID: data.vehicleDetails.vehicleID,
                         name: data.vehicleDetails.name,
                         amount: data.vehicleDetails.amount,
-                        deliveryDay: data.vehicleDetails.deliveryDay,
+                        // deliveryDay: data.vehicleDetails.deliveryDay,
+                        screenResolution: data.vehicleDetails.screenresolution,
                         audio: data.vehicleDetails.audio,
-                        branding: data.vehicleDetails.branding,
+                        // branding: data.vehicleDetails.branding,
                         power: data.vehicleDetails.power,
                         rating: data.vehicleDetails.rating,
                         vehicleWidth: data.vehicleDetails.vehicleSize.width,
@@ -381,26 +382,31 @@ function VehicleTypesDetails() {
                         <div className='rdVehDetailsPgContent1'>
                             <div className='rdVehProdDetailsHeading rdVehDetailsPgContent2Heading'>Product Details</div>
                             <div className='rdVehDetailedShownMain'>
-                                <div className='rdVehDetailedShownContent'>
+                                {/* <div className='rdVehDetailedShownContent'>
                                     <div className='rdVehDetailedShownContentLeft'>Delivery</div>
                                     <div> : </div>
                                     <div className='rdVehDetailedShownContentRight'>{currentVehicle.deliveryDay} Day(s)</div>
-                                </div>
+                                </div> */}
                                 <div className='rdVehDetailedShownContent'>
-                                    <div className='rdVehDetailedShownContentLeft'>Vehicle Size</div>
+                                    <div className='rdVehDetailedShownContentLeft'>Screen Size</div>
                                     <div> : </div>
                                     <div className='rdVehDetailedShownContentRight'>{currentVehicle.vehicleWidth} x {currentVehicle.vehicleHeight} ft ({currentVehicle.VehicleSizeSquareFeet} sq.ft)</div>
+                                </div>
+                                <div className='rdVehDetailedShownContent'>
+                                    <div className='rdVehDetailedShownContentLeft'>Screen Resolution</div>
+                                    <div> : </div>
+                                    <div className='rdVehDetailedShownContentRight'>{currentVehicle.screenResolution}</div>
                                 </div>
                                 <div className='rdVehDetailedShownContent'>
                                     <div className='rdVehDetailedShownContentLeft'>Audio</div>
                                     <div> : </div>
                                     <div className='rdVehDetailedShownContentRight'>{currentVehicle.audio}</div>
                                 </div>
-                                <div className='rdVehDetailedShownContent'>
+                                {/* <div className='rdVehDetailedShownContent'>
                                     <div className='rdVehDetailedShownContentLeft'>Branding</div>
                                     <div> : </div>
                                     <div className='rdVehDetailedShownContentRight'>{currentVehicle.branding}</div>
-                                </div>
+                                </div> */}
                                 <div className='rdVehDetailedShownContent'>
                                     <div className='rdVehDetailedShownContentLeft'>Power</div>
                                     <div> : </div>
