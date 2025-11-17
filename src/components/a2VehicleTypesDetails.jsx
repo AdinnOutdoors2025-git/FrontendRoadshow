@@ -56,7 +56,7 @@ function VehicleTypesDetails() {
                         name: data.vehicleDetails.name,
                         amount: data.vehicleDetails.amount,
                         // deliveryDay: data.vehicleDetails.deliveryDay,
-                        screenResolution: data.vehicleDetails.screenresolution,
+                        screenresolution: data.vehicleDetails.screenresolution,
                         audio: data.vehicleDetails.audio,
                         // branding: data.vehicleDetails.branding,
                         power: data.vehicleDetails.power,
@@ -395,7 +395,7 @@ function VehicleTypesDetails() {
                                 <div className='rdVehDetailedShownContent'>
                                     <div className='rdVehDetailedShownContentLeft'>Screen Resolution</div>
                                     <div> : </div>
-                                    <div className='rdVehDetailedShownContentRight'>{currentVehicle.screenResolution}</div>
+                                    <div className='rdVehDetailedShownContentRight'>{currentVehicle.screenresolution}</div>
                                 </div>
                                 <div className='rdVehDetailedShownContent'>
                                     <div className='rdVehDetailedShownContentLeft'>Audio</div>
