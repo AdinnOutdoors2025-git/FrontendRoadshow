@@ -2,31 +2,29 @@ import React, { useEffect, useState, useMemo } from "react";
 import "./VehicleInfo.css";
 import { baseUrl } from "../Authentication/BASE_URL";
 
-
 function VehicleInfo() {
   const [vehicles, setVehicles] = useState([]);
   const [loading, setLoading] = useState(true);
 
-
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-
 
   const [selectedLocation, setSelectedLocation] = useState("all");
   const [selectedModel, setSelectedModel] = useState("all");
   const [selectedAvailability, setSelectedAvailability] = useState("all");
-
-
+  const [selectedVehicle, setSelectedVehicle] = useState(null);
+  const [activeImage, setActiveImage] = useState("");
+  const [imageLoaded, setImageLoaded] = useState(false);
   useEffect(() => {
     fetchVehicles();
   }, []);
 
+  
 
   const fetchVehicles = async () => {
     try {
       const response = await fetch(`${baseUrl}/getVehiclesAvailability`);
       const data = await response.json();
-
 
       if (data.success) {
         setVehicles(data.data);
@@ -38,7 +36,6 @@ function VehicleInfo() {
     }
   };
 
-
   // ✅ Unique Locations
   const locations = [
     "all",
@@ -46,7 +43,6 @@ function VehicleInfo() {
       vehicles.map((v) => v.location?.toLowerCase().trim()).filter(Boolean),
     ),
   ];
-
 
   // ✅ Unique Models
   const models = [
@@ -56,29 +52,23 @@ function VehicleInfo() {
     ),
   ];
 
-
   // ✅ Format Vehicle Number
   const formatVehicleNumber = (number) => {
     return number.replace(/([A-Za-z]+|\d+)/g, "$1 ").trim();
   };
 
-
   // ✅ Filter Logic (CORRECT PLACE)
   const filteredVehicles = vehicles.filter((v) => {
     const formattedNumber = formatVehicleNumber(v.vehicleNumber).toLowerCase();
 
-
     const model = v.model?.toLowerCase().trim() || "";
     const location = v.location?.toLowerCase().trim() || "";
-
 
     const matchesLocation =
       selectedLocation === "all" ? true : location === selectedLocation;
 
-
     const matchesModel =
       selectedModel === "all" ? true : model === selectedModel;
-
 
     const matchesAvailability =
       selectedAvailability === "all"
@@ -87,19 +77,16 @@ function VehicleInfo() {
           ? v.isAvailable === true
           : v.isAvailable === false;
 
-
     const matchesSearch =
       formattedNumber.includes(searchTerm.toLowerCase()) ||
       model.includes(searchTerm.toLowerCase()) ||
       location.includes(searchTerm.toLowerCase()) ||
       v.statusReason?.toLowerCase().includes(searchTerm.toLowerCase());
 
-
     return (
       matchesLocation && matchesModel && matchesAvailability && matchesSearch
     );
   });
-
 
   // ✅ Auto Suggestions
   useEffect(() => {
@@ -108,9 +95,7 @@ function VehicleInfo() {
       return;
     }
 
-
     const lowerSearch = searchTerm.toLowerCase();
-
 
     const allSuggestions = vehicles.flatMap((v) => [
       formatVehicleNumber(v.vehicleNumber),
@@ -119,15 +104,12 @@ function VehicleInfo() {
       v.location,
     ]);
 
-
     const filteredSuggestions = allSuggestions.filter((item) =>
       item?.toLowerCase().includes(lowerSearch),
     );
 
-
     setSuggestions([...new Set(filteredSuggestions)]);
   }, [searchTerm, vehicles]);
-
 
   const handleClearSearch = () => {
     setSearchTerm("");
@@ -135,7 +117,6 @@ function VehicleInfo() {
     setSelectedLocation("all");
     setSelectedModel("all");
   };
-
 
   const handleClearFilters = () => {
     setSearchTerm("");
@@ -145,12 +126,10 @@ function VehicleInfo() {
     setSelectedAvailability("all");
   };
 
-
   // ✅ Status Mood
   const statusMood = useMemo(() => {
     const total = vehicles.length;
     const available = vehicles.filter((v) => v.isAvailable === true).length;
-
 
     if (available === total && total > 0) return "all-available";
     if (available > total / 2) return "mostly-available";
@@ -158,6 +137,22 @@ function VehicleInfo() {
     return "mixed";
   }, [vehicles]);
 
+  const getImageUrl = (path) => {
+    if (!path) return "";
+
+    const cleanPath = path
+      .replace(/\\/g, "/") // convert \ to /
+      .replace("public/", ""); // remove public/
+
+    return `${baseUrl}/${cleanPath}`;
+  };
+
+  useEffect(() => {
+    if (!activeImage) return;
+
+    const img = new Image();
+    img.src = getImageUrl(activeImage);
+  }, [activeImage]);
 
   return (
     <div className={`availability-page ${statusMood}`}>
@@ -165,7 +160,6 @@ function VehicleInfo() {
         <h1>Roadshow Vehicle Availability</h1>
         <p>Live fleet tracking across cities</p>
       </div>
-
 
       <div className="liquid-dashboard-header">
         <div className="liquid-capsule">
@@ -186,7 +180,6 @@ function VehicleInfo() {
               ))}
             </select>
 
-
             {/* Model */}
             <select
               value={selectedModel}
@@ -202,9 +195,7 @@ function VehicleInfo() {
               ))}
             </select>
 
-
             {/* Availability */}
-
 
             <select
               value={selectedAvailability}
@@ -224,11 +215,9 @@ function VehicleInfo() {
             )}
           </div>
 
-
           {/* Search */}
           <div className="capsule-search">
             <span className="search-icon">🔍</span>
-
 
             <input
               type="text"
@@ -237,13 +226,11 @@ function VehicleInfo() {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
 
-
             {searchTerm && (
               <button className="clear-btn" onClick={handleClearSearch}>
                 ✖
               </button>
             )}
-
 
             {searchTerm && suggestions.length > 0 && (
               <ul className="glass-dropdown">
@@ -264,19 +251,24 @@ function VehicleInfo() {
         </div>
       </div>
 
-
       {loading ? (
         <p style={{ textAlign: "center" }}>Loading...</p>
       ) : (
         <div className="vehicle-container">
           {filteredVehicles.map((vehicle) => (
-            <div key={vehicle._id} className="vehicle-card">
+            <div
+              key={vehicle._id}
+              className="vehicle-card"
+              onClick={() => {
+                setSelectedVehicle(vehicle);
+                setActiveImage(vehicle.images?.[0]); // first image default
+              }}
+            >
               <div className="vehicle-left">
                 <h3>🚚 {formatVehicleNumber(vehicle.vehicleNumber)}</h3>
                 <p>🚘 {vehicle.model}</p>
                 <p>📍 {vehicle.location}</p>
               </div>
-
 
               <div className="vehicle-right">
                 <span
@@ -293,14 +285,74 @@ function VehicleInfo() {
           ))}
         </div>
       )}
+  {selectedVehicle && (
+  <div
+    className="neo-overlay"
+    onClick={() => setSelectedVehicle(null)}
+  >
+    <div
+      className="neo-modal"
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* LEFT IMAGE SECTION */}
+      <div className="neo-image-section">
+        <img
+          key={activeImage}
+          src={getImageUrl(activeImage)}
+          alt="Vehicle"
+          className="neo-main-image"
+        />
+
+        <div className="neo-thumbnails">
+          {selectedVehicle.images?.map((img, index) => (
+            <img
+              key={index}
+              src={getImageUrl(img)}
+              alt="thumb"
+              className={`neo-thumb ${
+                activeImage === img ? "neo-active" : ""
+              }`}
+              onClick={() => setActiveImage(img)}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* RIGHT DETAILS SECTION */}
+      <div className="neo-details-section">
+        <button
+          className="neo-close"
+          onClick={() => setSelectedVehicle(null)}
+        >
+          ✕
+        </button>
+
+        <h2>{formatVehicleNumber(selectedVehicle.vehicleNumber)}</h2>
+
+        <div className="neo-info">
+          <p><span>Model</span> {selectedVehicle.model}</p>
+          <p><span>Location</span> {selectedVehicle.location}</p>
+          <p>
+            <span>Status</span>
+            <strong
+              className={
+                selectedVehicle.isAvailable
+                  ? "neo-available"
+                  : "neo-unavailable"
+              }
+            >
+              {selectedVehicle.isAvailable
+                ? "Available"
+                : selectedVehicle.statusReason || "Unavailable"}
+            </strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
     </div>
   );
 }
 
-
 export default VehicleInfo;
-
-
-
-
-

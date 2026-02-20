@@ -1,4 +1,10 @@
-import React, { useState, useContext, useEffect, useCallback } from "react";
+import React, {
+  useState,
+  useContext,
+  useEffect,
+  useCallback,
+  useRef,
+} from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import { ToastContainer } from "react-toastify";
@@ -16,7 +22,8 @@ function EntryVehicles() {
   const [loading, setLoading] = useState(false);
   const [vehicles, setVehicles] = useState([]);
   const [editingId, setEditingId] = useState(null);
-
+  const [images, setImages] = useState([]);
+  const fileInputRef = useRef(null);
   const validate = () => {
     let newErrors = {};
 
@@ -46,19 +53,25 @@ function EntryVehicles() {
     setLoading(true);
 
     try {
+      const formData = new FormData();
+      formData.append("vehicleNumber", vehicleNumber);
+      formData.append("model", model);
+
+      images.forEach((img) => {
+        formData.append("images", img);
+      });
+
       let response;
 
       if (editingId) {
         response = await fetch(`${baseUrl}/updateVehicle/${editingId}`, {
           method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ vehicleNumber, model }),
+          body: formData,
         });
       } else {
         response = await fetch(`${baseUrl}/entryVehicles`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ vehicleNumber, model }),
+          body: formData,
         });
       }
 
@@ -69,7 +82,7 @@ function EntryVehicles() {
         return;
       }
 
-      await fetchVehicles(); // 🔥 reload list from DB
+      await fetchVehicles();
 
       toast.success(
         editingId
@@ -80,6 +93,10 @@ function EntryVehicles() {
       setEditingId(null);
       setVehicleNumber("");
       setModel("");
+      setImages([]);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = ""; // <- this clears the selected files
+      }
     } catch (error) {
       toast.error("Server error");
     } finally {
@@ -181,6 +198,28 @@ function EntryVehicles() {
                         {errors.model}
                       </div>
                     )}
+                  </div>
+
+                  <div className="clientDetailSection">
+                    <div className="clientDetailHeading">
+                      Upload Images (Max 4)
+                    </div>
+                    <input
+                      type="file"
+                      multiple
+                      accept="image/*"
+                      ref={fileInputRef}
+                      onChange={(e) => {
+                        const files = Array.from(e.target.files);
+
+                        if (files.length > 4) {
+                          toast.error("Maximum 4 images allowed");
+                          return;
+                        }
+
+                        setImages(files);
+                      }}
+                    />
                   </div>
                 </div>
                 {/* Vehicle List Section */}

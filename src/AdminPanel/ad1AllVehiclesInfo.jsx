@@ -87,20 +87,18 @@ function AllVehiclesInfo() {
         (vehicle) => vehicle._id === selectedVehicleId,
       );
 
-    const response = await fetch(url, {
-  method,
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    vehicleId: selectedVehicleId,
-    vehicleNumber: selectedVehicle?.vehicleNumber,
-    model,
-    location,
-    isAvailable: availabilityType === "available",
-    statusReason:
-      availabilityType === "unavailable" ? status : "",
-  }),
-});
-
+      const response = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          vehicleId: selectedVehicleId,
+          vehicleNumber: selectedVehicle?.vehicleNumber,
+          model,
+          location,
+          isAvailable: availabilityType === "available",
+          statusReason: availabilityType === "unavailable" ? status : "",
+        }),
+      });
 
       const data = await response.json();
 
@@ -120,27 +118,24 @@ function AllVehiclesInfo() {
   };
 
   // edit function
-const handleEdit = (item) => {
-  setEditId(item._id);
+  const handleEdit = (item) => {
+    setEditId(item._id);
 
-  const vehicleId =
-    typeof item.vehicleId === "object"
-      ? item.vehicleId._id
-      : item.vehicleId;
+    const vehicleId =
+      typeof item.vehicleId === "object" ? item.vehicleId._id : item.vehicleId;
 
-  setSelectedVehicleId(vehicleId);
-  setModel(item.model);
-  setLocation(item.location);
+    setSelectedVehicleId(vehicleId);
+    setModel(item.model);
+    setLocation(item.location);
 
-  if (item.isAvailable) {
-    setAvailabilityType("available");
-    setStatus("");
-  } else {
-    setAvailabilityType("unavailable");
-    setStatus(item.statusReason || "");
-  }
-};
-
+    if (item.isAvailable) {
+      setAvailabilityType("available");
+      setStatus("");
+    } else {
+      setAvailabilityType("unavailable");
+      setStatus(item.statusReason || "");
+    }
+  };
 
   // delete function
   const handleDelete = async (id) => {
@@ -272,7 +267,15 @@ const handleEdit = (item) => {
                           Location: {item.location}
                         </div>
                         <div className="vehicleStatus">
-                          Status: {item.status}
+                          Status:{" "}
+                          {item.isAvailable === true
+                            ? "Available"
+                            : "Not Available"}
+                          {!item.isAvailable && item.statusReason && (
+                            <div className="statusReason">
+                              Reason: {item.statusReason}
+                            </div>
+                          )}
                         </div>
 
                         <div className="vehicleActions">
