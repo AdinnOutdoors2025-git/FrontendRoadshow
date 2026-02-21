@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import "./VehicleInfo.css";
+import "./VehicleInfo1.css";
 import { baseUrl } from "../Authentication/BASE_URL";
 
 function VehicleInfo() {
