@@ -24,6 +24,26 @@ function EntryVehicles() {
   const [editingId, setEditingId] = useState(null);
   const [images, setImages] = useState([]);
   const fileInputRef = useRef(null);
+  const [newModelName, setNewModelName] = useState("");
+  const [modelList, setModelList] = useState([]);
+  const [speaker, setSpeaker] = useState("");
+  const [speakerNos, setSpeakerNos] = useState("");
+  const [generator, setGenerator] = useState("");
+  const [generatorNos, setGeneratorNos] = useState("");
+
+  const fetchModels = async () => {
+    try {
+      const response = await fetch(`${baseUrl}/getVehicleModels`);
+      const data = await response.json();
+
+      if (data.status === true) {
+        setModelList(data.data);
+      }
+    } catch (error) {
+      console.error("Error fetching models:", error);
+    }
+  };
+
   const validate = () => {
     let newErrors = {};
 
@@ -56,6 +76,10 @@ function EntryVehicles() {
       const formData = new FormData();
       formData.append("vehicleNumber", vehicleNumber);
       formData.append("model", model);
+      formData.append("speaker", speaker);
+      formData.append("speakerNos", speakerNos);
+      formData.append("generator", generator);
+      formData.append("generatorNos", generatorNos);
 
       images.forEach((img) => {
         formData.append("images", img);
@@ -93,6 +117,10 @@ function EntryVehicles() {
       setEditingId(null);
       setVehicleNumber("");
       setModel("");
+      setSpeaker("");
+      setSpeakerNos("");
+      setGenerator("");
+      setGeneratorNos("");
       setImages([]);
       if (fileInputRef.current) {
         fileInputRef.current.value = ""; // <- this clears the selected files
@@ -110,6 +138,10 @@ function EntryVehicles() {
   const handleEdit = (vehicle) => {
     setVehicleNumber(vehicle.vehicleNumber);
     setModel(vehicle.model);
+    setSpeaker(vehicle.speaker || "");
+    setSpeakerNos(vehicle.speakerNos || "");
+    setGenerator(vehicle.generator || "");
+    setGeneratorNos(vehicle.generatorNos || "");
     setEditingId(vehicle._id);
   };
 
@@ -154,7 +186,40 @@ function EntryVehicles() {
 
   useEffect(() => {
     fetchVehicles();
+    fetchModels();
   }, []);
+
+  const handleSaveModel = async () => {
+    if (!newModelName.trim()) {
+      toast.error("Model name is required");
+      return;
+    }
+
+    try {
+      const response = await fetch(`${baseUrl}/saveVehicleModel`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          modelName: newModelName.toUpperCase(),
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        toast.error(data.message || "Failed to save model");
+        return;
+      }
+
+      toast.success("Model saved successfully");
+      setNewModelName("");
+      fetchModels(); // refresh dropdown
+    } catch (error) {
+      toast.error("Server error");
+    }
+  };
 
   return (
     <div>
@@ -185,19 +250,122 @@ function EntryVehicles() {
                   </div>
 
                   <div className="clientDetailSection">
-                    <div className="clientDetailHeading">Model</div>
-                    <input
-                      type="text"
-                      placeholder="Enter Model"
-                      className={`clientDetailsInput `}
+                    <div className="clientDetailHeading">Add Model</div>
+                    <div style={{ display: "flex", gap: "10px" }}>
+                      <input
+                        type="text"
+                        placeholder="Enter Model Name"
+                        className="clientDetailsInput"
+                        value={newModelName}
+                        onChange={(e) =>
+                          setNewModelName(e.target.value.toUpperCase())
+                        }
+                      />
+                      <button
+                        type="button"
+                        className="editBtn"
+                        onClick={handleSaveModel}
+                      >
+                        Save
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="clientDetailSection">
+                    <div className="clientDetailHeading">Select Model</div>
+                    <select
+                      className="clientDetailsInput"
                       value={model}
-                      onChange={(e) => setModel(e.target.value.toUpperCase())}
-                    />
+                      onChange={(e) => {
+                        const selectedModel = e.target.value;
+                        setModel(selectedModel);
+
+                        // 🔥 Find vehicle with same model
+                        const existingVehicle = vehicles.find(
+                          (v) =>
+                            v.model.toLowerCase().trim() ===
+                            selectedModel.toLowerCase().trim(),
+                        );
+
+                        if (existingVehicle) {
+                          setSpeaker(existingVehicle.speaker || "");
+                          setSpeakerNos(existingVehicle.speakerNos || "");
+                          setGenerator(existingVehicle.generator || "");
+                          setGeneratorNos(existingVehicle.generatorNos || "");
+                        } else {
+                          // Clear if no vehicle found
+                          setSpeaker("");
+                          setSpeakerNos("");
+                          setGenerator("");
+                          setGeneratorNos("");
+                        }
+                      }}
+                    >
+                      <option value="">Select Model</option>
+                      {modelList.map((m) => (
+                        <option key={m._id} value={m.modelName}>
+                          {m.modelName}
+                        </option>
+                      ))}
+                    </select>
+
                     {errors.model && (
                       <div className="AdminProderror-message">
                         {errors.model}
                       </div>
                     )}
+                  </div>
+
+                  <div className="clientDetailSection">
+                    <div className="clientDetailHeading">
+                      Speaker (Optional)
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="Enter Speaker Details"
+                      className="clientDetailsInput"
+                      value={speaker}
+                      onChange={(e) => setSpeaker(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="clientDetailSection">
+                    <div className="clientDetailHeading">
+                      Speaker NOS (Optional)
+                    </div>
+                    <input
+                      type="number"
+                      placeholder="Enter Speaker Quantity"
+                      className="clientDetailsInput"
+                      value={speakerNos}
+                      onChange={(e) => setSpeakerNos(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="clientDetailSection">
+                    <div className="clientDetailHeading">
+                      Generator (Optional)
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="Enter Generator Details"
+                      className="clientDetailsInput"
+                      value={generator}
+                      onChange={(e) => setGenerator(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="clientDetailSection">
+                    <div className="clientDetailHeading">
+                      Generator NOS (Optional)
+                    </div>
+                    <input
+                      type="number"
+                      placeholder="Enter Generator Quantity"
+                      className="clientDetailsInput"
+                      value={generatorNos}
+                      onChange={(e) => setGeneratorNos(e.target.value)}
+                    />
                   </div>
 
                   <div className="clientDetailSection">

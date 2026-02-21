@@ -864,3 +864,20 @@ body {
 }
 
 /* image model popup */
+
+.header-count {
+  position: absolute;
+  right: 322px;
+  top: -33px; /* adjust if needed */
+  display: flex;
+  gap: 20px;
+  font-weight: 500;
+  z-index: 10;
+}
+.available-text {
+  color: #4ade80;
+}
+
+.unavailable-text {
+  color: #f87171;
+}

@@ -20,8 +20,6 @@ function VehicleInfo() {
     fetchVehicles();
   }, []);
 
-  
-
   const fetchVehicles = async () => {
     try {
       const response = await fetch(`${baseUrl}/getVehiclesAvailability`);
@@ -60,7 +58,13 @@ function VehicleInfo() {
 
   // ✅ Filter Logic (CORRECT PLACE)
   const filteredVehicles = vehicles.filter((v) => {
-    const formattedNumber = formatVehicleNumber(v.vehicleNumber).toLowerCase();
+    const rawNumber = v.vehicleNumber?.toLowerCase() || "";
+    const formattedNumber =
+      formatVehicleNumber(v.vehicleNumber)?.toLowerCase() || "";
+
+    // Remove spaces for flexible matching
+    const cleanRawNumber = rawNumber.replace(/\s+/g, "");
+    const cleanSearch = searchTerm.toLowerCase().replace(/\s+/g, "");
 
     const model = v.model?.toLowerCase().trim() || "";
     const location = v.location?.toLowerCase().trim() || "";
@@ -79,7 +83,9 @@ function VehicleInfo() {
           : v.isAvailable === false;
 
     const matchesSearch =
-      formattedNumber.includes(searchTerm.toLowerCase()) ||
+      cleanRawNumber.includes(cleanSearch) || // TN58AQ1070
+      formattedNumber.includes(searchTerm.toLowerCase()) || // TN 58 AQ 1070
+      rawNumber.includes(searchTerm.toLowerCase()) || // AQ / 1070
       model.includes(searchTerm.toLowerCase()) ||
       location.includes(searchTerm.toLowerCase()) ||
       v.statusReason?.toLowerCase().includes(searchTerm.toLowerCase());
@@ -89,6 +95,14 @@ function VehicleInfo() {
     );
   });
 
+  // ✅ Availability Counts (Dynamic)
+  const availableCount = filteredVehicles.filter(
+    (v) => v.isAvailable === true,
+  ).length;
+
+  const unavailableCount = filteredVehicles.filter(
+    (v) => v.isAvailable === false,
+  ).length;
   // ✅ Auto Suggestions
   useEffect(() => {
     if (!searchTerm) {
@@ -163,6 +177,12 @@ function VehicleInfo() {
       </div>
 
       <div className="liquid-dashboard-header">
+        <div className="header-count">
+          <span className="available-text">🟢 Available: {availableCount}</span>
+          <span className="unavailable-text">
+            🔴 Unavailable: {unavailableCount}
+          </span>
+        </div>
         <div className="liquid-capsule">
           {/* Dropdown Filters */}
           <div className="capsule-dropdowns">
@@ -216,39 +236,42 @@ function VehicleInfo() {
             )}
           </div>
 
-          {/* Search */}
-          <div className="capsule-search">
-            <span className="search-icon">🔍</span>
+          <div className="right-section">
+            <div className="capsule-search">
+              <span className="search-icon">🔍</span>
 
-            <input
-              type="text"
-              placeholder="Search vehicle, model, location or status..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
+              <input
+                type="text"
+                placeholder="Search vehicle, model, location or status..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
 
-            {searchTerm && (
-              <button className="clear-btn" onClick={handleClearSearch}>
-                ✖
-              </button>
-            )}
+              {searchTerm && (
+                <button className="clear-btn" onClick={handleClearSearch}>
+                  ✖
+                </button>
+              )}
 
-            {searchTerm && suggestions.length > 0 && (
-              <ul className="glass-dropdown">
-                {suggestions.slice(0, 5).map((suggestion, index) => (
-                  <li
-                    key={index}
-                    onClick={() => {
-                      setSearchTerm(suggestion);
-                      setSuggestions([]);
-                    }}
-                  >
-                    {suggestion}
-                  </li>
-                ))}
-              </ul>
-            )}
+              {searchTerm && suggestions.length > 0 && (
+                <ul className="glass-dropdown">
+                  {suggestions.slice(0, 5).map((suggestion, index) => (
+                    <li
+                      key={index}
+                      onClick={() => {
+                        setSearchTerm(suggestion);
+                        setSuggestions([]);
+                      }}
+                    >
+                      {suggestion}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
+
+          {/* Search */}
         </div>
       </div>
 
@@ -266,9 +289,19 @@ function VehicleInfo() {
               }}
             >
               <div className="vehicle-left">
-                <h3>🚚 {formatVehicleNumber(vehicle.vehicleNumber)}</h3>
-                <p>🚘 {vehicle.model}</p>
-                <p>📍 {vehicle.location}</p>
+                <h3>🚘 {vehicle.model}</h3>
+                <p>🚚 {formatVehicleNumber(vehicle.vehicleNumber)}</p>
+                <p>
+                  📍{" "}
+                  {(() => {
+                    const firstWord =
+                      vehicle.location?.trim().split(" ")[0] || "";
+                    return (
+                      firstWord.charAt(0).toUpperCase() +
+                      firstWord.slice(1).toLowerCase()
+                    );
+                  })()}
+                </p>
               </div>
 
               <div className="vehicle-right">
@@ -286,72 +319,109 @@ function VehicleInfo() {
           ))}
         </div>
       )}
-  {selectedVehicle && (
-  <div
-    className="neo-overlay"
-    onClick={() => setSelectedVehicle(null)}
-  >
-    <div
-      className="neo-modal"
-      onClick={(e) => e.stopPropagation()}
-    >
-      {/* LEFT IMAGE SECTION */}
-      <div className="neo-image-section">
-        <img
-          key={activeImage}
-          src={getImageUrl(activeImage)}
-          alt="Vehicle"
-          className="neo-main-image"
-        />
+      {selectedVehicle && (
+        <div className="neo-overlay" onClick={() => setSelectedVehicle(null)}>
+          <div className="neo-modal" onClick={(e) => e.stopPropagation()}>
+            {/* LEFT IMAGE SECTION */}
+            <div className="neo-image-section">
+              <img
+                key={activeImage}
+                src={getImageUrl(activeImage)}
+                alt="Vehicle"
+                className="neo-main-image"
+              />
 
-        <div className="neo-thumbnails">
-          {selectedVehicle.images?.map((img, index) => (
-            <img
-              key={index}
-              src={getImageUrl(img)}
-              alt="thumb"
-              className={`neo-thumb ${
-                activeImage === img ? "neo-active" : ""
-              }`}
-              onClick={() => setActiveImage(img)}
-            />
-          ))}
+              <div className="neo-thumbnails">
+                {selectedVehicle.images?.map((img, index) => (
+                  <img
+                    key={index}
+                    src={getImageUrl(img)}
+                    alt="thumb"
+                    className={`neo-thumb ${
+                      activeImage === img ? "neo-active" : ""
+                    }`}
+                    onClick={() => setActiveImage(img)}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* RIGHT DETAILS SECTION */}
+            <div className="neo-details-section">
+              <button
+                className="neo-close"
+                onClick={() => setSelectedVehicle(null)}
+              >
+                ✕
+              </button>
+
+              <h2>{selectedVehicle.model}</h2>
+
+              <div className="neo-info">
+                <p>
+                  <span>Vehicle Number</span> 🆔{" "}
+                  {formatVehicleNumber(selectedVehicle.vehicleNumber)}
+                </p>
+
+                <p>
+                  <span>Location</span> 📍{" "}
+                  {selectedVehicle.location
+                    ? selectedVehicle.location.charAt(0).toUpperCase() +
+                      selectedVehicle.location.slice(1).toLowerCase()
+                    : ""}
+                </p>
+
+                <p>
+                  <span>Status</span>
+                  <strong
+                    className={
+                      selectedVehicle.isAvailable
+                        ? "neo-available"
+                        : "neo-unavailable"
+                    }
+                  >
+                    {selectedVehicle.isAvailable
+                      ? "🟢 Available"
+                      : `🔴 ${
+                          selectedVehicle.statusReason
+                            ? selectedVehicle.statusReason
+                                .charAt(0)
+                                .toUpperCase() +
+                              selectedVehicle.statusReason
+                                .slice(1)
+                                .toLowerCase()
+                            : "Unavailable"
+                        }`}
+                  </strong>
+                </p>
+
+                {/* 🔥 NEW SPECIFICATIONS SECTION */}
+                <div className="neo-specs">
+                  <h4>⚙ Vehicle Specifications</h4>
+
+                  <div className="spec-item">
+                    <span>🔊 Speaker</span>
+                    <strong>
+                      {selectedVehicle.speaker
+                        ? `${selectedVehicle.speaker} (${selectedVehicle.speakerNos || 0} Nos)`
+                        : "N/A"}
+                    </strong>
+                  </div>
+
+                  <div className="spec-item">
+                    <span>⚡ Generator</span>
+                    <strong>
+                      {selectedVehicle.generator
+                        ? `${selectedVehicle.generator} (${selectedVehicle.generatorNos || 0} Nos)`
+                        : "N/A"}
+                    </strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-
-      {/* RIGHT DETAILS SECTION */}
-      <div className="neo-details-section">
-        <button
-          className="neo-close"
-          onClick={() => setSelectedVehicle(null)}
-        >
-          ✕
-        </button>
-
-        <h2>{formatVehicleNumber(selectedVehicle.vehicleNumber)}</h2>
-
-        <div className="neo-info">
-          <p><span>Model</span> {selectedVehicle.model}</p>
-          <p><span>Location</span> {selectedVehicle.location}</p>
-          <p>
-            <span>Status</span>
-            <strong
-              className={
-                selectedVehicle.isAvailable
-                  ? "neo-available"
-                  : "neo-unavailable"
-              }
-            >
-              {selectedVehicle.isAvailable
-                ? "Available"
-                : selectedVehicle.statusReason || "Unavailable"}
-            </strong>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-)}
+      )}
     </div>
   );
 }
