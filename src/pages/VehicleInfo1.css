@@ -1,0 +1,254 @@
+@media screen and (max-width: 767px) {
+  .liquid-capsule {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 30px;
+    border-radius: 40px !important;
+  }
+ /* Make dropdowns container full width and stack vertically */
+  .capsule-dropdowns {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+  
+  /* Each dropdown takes full width */
+  .capsule-dropdowns select {
+    width: 100%;
+    padding: 12px;
+    /* border: 1px solid #ddd; */
+    border-radius: 6px;
+    font-size: 14px;
+    /* background-color: white; */
+  }
+
+  /* Search container full width */
+  .capsule-search {
+    width: 100%;
+    position: relative;
+    margin-top: 0; 
+    gap: 0px;
+    padding: 5px;
+  }
+  
+  /* Search input full width */
+  .capsule-search input {
+    width: 100%;
+    padding: 12px 0px 12px 0px;
+    /* border: 1px solid #ddd; */
+    border-radius: 6px;
+    font-size: 12px;
+    box-sizing: border-box;
+  }
+  .hero-section h1 {
+    font-size: 20px !important;
+  }
+  .vehicle-left h3{
+    font-size: 20px !important;
+  }
+  body {
+    padding: 0px !important;
+  } 
+  .neo-modal {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  /* First row - RIGHT DETAILS SECTION */
+  .neo-details-section {
+    order: 1;
+    padding: 20px;
+    padding-top: 60px!important;
+  }
+
+  /* Second row - LEFT IMAGE SECTION */
+  .neo-image-section {
+    order: 2;
+    padding: 20px;
+    padding-bottom: 20px !important;
+  }
+
+  .neo-thumbnails {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    overflow-x: auto;
+  }
+
+  .neo-thumb {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  .neo-main-image {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: contain;
+  }
+
+  .neo-close { 
+    margin-bottom: 15px;
+    width: 20px;
+    height: 20px;
+  }
+  .neo-main-image{
+    max-height: 40vh !important;
+    margin-top: -120px !important;
+}
+}
+@media (max-width: 375px) {
+.vehicle-left h3{
+    font-size: 18px !important;
+  }
+}
+@media (max-width: 360px) {
+.vehicle-left h3{
+    font-size: 16px !important;
+  }
+  .vehicle-left p{
+    font-size: 14px !important;
+  }
+}
+@media (max-width: 320px) {
+.vehicle-left h3{
+    font-size: 13px !important;
+  }
+  .vehicle-left p{
+    font-size: 12px !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .liquid-capsule {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 40px;
+    border-radius: 40px !important;
+  }
+
+  /* First row - All Locations and All Models (equal width) */
+  .capsule-dropdowns {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Both equal width */
+    gap: 15px;
+    width: 100%;
+  }
+  
+  .capsule-dropdowns select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    
+    height: 45px; /* Fixed height for consistency */
+    box-sizing: border-box;
+  }
+  .capsule-search {
+margin-left: 290px !important;
+    margin-top: -55px !important;
+    padding: 10px 10px !important;
+    border-radius: 20px !important;
+  }
+      body {
+        padding-bottom: 0px !important;
+    }
+     .neo-main-image{
+        height: 35vh !important;
+     }
+  /* Second row container - All Status and Search (equal width) */
+  .status-search-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Both equal width */
+    gap: 10px;
+    width: 100%;
+  }
+
+  /* Style for All Status dropdown */
+  .status-search-row select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 14px;
+   
+    height: 45px; /* Same height as other dropdowns */
+    box-sizing: border-box;
+  }
+  
+  /* Style for search container */
+  .status-search-row .capsule-search {
+    position: relative;
+    width: 100%;
+    height: 45px; /* Same height as dropdowns */
+  }
+  
+  .status-search-row .capsule-search input {
+    width: 100%;
+    height: 100%;
+    padding: 0 12px 0 40px;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  
+  .status-search-row .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 16px;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .vehicle-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  
+  .vehicle-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+  }
+  
+  .vehicle-left h3 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .vehicle-left p {
+    margin: 4px 0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .vehicle-right {
+    margin-left: 12px;
+  }
+  
+  .status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    border: 1px solid currentColor;
+  }
+  .neo-image-section{
+    flex: 1 !important;
+    width: 50% !important;
+}
+}
+
