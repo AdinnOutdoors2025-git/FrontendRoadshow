@@ -397,7 +397,7 @@ function VehicleInfo() {
 
                 {/* 🔥 NEW SPECIFICATIONS SECTION */}
                 <div className="neo-specs">
-                  <h4>⚙ Vehicle Specifications</h4>
+                  {/* <h4>⚙ Vehicle Specifications</h4> */}
 
                   <div className="spec-item">
                     <span>🔊 Speaker</span>
