@@ -173,7 +173,7 @@ function VehicleInfo() {
     <div className={`availability-page ${statusMood}`}>
       <div className="hero-section">
         <h1>Roadshow Vehicle Availability</h1>
-        <p>Live fleet tracking across cities</p>
+        <p>Adinn RoadShows</p>
       </div>
 
       <div className="liquid-dashboard-header">
