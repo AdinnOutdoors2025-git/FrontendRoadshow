@@ -164,10 +164,19 @@
     right: 25px !important;
     top: -30px !important;
   }
+  .available-text,
+  .unavailable-text {
+    font-size: 14px;
+  }
+  
+  .availability-page {
+    padding: 13px 4%;
+  }
+
 }
 
 /* RESPONSIVE NEWLY ADDED  */
-@media (min-width: 320px) and (max-width: 390px) {
+@media (min-width: 360px) and (max-width: 370px) {
 
   .vehicle-left h3 {
     font-size: 18px !important;
@@ -179,7 +188,42 @@
   }
 
   .availability-page {
-    padding: 60px 4%;
+    padding: 20px 5%;
+    border: 1px solid red;
+  }
+
+  .status-badge {
+    font-size: 10px !important;
+    padding: 8px 8px !important;
+
+  }
+    .header-count {
+    right: 45px !important;
+    top: -30px !important;
+  }
+
+
+}
+@media (min-width: 370px) and (max-width: 375px) {
+    .header-count {
+    right: 50px !important;
+    top: -30px !important;
+  }
+}
+
+@media (min-width: 370px) and (max-width: 390px) {
+
+  .vehicle-left h3 {
+    font-size: 18px !important;
+  }
+
+  .available-text,
+  .unavailable-text {
+    font-size: 14px;
+  }
+
+  .availability-page {
+    padding: 30px 4%;
   }
 
   .status-badge {
@@ -189,6 +233,35 @@
   }
 
 
+}
+@media (min-width: 390px) and (max-width: 450px) {
+
+  .vehicle-left h3 {
+    font-size: 18px !important;
+  }
+
+  .available-text,
+  .unavailable-text {
+    font-size: 14px;
+  }
+
+  .availability-page {
+    padding: 30px 4%;
+  }
+
+  .status-badge {
+    font-size: 10px !important;
+    padding: 8px 8px !important;
+  }
+
+
+}
+
+@media (min-width: 410px) and (max-width: 430px) {
+    .header-count {
+    right: 70px !important;
+    top: -30px !important;
+  }
 }
 
 /* RESPONSIVE NEWLY ADDED  */
