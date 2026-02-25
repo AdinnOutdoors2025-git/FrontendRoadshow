@@ -359,7 +359,7 @@ function VehicleInfo() {
 
               <div className="neo-info">
                 <p>
-                  <span>Vehicle Number</span> 🆔{" "}
+                  <span>Vehicle Number 1</span> 🆔{" "}
                   {formatVehicleNumber(selectedVehicle.vehicleNumber)}
                 </p>
 
