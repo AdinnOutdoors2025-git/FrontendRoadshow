@@ -6,14 +6,15 @@
     padding: 30px;
     border-radius: 40px !important;
   }
- /* Make dropdowns container full width and stack vertically */
+
+  /* Make dropdowns container full width and stack vertically */
   .capsule-dropdowns {
     display: flex;
     flex-direction: column;
     gap: 12px;
     width: 100%;
   }
-  
+
   /* Each dropdown takes full width */
   .capsule-dropdowns select {
     width: 100%;
@@ -28,11 +29,11 @@
   .capsule-search {
     width: 100%;
     position: relative;
-    margin-top: 0; 
+    margin-top: 0;
     gap: 0px;
     padding: 5px;
   }
-  
+
   /* Search input full width */
   .capsule-search input {
     width: 100%;
@@ -42,15 +43,19 @@
     font-size: 12px;
     box-sizing: border-box;
   }
+
   .hero-section h1 {
     font-size: 20px !important;
   }
-  .vehicle-left h3{
+
+  .vehicle-left h3 {
     font-size: 20px !important;
   }
+
   body {
     padding: 0px !important;
-  } 
+  }
+
   .neo-modal {
     display: flex;
     flex-direction: column;
@@ -58,11 +63,12 @@
     height: 100vh;
     overflow-y: auto;
   }
+
   /* First row - RIGHT DETAILS SECTION */
   .neo-details-section {
     order: 1;
     padding: 20px;
-    padding-top: 60px!important;
+    padding-top: 60px !important;
   }
 
   /* Second row - LEFT IMAGE SECTION */
@@ -93,59 +99,100 @@
     object-fit: contain;
   }
 
-  .neo-close { 
+  .neo-close {
     margin-bottom: 15px;
     width: 20px;
     height: 20px;
   }
-  .neo-main-image{
+
+  .neo-main-image {
     max-height: 40vh !important;
     margin-top: -80px !important;
-}
-.header-count{
+  }
+
+  .header-count {
     right: 50px !important;
     top: -30px !important;
-}
-.vehicle-card{
+  }
+
+  .vehicle-card {
     width: 400px !important;
     padding: 20px !important;
+  }
 }
-}
+
 @media (max-width: 375px) {
-.vehicle-left h3{
+  .vehicle-left h3 {
     font-size: 18px !important;
   }
-  .header-count{
+
+  .header-count {
     right: 30px !important;
     top: -30px !important;
-}
-.status-badge{
+  }
+
+  .status-badge {
     font-size: 10px !important;
     padding: 8px 8px !important;
+  }
 }
-}
+
 @media (max-width: 360px) {
-.vehicle-left h3{
+  .vehicle-left h3 {
     font-size: 16px !important;
   }
-  .vehicle-left p{
+
+  .vehicle-left p {
     font-size: 14px !important;
   }
-      .header-count {
-        right: 20px !important;}
+
+  .header-count {
+    right: 20px !important;
+  }
 }
+
 @media (max-width: 320px) {
-.vehicle-left h3{
+  .vehicle-left h3 {
     font-size: 13px !important;
   }
-  .vehicle-left p{
+
+  .vehicle-left p {
     font-size: 12px !important;
   }
-      .header-count {
-        right: -14px !important;
-        top: -30px !important;
-    }
+
+  .header-count {
+    right: 25px !important;
+    top: -30px !important;
+  }
 }
+
+/* RESPONSIVE NEWLY ADDED  */
+@media (min-width: 320px) and (max-width: 390px) {
+
+  .vehicle-left h3 {
+    font-size: 18px !important;
+  }
+
+  .available-text,
+  .unavailable-text {
+    font-size: 14px;
+  }
+
+  .availability-page {
+    padding: 60px 4%;
+  }
+
+  .status-badge {
+    font-size: 10px !important;
+    padding: 8px 8px !important;
+
+  }
+
+
+}
+
+/* RESPONSIVE NEWLY ADDED  */
+
 @media (min-width: 768px) and (max-width: 1023px) {
   .liquid-capsule {
     display: flex;
@@ -158,36 +205,43 @@
   /* First row - All Locations and All Models (equal width) */
   .capsule-dropdowns {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Both equal width */
+    grid-template-columns: 1fr 1fr;
+    /* Both equal width */
     gap: 15px;
     width: 100%;
   }
-  
+
   .capsule-dropdowns select {
     width: 100%;
     padding: 12px;
     border-radius: 6px;
     font-size: 14px;
-    
-    height: 45px; /* Fixed height for consistency */
+
+    height: 45px;
+    /* Fixed height for consistency */
     box-sizing: border-box;
   }
+
   .capsule-search {
-margin-left: 290px !important;
+    margin-left: 290px !important;
     margin-top: -55px !important;
     padding: 10px 10px !important;
     border-radius: 20px !important;
   }
-      body {
-        padding-bottom: 0px !important;
-    }
-     .neo-main-image{
-        height: 35vh !important;
-     }
+
+  body {
+    padding-bottom: 0px !important;
+  }
+
+  .neo-main-image {
+    height: 35vh !important;
+  }
+
   /* Second row container - All Status and Search (equal width) */
   .status-search-row {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Both equal width */
+    grid-template-columns: 1fr 1fr;
+    /* Both equal width */
     gap: 10px;
     width: 100%;
   }
@@ -198,18 +252,20 @@ margin-left: 290px !important;
     padding: 12px;
     border-radius: 6px;
     font-size: 14px;
-   
-    height: 45px; /* Same height as other dropdowns */
+
+    height: 45px;
+    /* Same height as other dropdowns */
     box-sizing: border-box;
   }
-  
+
   /* Style for search container */
   .status-search-row .capsule-search {
     position: relative;
     width: 100%;
-    height: 45px; /* Same height as dropdowns */
+    height: 45px;
+    /* Same height as dropdowns */
   }
-  
+
   .status-search-row .capsule-search input {
     width: 100%;
     height: 100%;
@@ -218,7 +274,7 @@ margin-left: 290px !important;
     font-size: 14px;
     box-sizing: border-box;
   }
-  
+
   .status-search-row .search-icon {
     position: absolute;
     left: 12px;
@@ -229,12 +285,13 @@ margin-left: 290px !important;
     z-index: 1;
     pointer-events: none;
   }
+
   .vehicle-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }
-  
+
   .vehicle-card {
     display: flex;
     justify-content: space-between;
@@ -243,13 +300,13 @@ margin-left: 290px !important;
     border: 1px solid #ddd;
     border-radius: 6px;
   }
-  
+
   .vehicle-left h3 {
     margin: 0 0 8px 0;
     font-size: 16px;
     font-weight: 600;
   }
-  
+
   .vehicle-left p {
     margin: 4px 0;
     font-size: 14px;
@@ -257,37 +314,41 @@ margin-left: 290px !important;
     align-items: center;
     gap: 4px;
   }
-  
+
   .vehicle-right {
     margin-left: 0px;
   }
-  
+
   .status-badge {
     padding: 6px 12px;
     border-radius: 20px;
     font-size: 14px;
     border: 1px solid currentColor;
   }
-  .neo-image-section{
+
+  .neo-image-section {
     flex: 1 !important;
     width: 50% !important;
     margin-left: 20px !important;
-}
-.neo-specs h4{
+  }
+
+  .neo-specs h4 {
     font-size: 20px !important;
+  }
+
+  .header-count {
+    align-items: center !important;
+    right: 200px !important;
+  }
 }
- .header-count {
-        align-items: center !important;
-        right: 200px !important;
-    }
-}
-@media(min-width: 1024px) and (max-width: 1199px){
-.vehicle-container {
+
+@media(min-width: 1024px) and (max-width: 1199px) {
+  .vehicle-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }
-  
+
   .vehicle-card {
     display: flex;
     justify-content: space-between;
@@ -296,13 +357,13 @@ margin-left: 290px !important;
     border: 1px solid #ddd;
     border-radius: 26px;
   }
-  
+
   .vehicle-left h3 {
     margin: 0 0 8px 0;
     font-size: 16px;
     font-weight: 600;
   }
-  
+
   .vehicle-left p {
     margin: 4px 0;
     font-size: 14px;
@@ -310,45 +371,51 @@ margin-left: 290px !important;
     align-items: center;
     gap: 4px;
   }
-  
+
   .vehicle-right {
     margin-left: 0px;
   }
-  
+
   .status-badge {
     padding: 6px 12px;
     border-radius: 20px;
     font-size: 14px;
     border: 1px solid currentColor;
   }
-    .neo-image-section{
+
+  .neo-image-section {
     flex: 1 !important;
     width: 50% !important;
     margin-left: 20px !important;
+  }
 }
-}
-@media(min-width: 900px) and (max-width: 999px){
-.header-count {
+
+@media(min-width: 900px) and (max-width: 999px) {
+  .header-count {
     right: 220px !important;
+  }
 }
-} 
-@media(min-width: 1000px) and (max-width: 1440px){
-.header-count {
+
+@media(min-width: 1000px) and (max-width: 1440px) {
+  .header-count {
     right: 60px !important;
+  }
 }
-} 
-@media(min-width: 1441px) and (max-width: 1699px){
-.header-count {
+
+@media(min-width: 1441px) and (max-width: 1699px) {
+  .header-count {
     right: 120px !important;
+  }
 }
-} 
-@media(min-width: 1700px) and (max-width: 1920px){
-.header-count {
+
+@media(min-width: 1700px) and (max-width: 1920px) {
+  .header-count {
     right: 250px !important;
+  }
 }
-}     
-@media(min-width: 2560px){
-.header-count {
+
+@media(min-width: 2560px) {
+  .header-count {
     right: 500px !important;
+  }
 }
-}  
