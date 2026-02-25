@@ -709,8 +709,8 @@ body {
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(248,250,252,0.85),
-    rgba(241,245,249,0.9)
+    rgba(52, 64, 77, 0.85),
+    rgba(52,64,77,0.85)
   );
   backdrop-filter: blur(18px);
   display: flex;
@@ -790,7 +790,7 @@ body {
 .neo-details-section {
   flex: 1;
   padding: 60px 50px;
-  background: #f9fafb;
+  background: #dfe0e1;
   border-left: 1px solid #e5e7eb;
 
   display: flex;
