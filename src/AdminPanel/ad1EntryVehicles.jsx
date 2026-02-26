@@ -227,7 +227,7 @@ function EntryVehicles() {
         <div className="adManageMain">
           {/* Right section */}
           <div>
-            <div className="manageClientSection">
+            <div className="manageClientSection entryvechile">
               <div className="manageRightSideHeading">Vehicle Management</div>
               <div className="d-flex manageClientInformation">
                 <div className="manageClientInfoLeft">

@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import { baseUrl } from "../Authentication/BASE_URL";
 import "./RichText.css";
-
+import "./ad1VehiclesInfo1.css";
 import "react-quill/dist/quill.snow.css";
 
 function AllVehiclesInfo() {

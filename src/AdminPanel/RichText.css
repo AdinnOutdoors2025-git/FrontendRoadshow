@@ -94,7 +94,7 @@
 /* Vehicle list section styles */
 .manageClientInformation {
   display: flex;
-  gap: 40px;
+  gap: 10px; /* thendral added */
 }
 
 /* LEFT FORM */
@@ -104,7 +104,7 @@
 
 /* RIGHT LIST */
 .manageClientInfoRight {
-  width: 55%;
+  width: 50%; /*Thendral added*/
   background: #fff;
   border-radius: 12px;
   padding: 20px;
