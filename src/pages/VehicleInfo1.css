@@ -138,11 +138,12 @@
     right: 25px !important;
     top: -30px !important;
   }
+
   .available-text,
   .unavailable-text {
     font-size: 14px;
   }
-  
+
   .availability-page {
     padding: 13px 4%;
   }
@@ -170,15 +171,17 @@
     padding: 8px 8px !important;
 
   }
-    .header-count {
+
+  .header-count {
     right: 45px !important;
     top: -30px !important;
   }
 
 
 }
+
 @media (min-width: 370px) and (max-width: 375px) {
-    .header-count {
+  .header-count {
     right: 50px !important;
     top: -30px !important;
   }
@@ -207,6 +210,7 @@
 
 
 }
+
 @media (min-width: 390px) and (max-width: 450px) {
 
   .vehicle-left h3 {
@@ -231,7 +235,7 @@
 }
 
 @media (min-width: 410px) and (max-width: 430px) {
-    .header-count {
+  .header-count {
     right: 70px !important;
     top: -30px !important;
   }

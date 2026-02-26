@@ -529,8 +529,8 @@ body {
 }
 
 .liquid-dashboard-header.scrolled {
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  /* backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); */
 }
 
 .liquid-capsule {
@@ -905,8 +905,8 @@ td {
 /* CLOSE BUTTON */
 .neo-close {
   position: absolute;
-    top: 95px;
-    right: 75px;
+  top: 95px;
+  right: 75px;
   background: #ffffff;
   border: none;
   width: 40px;
@@ -1076,8 +1076,9 @@ td {
   .newContentLeft {
     font-size: 18px;
   }
-  .neo-close{
-     top: 140px;
+
+  .neo-close {
+    top: 140px;
     right: 320px;
   }
 }
@@ -1088,6 +1089,7 @@ td {
     top: 88px;
     right: 49px;
   }
+
   .neo-modal {
     height: 85vh;
     width: 95%;
@@ -1238,7 +1240,7 @@ td {
 }
 
 @media (min-width: 820px) and (max-width: 840px) {
- .neo-close {
+  .neo-close {
     top: 110px;
     right: 40px;
   }
@@ -1250,7 +1252,7 @@ td {
 }
 
 @media (min-width: 841px) and (max-width: 885px) {
- .neo-close {
+  .neo-close {
     top: 100px;
     right: 40px;
   }
@@ -1405,19 +1407,22 @@ td {
   .neoContentsMain td.newContentLeft:first-child {
     white-space: normal;
   }
-} 
-@media (min-width: 300px) and (max-width:320px){
-   .neoHeadingNew {
+}
+
+@media (min-width: 300px) and (max-width:320px) {
+  .neoHeadingNew {
     font-size: 20px;
     margin-bottom: 0px !important;
   }
-    .neo-modal {
-        width: 100%;
-        height: 95vh;
-        border-radius: 24px;
-    }
-      .neo-close {
-        top: 30px;
-        right: 22px;
-    }
+
+  .neo-modal {
+    width: 100%;
+    height: 95vh;
+    border-radius: 24px;
+  }
+
+  .neo-close {
+    top: 30px;
+    right: 22px;
+  }
 }

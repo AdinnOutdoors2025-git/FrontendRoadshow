@@ -18,28 +18,28 @@ function VehicleInfo() {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   //SCROLLED STICKY 
-const [isScrolled, setIsScrolled] = useState(false);
-// useEffect(() => {
-//   const handleScroll = () => {
-//     if (window.scrollY > 50) {
-//       setIsScrolled(true);
-//     } else {
-//       setIsScrolled(false);
-//     }
-//   };
+  const [isScrolled, setIsScrolled] = useState(false);
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     if (window.scrollY > 50) {
+  //       setIsScrolled(true);
+  //     } else {
+  //       setIsScrolled(false);
+  //     }
+  //   };
 
-//   window.addEventListener('scroll', handleScroll);
-//   return () => window.removeEventListener('scroll', handleScroll);
-// }, []);
-useEffect(() => {
-  const handleScroll = () => {
-    // Only track for visual effects, not for positioning
-    setIsScrolled(window.scrollY > 50);
-  };
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => window.removeEventListener('scroll', handleScroll);
+  // }, []);
+  useEffect(() => {
+    const handleScroll = () => {
+      // Only track for visual effects, not for positioning
+      setIsScrolled(window.scrollY > 50);
+    };
 
-  window.addEventListener('scroll', handleScroll);
-  return () => window.removeEventListener('scroll', handleScroll);
-}, []);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   //SCROLLED STICKY 
 
@@ -350,7 +350,7 @@ useEffect(() => {
           <div className="neo-modal" onClick={(e) => e.stopPropagation()}>
             {/* LEFT IMAGE SECTION */}
             <div className="neo-image-section">
-             <button
+              <button
                 className="neo-close"
                 onClick={() => setSelectedVehicle(null)}
               >
