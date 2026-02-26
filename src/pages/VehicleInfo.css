@@ -529,8 +529,8 @@ body {
 }
 
 .liquid-dashboard-header.scrolled {
-  /* backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .liquid-capsule {
@@ -823,13 +823,10 @@ td {
   border-radius: 32px;
   display: flex;
   overflow: hidden;
-
   background: #ffffff;
-
   box-shadow:
     0 30px 70px rgba(0, 0, 0, 0.25),
     0 10px 30px rgba(0, 0, 0, 0.15);
-
   animation: scaleUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -905,8 +902,8 @@ td {
 /* CLOSE BUTTON */
 .neo-close {
   position: absolute;
-  top: 95px;
-  right: 75px;
+  top: 20px;
+  right: 20px;
   background: #ffffff;
   border: none;
   width: 40px;
@@ -1063,7 +1060,7 @@ td {
 
 /* ========== RESPONSIVE DESIGN ========== */
 /* large desktop fine-tuning */
-@media (min-width: 1440px) {
+@media (min-width: 1600px) {
   .neo-modal {
     max-width: 1300px;
     height: 75vh;
@@ -1076,20 +1073,10 @@ td {
   .newContentLeft {
     font-size: 18px;
   }
-
-  .neo-close {
-    top: 140px;
-    right: 320px;
-  }
 }
 
 /* tablet landscape & medium screens */
 @media (max-width: 1024px) {
-  .neo-close {
-    top: 88px;
-    right: 49px;
-  }
-
   .neo-modal {
     height: 85vh;
     width: 95%;
@@ -1184,17 +1171,18 @@ td {
   .neo-modal {
     height: 85vh;
     width: 95%;
+    flex-direction: column-reverse;
   }
 
   .neo-image-section {
     flex: 0 0 auto;
-    /* padding: 25px 20px 15px; */
+    padding: 25px 20px 15px;
     border-right: none;
     /* border-bottom: 1px solid #dde1e6; */
   }
 
   .neo-details-section {
-    /* padding: 40px 30px; */
+    padding: 30px 30px;
   }
 
   .neoHeadingNew {
@@ -1222,15 +1210,18 @@ td {
   }
 
   .neo-close {
-    top: 90px;
-    right: 40px;
+    top: 20px;
+    right: 25px;
   }
 }
 
 @media (min-width: 800px) and (max-width: 819px) {
+  .neo-modal{
+    flex-direction: column-reverse;
+  }
   .neo-close {
-    top: 110px;
-    right: 40px;
+    top: 20px;
+    right: 20px;
   }
 
   .neo-thumb {
@@ -1240,9 +1231,12 @@ td {
 }
 
 @media (min-width: 820px) and (max-width: 840px) {
+  .neo-modal{
+    flex-direction: column-reverse;
+  }
   .neo-close {
-    top: 110px;
-    right: 40px;
+    top: 20px;
+    right: 20px;
   }
 
   .neo-thumb {
@@ -1252,9 +1246,12 @@ td {
 }
 
 @media (min-width: 841px) and (max-width: 885px) {
+ .neo-modal{
+    flex-direction: column-reverse;
+  }
   .neo-close {
-    top: 100px;
-    right: 40px;
+    top: 20px;
+    right: 20px;
   }
 
   .neo-thumb {
@@ -1273,6 +1270,7 @@ td {
     width: 100%;
     height: 90vh;
     border-radius: 24px;
+    flex-direction: column-reverse;
   }
 
   .neo-image-section {
@@ -1337,7 +1335,7 @@ td {
   .neo-close {
     width: 30px;
     height: 30px;
-    top: 50px;
+    top: 20px;
     right: 20px;
     font-size: 15px;
   }
@@ -1419,10 +1417,11 @@ td {
     width: 100%;
     height: 95vh;
     border-radius: 24px;
+    flex-direction: column-reverse;
   }
 
   .neo-close {
-    top: 30px;
-    right: 22px;
+    top: 10px;
+    right: 10px;
   }
 }
