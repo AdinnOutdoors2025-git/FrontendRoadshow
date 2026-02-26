@@ -2,29 +2,25 @@
   position: relative;
   padding: 60px 8%;
   min-height: 100vh;
-  overflow: hidden;
+  /* overflow: hidden; */
   color: white;
-
-
   background: url("/images/roadshow.png") center/cover no-repeat;
 }
 
 
 .availability-page::before {
   content: "";
-  position: absolute;
+  position: fixed;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.683),
-    rgba(0, 0, 0, 0.85)
-  );
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.683),
+      rgba(0, 0, 0, 0.85));
   z-index: 0;
 }
 
 
 /* Make content stay above */
-.availability-page > * {
+.availability-page>* {
   position: relative;
   z-index: 2;
 }
@@ -64,7 +60,7 @@
   border: none;
   background: white;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   transition: 0.3s;
 }
 
@@ -86,25 +82,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-
+  gap: 35px;
   border-radius: 24px;
   padding: 25px;
-
-
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
-
-
   background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.1);
-
-
   box-shadow:
     0 20px 50px rgba(0, 0, 0, 0.4),
     inset 0 0 15px rgba(255, 255, 255, 0.05);
-
-
   transition: all 0.4s ease;
 }
 
@@ -124,10 +111,21 @@
 }
 
 
-.vehicle-card:nth-child(1) { animation-delay: 0.1s; }
-.vehicle-card:nth-child(2) { animation-delay: 0.2s; }
-.vehicle-card:nth-child(3) { animation-delay: 0.3s; }
-.vehicle-card:nth-child(4) { animation-delay: 0.4s; }
+.vehicle-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.vehicle-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.vehicle-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.vehicle-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
 
 
 @keyframes fadeInUp {
@@ -160,6 +158,7 @@
   overflow: hidden;
   cursor: default;
 }
+
 /* ================= AVAILABLE ================= */
 
 
@@ -175,9 +174,11 @@
   0% {
     box-shadow: 0 0 10px rgba(0, 200, 83, 0.5);
   }
+
   50% {
     box-shadow: 0 0 25px rgba(0, 230, 118, 0.9);
   }
+
   100% {
     box-shadow: 0 0 10px rgba(0, 200, 83, 0.5);
   }
@@ -199,9 +200,11 @@
   0% {
     box-shadow: 0 0 10px rgba(213, 0, 0, 0.5);
   }
+
   50% {
     box-shadow: 0 0 25px rgba(255, 23, 68, 0.9);
   }
+
   100% {
     box-shadow: 0 0 10px rgba(213, 0, 0, 0.5);
   }
@@ -217,11 +220,9 @@
 
 
 .status-badge.busy {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 80, 80, 0.8),
-    rgba(255, 0, 150, 0.8)
-  );
+  background: linear-gradient(135deg,
+      rgba(255, 80, 80, 0.8),
+      rgba(255, 0, 150, 0.8));
   box-shadow:
     0 0 12px rgba(255, 80, 80, 0.6),
     0 0 25px rgba(255, 0, 150, 0.5);
@@ -229,11 +230,9 @@
 
 
 .status-badge.maintenance {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 180, 0, 0.8),
-    rgba(255, 120, 0, 0.8)
-  );
+  background: linear-gradient(135deg,
+      rgba(255, 180, 0, 0.8),
+      rgba(255, 120, 0, 0.8));
   box-shadow:
     0 0 12px rgba(255, 180, 0, 0.6),
     0 0 25px rgba(255, 120, 0, 0.5);
@@ -247,10 +246,13 @@
 .vehicle-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* center when only one card */
+  justify-content: center;
+  /* center when only one card */
   gap: 20px;
   margin-top: 30px;
-   z-index: 1;
+  z-index: 1;
+  /* Optional: Add scroll margin to account for sticky header */
+  scroll-margin-top: 200px;
 }
 
 
@@ -277,6 +279,7 @@
   border: 1px solid #ddd;
   font-size: 14px;
 }
+
 .suggestions {
   position: absolute;
   width: 100%;
@@ -336,9 +339,11 @@
   background: rgba(255, 255, 255, 0.8);
   transform: scale(1.1);
 }
+
 .glass-search input::placeholder {
   color: rgba(0, 0, 0, 0.5);
 }
+
 .glass-search input {
   flex: 1;
   background: transparent;
@@ -348,12 +353,14 @@
   color: #111;
   z-index: 2;
 }
+
 .search-icon {
   margin-right: 10px;
   opacity: 0.7;
   font-size: 14px;
   z-index: 2;
 }
+
 .glass-search {
   position: relative;
   display: flex;
@@ -403,9 +410,17 @@ body {
 
 
 @keyframes floatGlass {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-4px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 
@@ -415,12 +430,10 @@ body {
   left: -100%;
   width: 200%;
   height: 200%;
-  background: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.4) 40%,
-    rgba(255, 255, 255, 0.1) 60%
-  );
+  background: linear-gradient(120deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.4) 40%,
+      rgba(255, 255, 255, 0.1) 60%);
   transform: rotate(25deg);
   animation: shimmerMove 6s infinite;
   pointer-events: none;
@@ -428,10 +441,19 @@ body {
 
 
 @keyframes shimmerMove {
-  0% { left: -100%; }
-  50% { left: 100%; }
-  100% { left: 100%; }
+  0% {
+    left: -100%;
+  }
+
+  50% {
+    left: 100%;
+  }
+
+  100% {
+    left: 100%;
+  }
 }
+
 .glass-dropdown {
   position: absolute;
   top: 110%;
@@ -469,6 +491,7 @@ body {
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -495,81 +518,68 @@ body {
 }
 
 
-
-
-/* //capsule filters */
 .liquid-dashboard-header {
-  position: relative;
+  position: sticky;
+  top: 0px;
+  z-index: 100;
   margin-bottom: 60px;
   display: flex;
   justify-content: center;
-   z-index: 50;
+  width: 100%;
 }
 
+.liquid-dashboard-header.scrolled {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
 
 .liquid-capsule {
   width: 100%;
-  max-width: 1200px;   /* control dashboard width */
+  max-width: 1200px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 25px;
-
-
   padding: 20px 40px;
   border-radius: 80px;
-
-
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
-
-
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.08),
-    rgba(255, 255, 255, 0.05)
-  );
-
-
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.05));
   border: 1px solid rgba(255, 255, 255, 0.15);
-
-
   box-shadow:
     0 25px 80px rgba(0, 0, 0, 0.5),
     inset 0 0 30px rgba(255, 255, 255, 0.08);
-
-
   transition: all 0.4s ease;
 }
 
 
 @keyframes floatCapsule {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 
 .capsule-search {
-  position: relative;   /* IMPORTANT */
-  display: flex;        /* missing in your code */
+  position: relative;
+  display: flex;
   align-items: center;
   gap: 10px;
-
-
   padding: 10px 18px;
   border-radius: 40px;
-
-
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
-
-
- 
 }
-
-
-
 
 .capsule-search input {
   background: transparent;
@@ -597,21 +607,13 @@ body {
   padding: 8px 18px;
   border-radius: 30px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-
-
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
-
-
   color: white;
   font-size: 14px;
   font-weight: 500;
-
-
   cursor: pointer;
   transition: all 0.3s ease;
-
-
   box-shadow:
     inset 0 0 10px rgba(255, 255, 255, 0.05),
     0 4px 15px rgba(0, 0, 0, 0.2);
@@ -627,12 +629,10 @@ body {
 
 /* Active Button */
 .capsule-btn.active {
-  background: linear-gradient(
-    135deg,
-    rgba(0, 200, 255, 0.6),
-    rgba(120, 0, 255, 0.6)
-  );
-   transform: scale(0.95);
+  background: linear-gradient(135deg,
+      rgba(0, 200, 255, 0.6),
+      rgba(120, 0, 255, 0.6));
+  transform: scale(0.95);
   border: 1px solid rgba(255, 255, 255, 0.4);
   box-shadow:
     0 0 15px rgba(0, 200, 255, 0.6),
@@ -652,25 +652,19 @@ body {
 .dashboard-select {
   padding: 10px 18px;
   border-radius: 40px;
-  border: 1px solid rgba(255,255,255,0.2);
-
-
-  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(20px);
-
-
   color: white;
   font-size: 14px;
   outline: none;
   cursor: pointer;
-
-
   transition: all 0.3s ease;
 }
 
 
 .dashboard-select:hover {
-  background: rgba(255,255,255,0.15);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 
@@ -695,10 +689,6 @@ body {
   background: #e60000;
 }
 
-
-
-
-
 /* image model popup */
 /* ============================= */
 /*  NEO CINEMATIC VEHICLE MODAL */
@@ -707,122 +697,15 @@ body {
 .neo-overlay {
   position: fixed;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(52, 64, 77, 0.85),
-    rgba(52,64,77,0.85)
-  );
+  background: linear-gradient(135deg,
+      rgba(52, 64, 77, 0.85),
+      rgba(52, 64, 77, 0.85));
   backdrop-filter: blur(18px);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
   animation: fadeIn 0.3s ease;
-}
-
-/* MAIN MODAL */
-.neo-modal {
-  width: 92%;
-  max-width: 1150px;
-  height: 78vh;
-  border-radius: 24px;
-  display: flex;
-  overflow: hidden;
-
-  background: #ffffff;
-
-  box-shadow:
-    0 20px 60px rgba(15,23,42,0.15),
-    0 8px 20px rgba(15,23,42,0.08);
-
-  animation: scaleUp 0.3s ease;
-}
-
-/* LEFT IMAGE SECTION */
-.neo-image-section {
-  flex: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
-
-  background: linear-gradient(
-    180deg,
-    #f8fafc,
-    #eef2f7
-  );
-}
-.neo-main-image {
-  max-height: 58vh;
-  object-fit: contain;
-  transition: 0.3s ease;
-
-  filter: drop-shadow(0 15px 30px rgba(0,0,0,0.15));
-}
-/* THUMBNAILS */
-.neo-thumbnails {
-  margin-top: 30px;
-  display: flex;
-  gap: 15px;
-}
-
-.neo-thumb {
-  width: 85px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.25s ease;
-  border: 2px solid transparent;
-}
-
-.neo-thumb:hover {
-  transform: translateY(-3px);
-}
-
-.neo-active {
-  border: 2px solid #6366f1;
-  box-shadow: 0 8px 20px rgba(99,102,241,0.3);
-}
-
-/* RIGHT DETAILS SECTION */
-.neo-details-section {
-  flex: 1;
-  padding: 60px 50px;
-  background: #dfe0e1;
-  border-left: 1px solid #e5e7eb;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  color: #1f2937;
-}
-.neo-details-section h2 {
-  font-size: 30px;
-  font-weight: 700;
-  margin-bottom: 30px;
-  color: #111827;
-}
-
-/* CLOSE BUTTON */
-.neo-close {
-  position: absolute;
-  top: 22px;
-  right: 22px;
-  background: #f3f4f6;
-  border: none;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-.neo-close:hover {
-  background: #e5e7eb;
 }
 
 /* INFO SECTION */
@@ -837,27 +720,17 @@ body {
   opacity: 0.6;
   margin-bottom: 4px;
 }
-.neo-available {
-  background: #dcfce7;
-  color: #166534;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: 600;
-}
 
-.neo-unavailable {
-  background: #fee2e2;
-  color: #991b1b;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: 600;
-}
+
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes scaleUp {
@@ -865,6 +738,7 @@ body {
     transform: scale(0.9);
     opacity: 0;
   }
+
   to {
     transform: scale(1);
     opacity: 1;
@@ -876,16 +750,674 @@ body {
 .header-count {
   position: absolute;
   right: 322px;
-  top: -33px; /* adjust if needed */
+  top: -33px;
+  /* adjust if needed */
   display: flex;
   gap: 20px;
   font-weight: 500;
   z-index: 10;
 }
+
 .available-text {
   color: #4ade80;
 }
 
 .unavailable-text {
   color: #f87171;
+}
+
+/* NEWLY ADDED UI CSS  */
+.newContentRightMain th,
+td {
+  text-align: left;
+  border: none;
+}
+
+.neoContentsMain {
+  width: 100%;
+  border-collapse: collapse;
+  border: none;
+}
+
+.newContentLeft {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 20px;
+}
+
+.neo-available,
+.neo-unavailable {
+  font-size: 15 px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 20px;
+}
+
+/* NEWLY ADDED UI CSS  */
+
+/* image model popup */
+/* ============================= */
+/*  NEO CINEMATIC VEHICLE MODAL */
+/* ============================= */
+
+.neo-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(145deg,
+      rgba(45, 55, 72, 0.9),
+      rgba(30, 41, 59, 0.95));
+  backdrop-filter: blur(20px) saturate(180%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* MAIN MODAL */
+.neo-modal {
+  width: 92%;
+  max-width: 1200px;
+  height: 80vh;
+  border-radius: 32px;
+  display: flex;
+  overflow: hidden;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.25),
+    0 10px 30px rgba(0, 0, 0, 0.15);
+
+  animation: scaleUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* LEFT IMAGE SECTION */
+.neo-image-section {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+
+  background: linear-gradient(165deg,
+      #f0f4fa,
+      #e9ecf0);
+  border-right: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.neo-main-image {
+  max-height: 58vh;
+  max-width: 100%;
+  object-fit: contain;
+  transition: 0.4s ease;
+  border-radius: 20px;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.2));
+}
+
+/* THUMBNAILS */
+.neo-thumbnails {
+  margin-top: 28px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.neo-thumb {
+  width: 95px;
+  height: 95px;
+  object-fit: cover;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: 0.25s ease;
+  border: 3px solid transparent;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.neo-thumb:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+}
+
+.neo-active {
+  border: 3px solid #4f46e5;
+  box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
+}
+
+/* RIGHT DETAILS SECTION */
+.neo-details-section {
+  flex: 1.2;
+  padding: 50px 40px;
+  background: #f9fafc;
+  border-left: 1px solid #e0e4e8;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  color: #1f2937;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+/* CLOSE BUTTON */
+.neo-close {
+  position: absolute;
+    top: 95px;
+    right: 75px;
+  background: #ffffff;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: 0.2s ease;
+  color: #2d3a4a;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  z-index: 10;
+}
+
+.neo-close:hover {
+  transform: rotate(90deg) scale(0.95);
+  color: red;
+}
+
+/* 
+.neo-close:active {
+  transform: rotate(90deg) scale(0.95);
+} */
+/* NEWLY ADDED UI CSS  */
+
+/* heading style */
+.neoHeadingNew {
+  font-size: 32px;
+  font-weight: 800;
+  color: #0b1e33;
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: -0.5px;
+  background: linear-gradient(145deg, #1e293b, #0f172a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding-left: 4px;
+}
+
+/* main content table */
+.neoContentsMain {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 12px;
+  border: none;
+  margin-top: 8px;
+}
+
+/* remove default table border */
+.neoContentsMain th,
+.neoContentsMain td {
+  text-align: left;
+  border: none;
+  padding: 8px 8px 8px 0;
+  vertical-align: middle;
+}
+
+/* left label cell */
+.newContentLeft {
+  font-size: 16px;
+  font-weight: 600;
+  color: #334155;
+  white-space: nowrap;
+  padding-right: 24px;
+  letter-spacing: 0.2px;
+  opacity: 0.85;
+}
+
+/* value cell (second column) */
+.neoContentsMain td.newContentLeft:last-child {
+  font-weight: 700;
+  color: #0f1829;
+  white-space: nowrap;
+  opacity: 1;
+}
+
+.neo-available {
+  color: #0b5e42;
+  /* background: rgba(16, 185, 129, 0.12); */
+  border-left: 4px solid #10b981;
+}
+
+.neo-unavailable {
+  color: #991b1b;
+  /* background: rgba(239, 68, 68, 0.08); */
+  border-left: 4px solid #ef4444;
+}
+
+/* table row hover effect */
+.neoContentsMain tr:hover td {
+  background-color: rgba(79, 70, 229, 0.02);
+  transition: background 0.2s;
+}
+
+/* icons in table cells */
+.newContentLeft svg,
+.newContentLeft img,
+.newContentLeft span[role="img"] {
+  margin-right: 8px;
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+/* NEWLY ADDED UI CSS  */
+/* header count (if used elsewhere) */
+.header-count {
+  position: absolute;
+  right: 322px;
+  top: -33px;
+  /* adjust if needed */
+  display: flex;
+  gap: 20px;
+  font-weight: 500;
+  z-index: 10;
+}
+
+.available-text {
+  color: #059669;
+  font-weight: 600;
+}
+
+.unavailable-text {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+/* animation keyframes */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+/* large desktop fine-tuning */
+@media (min-width: 1440px) {
+  .neo-modal {
+    max-width: 1300px;
+    height: 75vh;
+  }
+
+  .neoHeadingNew {
+    font-size: 38px;
+  }
+
+  .newContentLeft {
+    font-size: 18px;
+  }
+  .neo-close{
+     top: 140px;
+    right: 320px;
+  }
+}
+
+/* tablet landscape & medium screens */
+@media (max-width: 1024px) {
+  .neo-close {
+    top: 88px;
+    right: 49px;
+  }
+  .neo-modal {
+    height: 85vh;
+    width: 95%;
+  }
+
+  .neo-image-section {
+    padding: 30px 20px;
+  }
+
+  .neo-details-section {
+    padding: 40px 30px;
+  }
+
+  .neoHeadingNew {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  .neoContentsMain {
+    /* border-spacing: 0 10px; */
+  }
+
+  .newContentLeft {
+    font-size: 20px;
+  }
+
+  .neo-thumb {
+    width: 80px;
+    height: 80px;
+  }
+
+  .neo-thumbnails {
+    margin-top: 10%;
+  }
+}
+
+
+/* tablet portrait & small desktops */
+@media (max-width: 900px) {
+  .neo-modal {
+    flex-direction: column;
+    /* height: 90vh;
+    width: 94%; */
+    border-radius: 28px;
+  }
+
+  .neo-close {
+    top: -370px;
+    right: 15px;
+  }
+
+  .neo-image-section {
+    flex: 0 0 auto;
+    padding: 25px 20px 15px;
+    border-right: none;
+    border-bottom: 1px solid #dde1e6;
+  }
+
+  .neo-main-image {
+    max-height: 30vh;
+  }
+
+  .neo-thumbnails {
+    margin-top: 16px;
+  }
+
+  .neo-thumb {
+    width: 65px;
+    height: 45px;
+  }
+
+  .neo-details-section {
+    flex: 1 1 auto;
+    padding: 28px 28px 35px;
+    border-left: none;
+    border-top: 1px solid #eef2f6;
+  }
+
+  .neoHeadingNew {
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+
+  .neoContentsMain {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 799px) {
+  .neo-modal {
+    height: 85vh;
+    width: 95%;
+  }
+
+  .neo-image-section {
+    flex: 0 0 auto;
+    /* padding: 25px 20px 15px; */
+    border-right: none;
+    /* border-bottom: 1px solid #dde1e6; */
+  }
+
+  .neo-details-section {
+    /* padding: 40px 30px; */
+  }
+
+  .neoHeadingNew {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .neoContentsMain {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0px !important;
+  }
+
+  .newContentLeft {
+    font-size: 17px;
+  }
+
+  .neo-thumb {
+    width: 70px;
+    height: 70px;
+  }
+
+  .neo-thumbnails {
+    margin-top: 10%;
+  }
+
+  .neo-close {
+    top: 90px;
+    right: 40px;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 819px) {
+  .neo-close {
+    top: 110px;
+    right: 40px;
+  }
+
+  .neo-thumb {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (min-width: 820px) and (max-width: 840px) {
+ .neo-close {
+    top: 110px;
+    right: 40px;
+  }
+
+  .neo-thumb {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (min-width: 841px) and (max-width: 885px) {
+ .neo-close {
+    top: 100px;
+    right: 40px;
+  }
+
+  .neo-thumb {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* mobile large */
+@media (max-width: 600px) {
+  .neo-overlay {
+    padding: 8px;
+  }
+
+  .neo-modal {
+    width: 100%;
+    height: 90vh;
+    border-radius: 24px;
+  }
+
+  .neo-image-section {
+    padding: 20px 15px 10px;
+  }
+
+  .neo-main-image {
+    max-height: 28vh;
+  }
+
+  .neo-thumbnails {
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .neo-thumb {
+    width: 55px;
+    height: 40px;
+    border-radius: 10px;
+  }
+
+  .neo-details-section {
+    padding: 20px 18px 25px;
+  }
+
+  .neoHeadingNew {
+    font-size: 24px;
+    margin-bottom: 14px;
+    background: none;
+    -webkit-text-fill-color: #0b1e33;
+    color: #0b1e33;
+  }
+
+  .neoContentsMain {
+    border-spacing: 0 8px;
+  }
+
+  .newContentLeft {
+    font-size: 14px;
+    white-space: normal;
+    /* allow wrapping only if extremely small */
+    padding-right: 10px;
+  }
+
+  /* preserve table structure: first column nowrap, second column can wrap gracefully */
+  .neoContentsMain td.newContentLeft:first-child {
+    white-space: nowrap;
+  }
+
+  .neoContentsMain td.newContentLeft:last-child {
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .neo-available,
+  .neo-unavailable {
+    font-size: 14px;
+    padding: 3px 8px 3px 6px;
+    white-space: nowrap;
+  }
+
+  .neo-close {
+    width: 30px;
+    height: 30px;
+    top: 50px;
+    right: 20px;
+    font-size: 15px;
+  }
+}
+
+/* small mobile (up to 400px) */
+@media (max-width: 400px) {
+  .neo-image-section {
+    padding: 15px 12px 8px;
+  }
+
+  .neo-main-image {
+    max-height: 30vh;
+  }
+
+  .neo-thumb {
+    width: 48px;
+    height: 34px;
+  }
+
+  .neo-details-section {
+    padding: 16px 12px 20px;
+  }
+
+  .neoHeadingNew {
+    font-size: 20px;
+    /* margin-bottom: 12px; */
+  }
+
+  .newContentLeft {
+    font-size: 13px;
+  }
+
+  .neoContentsMain td.newContentLeft:first-child {
+    padding-right: 6px;
+  }
+
+  /* ensure status badge fits */
+  .neo-available,
+  .neo-unavailable {
+    font-size: 12px;
+    padding: 2px 8px 2px 5px;
+    gap: 4px;
+  }
+
+  /* optional: stack only if needed, but we keep side-by-side */
+  .neoContentsMain {
+    border-spacing: 0 6px;
+  }
+}
+
+/* preserve table row structure on all devices (vehicle number opposite number) */
+.neoContentsMain tr {
+  display: table-row;
+}
+
+.neoContentsMain td {
+  display: table-cell;
+}
+
+/* very tiny devices: ensure no breakage */
+@media (max-width: 340px) {
+  .newContentLeft {
+    font-size: 12px;
+  }
+
+  .neoContentsMain td.newContentLeft:first-child {
+    white-space: normal;
+  }
+} 
+@media (min-width: 300px) and (max-width:320px){
+   .neoHeadingNew {
+    font-size: 20px;
+    margin-bottom: 0px !important;
+  }
+    .neo-modal {
+        width: 100%;
+        height: 95vh;
+        border-radius: 24px;
+    }
+      .neo-close {
+        top: 30px;
+        right: 22px;
+    }
 }

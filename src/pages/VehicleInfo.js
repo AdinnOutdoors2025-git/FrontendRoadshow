@@ -16,6 +16,33 @@ function VehicleInfo() {
   const [selectedVehicle, setSelectedVehicle] = useState(null);
   const [activeImage, setActiveImage] = useState("");
   const [imageLoaded, setImageLoaded] = useState(false);
+
+  //SCROLLED STICKY 
+const [isScrolled, setIsScrolled] = useState(false);
+// useEffect(() => {
+//   const handleScroll = () => {
+//     if (window.scrollY > 50) {
+//       setIsScrolled(true);
+//     } else {
+//       setIsScrolled(false);
+//     }
+//   };
+
+//   window.addEventListener('scroll', handleScroll);
+//   return () => window.removeEventListener('scroll', handleScroll);
+// }, []);
+useEffect(() => {
+  const handleScroll = () => {
+    // Only track for visual effects, not for positioning
+    setIsScrolled(window.scrollY > 50);
+  };
+
+  window.addEventListener('scroll', handleScroll);
+  return () => window.removeEventListener('scroll', handleScroll);
+}, []);
+
+  //SCROLLED STICKY 
+
   useEffect(() => {
     fetchVehicles();
   }, []);
@@ -176,7 +203,7 @@ function VehicleInfo() {
         <p>Adinn RoadShows</p>
       </div>
 
-      <div className="liquid-dashboard-header">
+      <div className={`liquid-dashboard-header ${isScrolled ? 'scrolled' : ''}`}>
         <div className="header-count">
           <span className="available-text">🟢 Available: {availableCount}</span>
           <span className="unavailable-text">
@@ -230,10 +257,10 @@ function VehicleInfo() {
             {(selectedLocation !== "all" ||
               selectedModel !== "all" ||
               selectedAvailability !== "all") && (
-              <button className="clear-filter-btn" onClick={handleClearFilters}>
-                Clear Filters
-              </button>
-            )}
+                <button className="clear-filter-btn" onClick={handleClearFilters}>
+                  Clear Filters
+                </button>
+              )}
           </div>
 
           <div className="right-section">
@@ -306,9 +333,8 @@ function VehicleInfo() {
 
               <div className="vehicle-right">
                 <span
-                  className={`status-badge ${
-                    vehicle.isAvailable ? "available" : "unavailable"
-                  }`}
+                  className={`status-badge ${vehicle.isAvailable ? "available" : "unavailable"
+                    }`}
                 >
                   {vehicle.isAvailable
                     ? "Available"
@@ -324,6 +350,12 @@ function VehicleInfo() {
           <div className="neo-modal" onClick={(e) => e.stopPropagation()}>
             {/* LEFT IMAGE SECTION */}
             <div className="neo-image-section">
+             <button
+                className="neo-close"
+                onClick={() => setSelectedVehicle(null)}
+              >
+                ✕
+              </button>
               <img
                 key={activeImage}
                 src={getImageUrl(activeImage)}
@@ -337,9 +369,8 @@ function VehicleInfo() {
                     key={index}
                     src={getImageUrl(img)}
                     alt="thumb"
-                    className={`neo-thumb ${
-                      activeImage === img ? "neo-active" : ""
-                    }`}
+                    className={`neo-thumb ${activeImage === img ? "neo-active" : ""
+                      }`}
                     onClick={() => setActiveImage(img)}
                   />
                 ))}
@@ -348,76 +379,71 @@ function VehicleInfo() {
 
             {/* RIGHT DETAILS SECTION */}
             <div className="neo-details-section">
-              <button
-                className="neo-close"
-                onClick={() => setSelectedVehicle(null)}
-              >
-                ✕
-              </button>
+              {/* NEWLY CHANGED UI  */}
+              <div className="newContentRightMain">
+                <div className="neoHeadingNew">{selectedVehicle.model}</div>
 
-              <h2>{selectedVehicle.model}</h2>
+                <table className="neoContentsMain">
+                  <tbody>
+                    <tr>
+                      <td className="newContentLeft">Vehicle Number</td>
+                      <td className="newContentLeft">
+                        🆔 {formatVehicleNumber(selectedVehicle.vehicleNumber)}
+                      </td>
+                    </tr>
 
-              <div className="neo-info">
-                <p>
-                  <span>Vehicle Number</span> 🆔{" "}
-                  {formatVehicleNumber(selectedVehicle.vehicleNumber)}
-                </p>
+                    <tr>
+                      <td className="newContentLeft">Location</td>
+                      <td className="newContentLeft">
+                        📍 {selectedVehicle.location
+                          ? selectedVehicle.location.charAt(0).toUpperCase() +
+                          selectedVehicle.location.slice(1).toLowerCase()
+                          : ""}
+                      </td>
+                    </tr>
 
-                <p>
-                  <span>Location</span> 📍{" "}
-                  {selectedVehicle.location
-                    ? selectedVehicle.location.charAt(0).toUpperCase() +
-                      selectedVehicle.location.slice(1).toLowerCase()
-                    : ""}
-                </p>
-
-                <p>
-                  <span>Status</span>
-                  <strong
-                    className={
-                      selectedVehicle.isAvailable
-                        ? "neo-available"
-                        : "neo-unavailable"
-                    }
-                  >
-                    {selectedVehicle.isAvailable
-                      ? "🟢 Available"
-                      : `🔴 ${
-                          selectedVehicle.statusReason
-                            ? selectedVehicle.statusReason
-                                .charAt(0)
-                                .toUpperCase() +
-                              selectedVehicle.statusReason
-                                .slice(1)
-                                .toLowerCase()
+                    <tr>
+                      <td className="newContentLeft">Status</td>
+                      <td
+                        className={`${selectedVehicle.isAvailable
+                          ? "neo-available highlight"
+                          : "neo-unavailable"
+                          } newContentLeft`}
+                      >
+                        {selectedVehicle.isAvailable
+                          ? "🟢 Available"
+                          : `🔴 ${selectedVehicle.statusReason
+                            ? selectedVehicle.statusReason.charAt(0).toUpperCase() +
+                            selectedVehicle.statusReason.slice(1).toLowerCase()
                             : "Unavailable"
-                        }`}
-                  </strong>
-                </p>
+                          }`}
+                      </td>
+                    </tr>
 
-                {/* 🔥 NEW SPECIFICATIONS SECTION */}
-                <div className="neo-specs">
-                  {/* <h4>⚙ Vehicle Specifications</h4> */}
+                    <tr>
+                      <td className="newContentLeft">Speaker</td>
+                      <td className="newContentLeft">
+                        🔊 {selectedVehicle.speaker
+                          ? `${selectedVehicle.speaker} (${selectedVehicle.speakerNos || 0} Nos)`
+                          : "N/A"}
+                      </td>
+                    </tr>
 
-                  <div className="spec-item">
-                    <span>🔊 Speaker</span>
-                    <strong>
-                      {selectedVehicle.speaker
-                        ? `${selectedVehicle.speaker} (${selectedVehicle.speakerNos || 0} Nos)`
-                        : "N/A"}
-                    </strong>
-                  </div>
-
-                  <div className="spec-item">
-                    <span>⚡ Generator</span>
-                    <strong>
-                      {selectedVehicle.generator
-                        ? `${selectedVehicle.generator} (${selectedVehicle.generatorNos || 0} Nos)`
-                        : "N/A"}
-                    </strong>
-                  </div>
-                </div>
+                    <tr>
+                      <td className="newContentLeft">Generator</td>
+                      <td className="newContentLeft">
+                        ⚡{selectedVehicle.generator
+                          ? `${selectedVehicle.generator} (${selectedVehicle.generatorNos || 0} Nos)`
+                          : "N/A"}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
+              {/* NEWLY CHANGED UI  */}
+
+
+
             </div>
           </div>
         </div>

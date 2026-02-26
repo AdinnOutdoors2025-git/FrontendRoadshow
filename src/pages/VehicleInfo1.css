@@ -56,27 +56,19 @@
     padding: 0px !important;
   }
 
-  .neo-modal {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100vh;
-    overflow-y: auto;
-  }
-
   /* First row - RIGHT DETAILS SECTION */
-  .neo-details-section {
+  /* .neo-details-section {
     order: 1;
     padding: 20px;
     padding-top: 60px !important;
-  }
+  } */
 
   /* Second row - LEFT IMAGE SECTION */
-  .neo-image-section {
+  /* .neo-image-section {
     order: 2;
     padding: 20px;
     padding-bottom: 20px !important;
-  }
+  } */
 
   .neo-thumbnails {
     display: flex;
@@ -89,25 +81,7 @@
     width: 60px;
     height: 60px;
     object-fit: cover;
-    border-radius: 4px;
-  }
-
-  .neo-main-image {
-    width: 100%;
-    height: auto;
-    max-height: 300px;
-    object-fit: contain;
-  }
-
-  .neo-close {
-    margin-bottom: 15px;
-    width: 20px;
-    height: 20px;
-  }
-
-  .neo-main-image {
-    max-height: 40vh !important;
-    margin-top: -80px !important;
+    border-radius: 10px;
   }
 
   .header-count {
@@ -189,7 +163,6 @@
 
   .availability-page {
     padding: 20px 5%;
-    border: 1px solid red;
   }
 
   .status-badge {
@@ -306,9 +279,6 @@
     padding-bottom: 0px !important;
   }
 
-  .neo-main-image {
-    height: 35vh !important;
-  }
 
   /* Second row container - All Status and Search (equal width) */
   .status-search-row {
@@ -397,12 +367,6 @@
     border-radius: 20px;
     font-size: 14px;
     border: 1px solid currentColor;
-  }
-
-  .neo-image-section {
-    flex: 1 !important;
-    width: 50% !important;
-    margin-left: 20px !important;
   }
 
   .neo-specs h4 {
