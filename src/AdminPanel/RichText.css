@@ -231,3 +231,16 @@
 .vehicleScroll::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #2e59d9, #1c3faa);
 }
+.vehicleListHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.vehicleSearchInput {
+  padding: 6px 10px;
+  width: 250px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}

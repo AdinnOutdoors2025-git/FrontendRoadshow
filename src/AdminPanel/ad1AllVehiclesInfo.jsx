@@ -18,6 +18,7 @@ function AllVehiclesInfo() {
   const [availabilityList, setAvailabilityList] = useState([]);
   const [editId, setEditId] = useState(null);
   const [availabilityType, setAvailabilityType] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   // Fetch Vehicles using fetch()
   useEffect(() => {
@@ -158,6 +159,20 @@ function AllVehiclesInfo() {
     }
   };
 
+const filteredList = availabilityList.filter((item) => {
+  const term = searchTerm.toLowerCase();
+
+  const statusText = item.isAvailable ? "available" : "not available";
+
+  return (
+    item.vehicleNumber?.toLowerCase().includes(term) ||
+    item.model?.toLowerCase().includes(term) ||
+    item.location?.toLowerCase().includes(term) ||
+    statusText.includes(term) ||
+    item.statusReason?.toLowerCase().includes(term)
+  );
+});
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -256,8 +271,16 @@ function AllVehiclesInfo() {
                 <div className="manageClientInfoRight vehicleListBox">
                   <div className="vehicleListHeading">Vehicle List</div>
 
+                  <input
+                    type="text"
+                    placeholder="Search by Vehicle No, Model, Location"
+                    className="vehicleSearchInput"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+
                   <div className="vehicleScroll">
-                    {availabilityList.map((item) => (
+                    {filteredList.map((item) => (
                       <div key={item._id} className="vehicleCard">
                         <div className="vehicleNumber">
                           {item.vehicleNumber}
