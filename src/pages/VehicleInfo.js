@@ -43,9 +43,19 @@ useEffect(() => {
 
   //SCROLLED STICKY 
 
+  // useEffect(() => {
+  //   fetchVehicles();
+  // }, []);
+
   useEffect(() => {
+  fetchVehicles();
+
+  const interval = setInterval(() => {
     fetchVehicles();
-  }, []);
+  }, 300000); // every 5 Minutes
+
+  return () => clearInterval(interval);
+}, []);
 
   const fetchVehicles = async () => {
     try {
