@@ -1993,7 +1993,7 @@ td {
   .capsule-search.mobile-search {
     font-size: 20px;
     margin-top: 10px;
-    padding: 5px 15px;
+    padding: 5px 10px;
   }
 
   .mobile-clear-filters {
@@ -2049,7 +2049,7 @@ td {
   }
 
   .availability-page {
-    padding: 30px 4%;
+    padding: 30px 3%;
   }
 
   .count-icon {
@@ -2376,7 +2376,7 @@ td {
   .capsule-search.mobile-search {
     font-size: 20px;
     margin-top: 10px;
-    padding: 5px 15px;
+    padding: 5px 10px;
   }
 
   .mobile-clear-filters {
