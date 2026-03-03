@@ -2169,7 +2169,7 @@ td {
   .mobile-search-row {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 5px;
     width: 100%;
   }
 
