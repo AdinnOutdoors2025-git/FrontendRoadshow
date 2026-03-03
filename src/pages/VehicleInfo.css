@@ -823,7 +823,7 @@ td {
 .neo-modal {
   width: 92%;
   max-width: 1200px;
-  height: 80vh;
+  height: auto;
   border-radius: 32px;
   display: flex;
   overflow: hidden;
@@ -890,7 +890,7 @@ td {
 
 /* RIGHT DETAILS SECTION */
 .neo-details-section {
-  flex: 1.2;
+  /* flex: 1.2; */
   padding: 50px 40px;
   background: #f9fafc;
   border-left: 1px solid #e0e4e8;
@@ -1224,26 +1224,29 @@ td {
 /* tablet portrait & small desktops */
 @media (max-width: 900px) {
   .neo-modal {
-    flex-direction: column;
+    flex-direction: column-reverse;
     /* height: 90vh;
     width: 94%; */
+    height: auto;
     border-radius: 28px;
   }
 
   .neo-close {
-    top: -370px;
+    top: 10px;
     right: 15px;
   }
 
   .neo-image-section {
-    flex: 0 0 auto;
+    flex-direction: column-reverse;
+    /* flex: 0 0 auto; */
     padding: 25px 20px 15px;
+    padding-top: 5px;
     border-right: none;
     border-bottom: 1px solid #dde1e6;
   }
 
   .neo-main-image {
-    max-height: 30vh;
+    max-height: 35vh;
   }
 
   .neo-thumbnails {
@@ -1251,13 +1254,14 @@ td {
   }
 
   .neo-thumb {
-    width: 65px;
-    height: 45px;
+    width: 95px;
+    height: 95px;
   }
 
   .neo-details-section {
-    flex: 1 1 auto;
+    /* flex: 1 1 auto; */
     padding: 28px 28px 35px;
+    padding-bottom: 5px;
     border-left: none;
     border-top: 1px solid #eef2f6;
   }
@@ -1274,7 +1278,15 @@ td {
   }
 }
 
-@media (min-width: 768px) and (max-width: 885px) {
+@media (min-width: 800px) and (max-width: 885px) {
+  .neo-main-image {
+    max-height: 40vh;
+  }
+
+  .neo-thumb {
+    width: 95px;
+    height: 95px;
+  }
 
   /* CHANGED FILTER UI  */
   .header-count-container {
@@ -1421,7 +1433,7 @@ td {
 
 @media (min-width: 768px) and (max-width: 799px) {
   .neo-modal {
-    height: 85vh;
+    height: auto;
     width: 95%;
     flex-direction: column-reverse;
   }
@@ -1429,6 +1441,7 @@ td {
   .neo-image-section {
     flex: 0 0 auto;
     padding: 25px 20px 15px;
+    padding-top: 0px;
     border-right: none;
     /* border-bottom: 1px solid #dde1e6; */
   }
@@ -1438,7 +1451,7 @@ td {
   }
 
   .neoHeadingNew {
-    font-size: 28px;
+    font-size: 35px;
     margin-bottom: 20px;
   }
 
@@ -1449,16 +1462,16 @@ td {
   }
 
   .newContentLeft {
-    font-size: 17px;
+    font-size: 22px;
   }
 
   .neo-thumb {
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
   }
 
   .neo-thumbnails {
-    margin-top: 10%;
+    margin-top: 5%;
   }
 
   .neo-close {
@@ -1631,14 +1644,18 @@ td {
     flex-direction: column-reverse;
   }
 
+  .neo-main-image {
+    max-height: 40vh;
+  }
+
   .neo-close {
     top: 20px;
     right: 20px;
   }
 
   .neo-thumb {
-    width: 80px;
-    height: 80px;
+    width: 95px;
+    height: 95px;
   }
 }
 
@@ -1666,17 +1683,18 @@ td {
 
   .neo-modal {
     width: 100%;
-    height: 90vh;
+    height: auto;
     border-radius: 24px;
     flex-direction: column-reverse;
   }
 
   .neo-image-section {
     padding: 20px 15px 10px;
+    padding-top: 5px;
   }
 
   .neo-main-image {
-    max-height: 28vh;
+    max-height: 35vh;
   }
 
   .neo-thumbnails {
@@ -1685,13 +1703,14 @@ td {
   }
 
   .neo-thumb {
-    width: 55px;
-    height: 40px;
+    width: 70px;
+    height: 70px;
     border-radius: 10px;
   }
 
   .neo-details-section {
     padding: 20px 18px 25px;
+    padding-bottom: 0px;
   }
 
   .neoHeadingNew {
@@ -1733,10 +1752,11 @@ td {
   .neo-close {
     width: 30px;
     height: 30px;
-    top: 20px;
-    right: 20px;
+    top: 12px;
+    right: 12px;
     font-size: 15px;
   }
+
   .hero-section h1 {
     font-size: 20px !important;
   }
@@ -1745,21 +1765,25 @@ td {
 /* small mobile (up to 400px) */
 @media (max-width: 400px) {
   .neo-image-section {
+    flex: none !important;
+  }
+
+  .neo-image-section {
     padding: 0px 12px;
   }
 
   .neo-main-image {
-    max-height: 30vh;
+    max-height: 35vh;
   }
 
   .neo-thumb {
-    width: 48px;
-    height: 34px;
+    width: 70px;
+    height: 70px;
   }
 
-     .neo-details-section {
-        padding: 0px 10px;
-    }
+  .neo-details-section {
+    padding: 10px 10px;
+  }
 
   .neoHeadingNew {
     font-size: 20px;
@@ -1818,18 +1842,37 @@ td {
 
   .neo-modal {
     width: 100%;
-    height: 95vh;
+    height: auto;
     border-radius: 24px;
     flex-direction: column-reverse;
   }
 
   .neo-close {
-    top: 10px;
+    top: 6px;
     right: 10px;
+  }
+
+  .neo-details-section {
+    padding: 0px 10px;
+    padding-bottom: 0px;
+  }
+
+  .neo-thumbnails {
+    gap: 10px;
+    margin-top: 5px;
+  }
+
+  .neo-thumb {
+    width: 55px;
+    height: 55px;
+  }
+
+  .neo-main-image {
+    max-height: 38vh;
   }
 }
 
-@media (min-width: 320px) and (max-width:330px) {
+@media (min-width: 321px) and (max-width:330px) {
   .neoHeadingNew {
     font-size: 20px;
     margin-bottom: 0px !important;
@@ -2169,7 +2212,7 @@ td {
   .mobile-search-row {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 3px;
     width: 100%;
   }
 
@@ -2605,4 +2648,5 @@ td {
 
   /* CHANGED FILTER UI  */
 }
+
 /* NEWLY CHANGED UI CSS RESPONSIVE */

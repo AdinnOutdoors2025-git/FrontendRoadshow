@@ -56,19 +56,19 @@
     padding-bottom: 20px !important;
   } */
 
-  .neo-thumbnails {
+  /* .neo-thumbnails {
     display: flex;
     gap: 10px;
     margin-top: 15px;
     overflow-x: auto;
-  }
-
+  } */
+/* 
   .neo-thumb {
     width: 60px;
     height: 60px;
     object-fit: cover;
     border-radius: 10px;
-  }
+  } */
 
   .header-count {
     right: 50px !important;
