@@ -6,9 +6,12 @@
   height: 100%;
   z-index: 999999;
   background-color:white;
-  background-image: url('/public/images/PreLoad.svg');
+  /* background-image: url('/public/images/PreLoad.svg'); */
+  background-image: url('/public/images/RoadshowPreLoader.gif');
   background-repeat: no-repeat;
   background-position: center;
+  transform: scaleX(-1); 
+  
 }
 
 #preloader-none {
