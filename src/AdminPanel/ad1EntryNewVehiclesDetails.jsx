@@ -6,14 +6,16 @@ import "./showNewVehiclesEntry.css";
 function Ad1EntryNewVehiclesDetails() {
   const [vehicles, setVehicles] = useState([]);
   const [loading, setLoading] = useState(true);
-    const [selectedVehicle, setSelectedVehicle] = useState(null);
+  const [selectedVehicle, setSelectedVehicle] = useState(null);
 
   const [currentPage, setCurrentPage] = useState(1);
   const vehiclesPerPage = 6; // 3 + 3 layout
 
-  useEffect(() => {
-    fetchVehicles();
-  }, []);
+  const [statusFilter, setStatusFilter] = useState("");
+  const [modelFilter, setModelFilter] = useState("");
+  const [nameFilter, setNameFilter] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+
 
   const fetchVehicles = async () => {
     try {
@@ -37,17 +39,38 @@ function Ad1EntryNewVehiclesDetails() {
     return model.replace(/\s+/g, "_");
   };
 
+  const uniqueModels = [
+    ...new Set(vehicles.map((v) => v.model).filter(Boolean)),
+  ];
+  const uniqueNames = [
+    ...new Set(vehicles.map((v) => v.vehicleName).filter(Boolean)),
+  ];
+
   const indexOfLast = currentPage * vehiclesPerPage;
   const indexOfFirst = indexOfLast - vehiclesPerPage;
-  const currentVehicles = vehicles.slice(indexOfFirst, indexOfLast);
-  const totalPages = Math.ceil(vehicles.length / vehiclesPerPage);
+const filteredVehicles = vehicles.filter((vehicle) => {
+  const matchesDropdownFilters =
+    (!statusFilter || vehicle.availability === statusFilter) &&
+    (!modelFilter || vehicle.model === modelFilter) &&
+    (!nameFilter || vehicle.vehicleName === nameFilter);
+
+  const matchesSearch =
+    !searchTerm ||
+    vehicle.vehicleName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    vehicle.model?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    vehicle.vehicleNumber?.toLowerCase().includes(searchTerm.toLowerCase());
+
+  return matchesDropdownFilters && matchesSearch;
+});
+
+const totalPages = Math.ceil(filteredVehicles.length / vehiclesPerPage);
+const currentVehicles = filteredVehicles.slice(indexOfFirst, indexOfLast);
 
   const goToPage = (page) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  
   const renderField = (label, value) => (
     <div className="detail-row">
       <span>{label}</span>
@@ -55,7 +78,7 @@ function Ad1EntryNewVehiclesDetails() {
     </div>
   );
 
-    const renderImages = (title, images) => {
+  const renderImages = (title, images) => {
     if (!images || images.length === 0) return null;
     const folderName = getModelFolderName(selectedVehicle.model);
 
@@ -75,9 +98,61 @@ function Ad1EntryNewVehiclesDetails() {
     );
   };
 
+  useEffect(() => {
+    fetchVehicles();
+    setCurrentPage(1);
+  }, [statusFilter, modelFilter, nameFilter, searchTerm]);
   return (
     <div className="vehicle-list-container">
       <h2 className="page-title">All Vehicles</h2>
+      {/* {filter start} */}
+      <div className="filter-bar">
+  {/* STATUS FILTER */}
+  <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+    <option value="">All Status</option>
+    <option value="Available">Available</option>
+    <option value="Unavailable">Unavailable</option>
+  </select>
+
+  {/* MODEL FILTER */}
+  <select value={modelFilter} onChange={(e) => setModelFilter(e.target.value)}>
+    <option value="">All Models</option>
+    {uniqueModels.map((model, i) => (
+      <option key={i} value={model}>{model}</option>
+    ))}
+  </select>
+
+  {/* VEHICLE NAME FILTER */}
+  <select value={nameFilter} onChange={(e) => setNameFilter(e.target.value)}>
+    <option value="">All Vehicles</option>
+    {uniqueNames.map((name, i) => (
+      <option key={i} value={name}>{name}</option>
+    ))}
+  </select>
+  {/* SEARCH INPUT */}
+<input
+  type="text"
+  placeholder="Search by name, model, vehicle number..."
+  value={searchTerm}
+  onChange={(e) => setSearchTerm(e.target.value)}
+  className="search-input"
+/>
+  {/* RESET */}
+  <button
+    className="reset-btn"
+    onClick={() => {
+      setStatusFilter("");
+  setModelFilter("");
+  setNameFilter("");
+  setSearchTerm("");
+  setCurrentPage(1);
+    }}
+  >
+    Reset
+  </button>
+
+</div>
+      {/* {filter end} */}
 
       {loading ? (
         <p>Loading vehicles...</p>
@@ -88,7 +163,11 @@ function Ad1EntryNewVehiclesDetails() {
               const folderName = getModelFolderName(vehicle.model);
 
               return (
-                <div key={vehicle._id} className="vehicle-card" onClick={() => setSelectedVehicle(vehicle)}>
+                <div
+                  key={vehicle._id}
+                  className="vehicle-card"
+                  onClick={() => setSelectedVehicle(vehicle)}
+                >
                   <div className="card-image">
                     {vehicle.mainImage?.length > 0 && (
                       <img
@@ -136,7 +215,7 @@ function Ad1EntryNewVehiclesDetails() {
         </>
       )}
 
-            {/* ================= SECTIONED MODAL ================= */}
+      {/* ================= SECTIONED MODAL ================= */}
       {selectedVehicle && (
         <div className="modal-overlay" onClick={() => setSelectedVehicle(null)}>
           <div className="modal-container" onClick={(e) => e.stopPropagation()}>
