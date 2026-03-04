@@ -1,0 +1,303 @@
+/* ================= MAIN CONTAINER ================= */
+
+.vehicle-list-container {
+  width: 100%;
+  padding: 30px;
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+
+.page-title {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #222;
+}
+
+/* ================= GRID ================= */
+
+.vehicle-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 30px;
+  width: 100% !important;
+}
+
+@media (max-width: 1024px) {
+  .vehicle-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .vehicle-grid {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+}
+
+/* ================= CARD ================= */
+
+.vehicle-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  border: 1px solid #eee;
+}
+
+.vehicle-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card-image {
+  width: 100%;
+  height: 230px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.card-content {
+  padding: 18px;
+}
+
+.card-content h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #222;
+}
+
+.card-content p {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 18px;
+}
+
+.card-bottom {
+  margin-bottom: 6px;
+}
+
+.price {
+  font-weight: 600;
+  font-size: 15px;
+  color: #007bff;
+}
+
+/* ================= STATUS ================= */
+
+.status-available {
+  background: #e6f7ec;
+  color: #1e7e34;
+  padding: 6px 14px;
+  border-radius: 25px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+  margin-top: 6px;
+}
+
+.status-unavailable {
+  background: #fdeaea;
+  color: #b02a37;
+  padding: 6px 14px;
+  border-radius: 25px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+  margin-top: 6px;
+}
+
+/* ================= PAGINATION ================= */
+
+.pagination {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.page-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.page-btn:hover {
+  background: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.page-btn.active {
+  background: #007bff;
+  color: #fff;
+  border: none;
+}
+
+/* ================= MODAL OVERLAY ================= */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+/* ================= MODAL CONTAINER ================= */
+
+.modal-container {
+  background: #ffffff;
+  width: 100%;
+  max-width: 1100px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 16px;
+  padding: 30px;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.3s ease;
+}
+
+/* Smooth popup animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= MODAL HEADER ================= */
+
+.modal-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #222;
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 26px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #555;
+  transition: 0.2s ease;
+}
+
+.modal-close:hover {
+  color: #000;
+}
+
+/* ================= DETAIL SECTIONS ================= */
+
+.detail-section {
+  margin-bottom: 35px;
+}
+
+.detail-section h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #007bff;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 8px;
+}
+
+/* ================= DETAILS GRID ================= */
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px 25px;
+}
+
+@media (max-width: 768px) {
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.detail-row {
+  background: #f8f9fb;
+  padding: 10px 14px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.detail-row span {
+  color: #555;
+}
+
+.detail-row strong {
+  color: #222;
+}
+
+/* ================= IMAGE SECTIONS ================= */
+
+.media-block {
+  margin-bottom: 25px;
+}
+
+.media-block h4 {
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #333;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 15px;
+}
+
+.image-grid img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #eee;
+}
+
+/* ================= FORCE FIX ================= */
+
+.vehicle-list-container,
+.vehicle-grid {
+  flex: none !important;
+}
+
+.vehicle-list-container * {
+  box-sizing: border-box;
+}

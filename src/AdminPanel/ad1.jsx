@@ -1,76 +1,98 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useLogin } from '../Authentication/LoginContext';
-import './ad1.css';
-import PieSection from './ad1Pie';
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { useLogin } from "../Authentication/LoginContext";
+import "./ad1.css";
+import PieSection from "./ad1Pie";
 
-import VehicleUpload from './ad1VehicleUpload';
-import EntryVehicles from './ad1EntryVehicles';
-import VehicleLists from './ad1VehiclesList';
-import AllVehiclesInfo from './ad1AllVehiclesInfo';
-
+import VehicleUpload from "./ad1VehicleUpload";
+import EntryVehicles from "./ad1EntryVehicles";
+import EntryNewVehicles from "./ad1EntryNewVehicles";
+import VehicleLists from "./ad1VehiclesList";
+import AllVehiclesInfo from "./ad1AllVehiclesInfo";
+import Ad1EntryNewVehiclesDetails from './ad1EntryNewVehiclesDetails';
 
 const Admin = () => {
-
   const { user, logoutUser } = useLogin();
   const [isAdminDropdownOpen, setIsAdminDropdownOpen] = useState(false);
 
   const toggleAdminDropdown = () => {
     setIsAdminDropdownOpen(!isAdminDropdownOpen);
   };
-  const [activeMenu, setActiveMenu] = useState('dashboard'); // default active
-  const [activeSubProduct, setActiveSubProduct] = useState(''); // default active
+  const [activeMenu, setActiveMenu] = useState("dashboard"); // default active
+  const [activeSubProduct, setActiveSubProduct] = useState(""); // default active
   const [vehicleEntry, setVehicleEntry] = useState(false);
-   const [activeVehicleMenu, setActiveVehicleMenu] = useState(''); // New state for vehicles
-const [activeProductMenu, setActiveProductMenu] = useState(''); // For products (was admanager)
+  const [activeVehicleMenu, setActiveVehicleMenu] = useState(""); // New state for vehicles
+  const [activeProductMenu, setActiveProductMenu] = useState(""); // For products (was admanager)
 
-  const [activeSubCategory, setActiveSubCategory] = useState(''); // default active
+  const [activeSubCategory, setActiveSubCategory] = useState(""); // default active
   const handleMenuClick = (menu) => {
     if (activeMenu === menu) {
-      setActiveMenu('');
-      setActiveSubProduct('');
-    }
-    else {
+      setActiveMenu("");
+      setActiveSubProduct("");
+    } else {
       setActiveMenu(menu);
-      if (menu === 'category') {
-        setActiveSubCategory('location'); // 👈 default subcategory when category menu is opened
-        setActiveSubProduct('');
+      if (menu === "category") {
+        setActiveSubCategory("location"); // 👈 default subcategory when category menu is opened
+        setActiveSubProduct("");
+      } else if (menu === "admanager") {
+        setActiveSubProduct("All Products");
+      } else {
+        setActiveSubProduct("");
       }
-    else if (menu === 'admanager') {
-      setActiveSubProduct('All Products');
     }
-
-    else {
-      setActiveSubProduct('');
-
-    }
-  }
-
-  }
+  };
 
   //pie chart
   const [hoveredWeek, setHoveredWeek] = useState(null);
   const data = [
-    { name: 'Week 1', value: 5000 },
-    { name: 'Week 2', value: 10000 },
-    { name: 'Week 3', value: 4000 },
-    { name: 'Week 4', value: 6000 },
+    { name: "Week 1", value: 5000 },
+    { name: "Week 2", value: 10000 },
+    { name: "Week 3", value: 4000 },
+    { name: "Week 4", value: 6000 },
   ];
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']; 
+  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
   const dashboardSummary = [
-    { id: 1, icons: './images/dashboard-icon1.svg', summaryHeading: 'Total Sites Added', summaryCount: 13000 },
-    { id: 2, icons: './images/dashboard-icon2.svg', summaryHeading: 'Total Reservations', summaryCount: 8000 },
+    {
+      id: 1,
+      icons: "./images/dashboard-icon1.svg",
+      summaryHeading: "Total Sites Added",
+      summaryCount: 13000,
+    },
+    {
+      id: 2,
+      icons: "./images/dashboard-icon2.svg",
+      summaryHeading: "Total Reservations",
+      summaryCount: 8000,
+    },
 
-    { id: 3, icons: './images/dashboard-icon5.svg', summaryHeading: 'Total Users', summaryCount: 8000 },
+    {
+      id: 3,
+      icons: "./images/dashboard-icon5.svg",
+      summaryHeading: "Total Users",
+      summaryCount: 8000,
+    },
 
-    { id: 4, icons: './images/dashboard-icon3.svg', summaryHeading: 'Total Revenue', summaryCount: 800105 },
+    {
+      id: 4,
+      icons: "./images/dashboard-icon3.svg",
+      summaryHeading: "Total Revenue",
+      summaryCount: 800105,
+    },
 
-    { id: 5, icons: './images/dashboard-icon4.svg', summaryHeading: 'Total Enquiries', summaryCount: 500 },
+    {
+      id: 5,
+      icons: "./images/dashboard-icon4.svg",
+      summaryHeading: "Total Enquiries",
+      summaryCount: 500,
+    },
 
-    { id: 6, icons: './images/dashboard-icon6.svg', summaryHeading: 'Booked Sites', summaryCount: 5000 }
-  ]
-
-
+    {
+      id: 6,
+      icons: "./images/dashboard-icon6.svg",
+      summaryHeading: "Booked Sites",
+      summaryCount: 5000,
+    },
+  ];
 
   //edit product page automatically opens
   const location = useLocation();
@@ -78,162 +100,165 @@ const [activeProductMenu, setActiveProductMenu] = useState(''); // For products 
 
   useEffect(() => {
     if (location.hash) {
-      const sectionId = location.hash.replace('#', '');
+      const sectionId = location.hash.replace("#", "");
       setActiveMenu(sectionId); // activates sidebar + section
       const element = document.getElementById(sectionId);
       if (element) {
         setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' });
+          element.scrollIntoView({ behavior: "smooth" });
         }, 100); // wait for render
       }
     }
 
     if (location.state?.editVehicle) {
       setEditVehicle(location.state.editVehicle);
-      setActiveMenu('admanager'); // ✅ Automatically open 'admanager' section
+      setActiveMenu("admanager"); // ✅ Automatically open 'admanager' section
       // setActiveSubProduct('Add Products'); // ✅ Make "Add Products" tab active
-      setActiveSubProduct(location.state.activeSubProduct || 'Add Products'); // 👈 This line sets tab to Add Products
+      setActiveSubProduct(location.state.activeSubProduct || "Add Products"); // 👈 This line sets tab to Add Products
 
       setTimeout(() => {
-        const element = document.getElementById('admanager');
+        const element = document.getElementById("admanager");
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+          element.scrollIntoView({ behavior: "smooth" });
         }
       }, 100);
       // Clear location.state after using it (so it doesn't persist)
-      window.history.replaceState({}, document.title, location.pathname + location.hash);
-
+      window.history.replaceState(
+        {},
+        document.title,
+        location.pathname + location.hash,
+      );
     }
   }, [location]);
 
   const isEditing = !!editVehicle;
 
-const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-const toggleSidebar = () => {
+  const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
-};
+  };
 
-const closeSidebar = () => {
+  const closeSidebar = () => {
     setIsSidebarOpen(false);
-};
-const [mobileSubmenu, setMobileSubmenu] = useState(null);
-const [showMobileSubmenu, setShowMobileSubmenu] = useState(false);
+  };
+  const [mobileSubmenu, setMobileSubmenu] = useState(null);
+  const [showMobileSubmenu, setShowMobileSubmenu] = useState(false);
 
-const handleMobileMenuClick = (menu, event) => {
+  const handleMobileMenuClick = (menu, event) => {
     event.stopPropagation();
-    
+
     if (mobileSubmenu === menu) {
-        // If clicking same menu, toggle submenu
-        setShowMobileSubmenu(!showMobileSubmenu);
+      // If clicking same menu, toggle submenu
+      setShowMobileSubmenu(!showMobileSubmenu);
     } else {
-        // If clicking different menu, show its submenu
-        setMobileSubmenu(menu);
-        setShowMobileSubmenu(true);
-    }
-};
-
-// const handleSubmenuItemClick = (submenuItem) => {
-//     // Handle submenu item selection
-//     if (mobileSubmenu === 'products') {
-//         setActiveSubProduct(submenuItem);
-//     } else if (mobileSubmenu === 'vehicles') {
-//         setActiveSubProduct(submenuItem);
-//     }
-    
-//     // Close submenu after selection
-//     setShowMobileSubmenu(false);
-//     setMobileSubmenu(null);
-// };
-
-// const closeMobileSubmenu = () => {
-//     setShowMobileSubmenu(false);
-//     setMobileSubmenu(null);
-// };
-useEffect(() => {
-  const handleClickOutside = (event) => {
-    if (window.innerWidth <= 767) {
-      if (!event.target.closest('.subcategory-list') && !event.target.closest('.adminHeadings')) {
-        // Only close dropdowns, keep active button and content
-        setActiveMenu('');        // Close Products dropdown
-        setActiveVehicleMenu(''); // Close Vehicles dropdown
-        // DON'T change activeSubProduct - keeps content visible
-      }
+      // If clicking different menu, show its submenu
+      setMobileSubmenu(menu);
+      setShowMobileSubmenu(true);
     }
   };
-  document.addEventListener('mousedown', handleClickOutside);
-  return () => document.removeEventListener('mousedown', handleClickOutside);
-}, []);
 
-// useEffect(() => {
-//   const handleKeyDown = (e) => {
-//     // Only enable on mobile (width <= 767px)
-//     if (window.innerWidth <= 767) {
-//       const sidebar = document.querySelector('.AdminPanelHome-contentLeft');
-//       if (sidebar) {
-//         if (e.key === 'ArrowLeft') {
-//           e.preventDefault();
-//           sidebar.scrollBy({
-//             left: -200,
-//             behavior: 'smooth'
-//           });
-//         } else if (e.key === 'ArrowRight') {
-//           e.preventDefault();
-//           sidebar.scrollBy({
-//             left: 200,
-//             behavior: 'smooth'
-//           });
-//         }
-//       }
-//     }
-//   };
+  // const handleSubmenuItemClick = (submenuItem) => {
+  //     // Handle submenu item selection
+  //     if (mobileSubmenu === 'products') {
+  //         setActiveSubProduct(submenuItem);
+  //     } else if (mobileSubmenu === 'vehicles') {
+  //         setActiveSubProduct(submenuItem);
+  //     }
 
-//   window.addEventListener('keydown', handleKeyDown);
-  
-//   // Add resize listener to handle window size changes
-//   const handleResize = () => {
-//     // You can add any resize-specific logic here if needed
-//   };
-  
-//   window.addEventListener('resize', handleResize);
-  
-//   return () => {
-//     window.removeEventListener('keydown', handleKeyDown);
-//     window.removeEventListener('resize', handleResize);
-//   };
-// }, []);
+  //     // Close submenu after selection
+  //     setShowMobileSubmenu(false);
+  //     setMobileSubmenu(null);
+  // };
 
-// const scrollLeft = () => {
-//   // Only allow scrolling on mobile
-//   if (window.innerWidth <= 767) {
-//     const sidebar = document.querySelector('.AdminPanelHome-contentLeft');
-//     if (sidebar) {
-//       sidebar.scrollBy({
-//         left: -200,
-//         behavior: 'smooth'
-//       });
-//     }
-//   }
-// };
+  // const closeMobileSubmenu = () => {
+  //     setShowMobileSubmenu(false);
+  //     setMobileSubmenu(null);
+  // };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (window.innerWidth <= 767) {
+        if (
+          !event.target.closest(".subcategory-list") &&
+          !event.target.closest(".adminHeadings")
+        ) {
+          // Only close dropdowns, keep active button and content
+          setActiveMenu(""); // Close Products dropdown
+          setActiveVehicleMenu(""); // Close Vehicles dropdown
+          // DON'T change activeSubProduct - keeps content visible
+        }
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
-// const scrollRight = () => {
-//   // Only allow scrolling on mobile
-//   if (window.innerWidth <= 767) {
-//     const sidebar = document.querySelector('.AdminPanelHome-contentLeft');
-//     if (sidebar) {
-//       sidebar.scrollBy({
-//         left: 200,
-//         behavior: 'smooth'
-//       });
-//     }
-//   }
-// };
+  // useEffect(() => {
+  //   const handleKeyDown = (e) => {
+  //     // Only enable on mobile (width <= 767px)
+  //     if (window.innerWidth <= 767) {
+  //       const sidebar = document.querySelector('.AdminPanelHome-contentLeft');
+  //       if (sidebar) {
+  //         if (e.key === 'ArrowLeft') {
+  //           e.preventDefault();
+  //           sidebar.scrollBy({
+  //             left: -200,
+  //             behavior: 'smooth'
+  //           });
+  //         } else if (e.key === 'ArrowRight') {
+  //           e.preventDefault();
+  //           sidebar.scrollBy({
+  //             left: 200,
+  //             behavior: 'smooth'
+  //           });
+  //         }
+  //       }
+  //     }
+  //   };
 
-  
+  //   window.addEventListener('keydown', handleKeyDown);
+
+  //   // Add resize listener to handle window size changes
+  //   const handleResize = () => {
+  //     // You can add any resize-specific logic here if needed
+  //   };
+
+  //   window.addEventListener('resize', handleResize);
+
+  //   return () => {
+  //     window.removeEventListener('keydown', handleKeyDown);
+  //     window.removeEventListener('resize', handleResize);
+  //   };
+  // }, []);
+
+  // const scrollLeft = () => {
+  //   // Only allow scrolling on mobile
+  //   if (window.innerWidth <= 767) {
+  //     const sidebar = document.querySelector('.AdminPanelHome-contentLeft');
+  //     if (sidebar) {
+  //       sidebar.scrollBy({
+  //         left: -200,
+  //         behavior: 'smooth'
+  //       });
+  //     }
+  //   }
+  // };
+
+  // const scrollRight = () => {
+  //   // Only allow scrolling on mobile
+  //   if (window.innerWidth <= 767) {
+  //     const sidebar = document.querySelector('.AdminPanelHome-contentLeft');
+  //     if (sidebar) {
+  //       sidebar.scrollBy({
+  //         left: 200,
+  //         behavior: 'smooth'
+  //       });
+  //     }
+  //   }
+  // };
+
   return (
-
     <div>
-
       {/* 
     <div className="admin-dashboard">
      <header className="admin-header">
@@ -270,14 +295,23 @@ useEffect(() => {
           {/* Right - Notifications & Profile */}
           <div className="Admin-navbar-right">
             <div className="Admin-notification-icon">
-              <img src='./images/notification-bell.svg' className='notification-bell'></img>
+              <img
+                src="./images/notification-bell.svg"
+                className="notification-bell"
+              ></img>
               <span className="Admin-notification-badge">10</span>
             </div>
 
             <div className="Admin-profile" onClick={toggleAdminDropdown}>
-              <img src="./images/admin-proficPic.svg" alt="User" className="Admin-profile-img" />
+              <img
+                src="./images/admin-proficPic.svg"
+                alt="User"
+                className="Admin-profile-img"
+              />
               <span className="Admin-profile-name">Adinn Roadshow</span>
-              <i className={`fas fa-chevron-${isAdminDropdownOpen ? "up" : "down"} Admin-profile-downUp`}></i>
+              <i
+                className={`fas fa-chevron-${isAdminDropdownOpen ? "up" : "down"} Admin-profile-downUp`}
+              ></i>
             </div>
             {isAdminDropdownOpen && (
               <div className="Admin-dropdown-menu">
@@ -285,22 +319,25 @@ useEffect(() => {
                   <li>Profile</li>
                   <li>Settings</li>
                   {/* <li>Logout</li> */}
-                  <li onClick={() => {
-                    logoutUser();
-                    window.location.href = '/adminLogin'; // Force full page reload
-                  }}>Logout</li>
+                  <li
+                    onClick={() => {
+                      logoutUser();
+                      window.location.href = "/adminLogin"; // Force full page reload
+                    }}
+                  >
+                    Logout
+                  </li>
                 </ul>
               </div>
             )}
           </div>
         </nav>
-
       </div>
 
-      <div className='AdminPanelHome-content d-flex'>
+      <div className="AdminPanelHome-content d-flex">
         {/* LEFT CONTENT  */}
- {/* Hamburger Menu Button */}
-{/* <button 
+        {/* Hamburger Menu Button */}
+        {/* <button 
     className={`hamburger-menu ${isSidebarOpen ? 'open' : ''}`} 
     onClick={toggleSidebar}
 >
@@ -309,287 +346,472 @@ useEffect(() => {
     <span></span>
 </button> */}
 
-{/* Sidebar Overlay */}
-{isSidebarOpen && (
-    <div 
-        className="sidebar-overlay active" 
-        onClick={closeSidebar}
-    ></div>
-)}
+        {/* Sidebar Overlay */}
+        {isSidebarOpen && (
+          <div className="sidebar-overlay active" onClick={closeSidebar}></div>
+        )}
 
-{/* YOUR EXISTING SIDEBAR CODE */}
-{/* <div className={`AdminPanelHome-contentLeft ${isSidebarOpen ? 'open' : ''}`}> */}
+        {/* YOUR EXISTING SIDEBAR CODE */}
+        {/* <div className={`AdminPanelHome-contentLeft ${isSidebarOpen ? 'open' : ''}`}> */}
 
-        <div className='AdminPanelHome-contentLeft'>
+        <div className="AdminPanelHome-contentLeft">
           {/* DASHBOARD SECTION WITH CHARTS  */}
-          <div className={`adminHeadings ${activeMenu === 'dashboard' ? 'active' : ''}`}
-            onClick={() => handleMenuClick('dashboard')}  >
-            <div className='sideImageHeading'>
-              <svg xmlns="http://www.w3.org/2000/svg" className='adminHeading-imgs' viewBox="0 0 31 31" fill={activeMenu === 'dashboard' ? 'black' : 'rgba(227, 31, 37, 1)'}>
+          <div
+            className={`adminHeadings ${activeMenu === "dashboard" ? "active" : ""}`}
+            onClick={() => handleMenuClick("dashboard")}
+          >
+            <div className="sideImageHeading">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="adminHeading-imgs"
+                viewBox="0 0 31 31"
+                fill={
+                  activeMenu === "dashboard" ? "black" : "rgba(227, 31, 37, 1)"
+                }
+              >
                 <path d="M20.1246 17.1054L28.8742 17.1795C29.2284 17.1825 29.5243 17.3048 29.7618 17.5464C29.9993 17.788 30.1166 18.0859 30.1136 18.44L30.0183 29.6896C30.0153 30.0438 29.893 30.3396 29.6514 30.5772C29.4098 30.8147 29.1119 30.932 28.7578 30.929L20.0081 30.8549C19.6539 30.8519 19.3581 30.7296 19.1206 30.488C18.883 30.2464 18.7657 29.9485 18.7687 29.5943L18.864 18.3447C18.867 17.9906 18.9893 17.6947 19.2309 17.4572C19.4725 17.2196 19.7704 17.1024 20.1246 17.1054ZM15.2624 0.813609L29.0119 0.930071C29.366 0.933071 29.6619 1.05537 29.8994 1.29698C30.137 1.53858 30.2543 1.83646 30.2513 2.19061L30.156 13.4402C30.153 13.7944 30.0307 14.0902 29.7891 14.3278C29.5475 14.5653 29.2496 14.6826 28.8954 14.6796L15.1459 14.5631C14.7918 14.5601 14.4959 14.4378 14.2584 14.1962C14.0208 13.9546 13.9035 13.6567 13.9065 13.3026L14.0018 2.05298C14.0048 1.69882 14.1271 1.40297 14.3687 1.16543C14.6103 0.927882 14.9082 0.810609 15.2624 0.813609ZM1.37523 16.9466L15.1247 17.063C15.4789 17.066 15.7747 17.1883 16.0123 17.4299C16.2498 17.6715 16.3671 17.9694 16.3641 18.3236L16.2688 29.5732C16.2658 29.9273 16.1435 30.2232 15.9019 30.4607C15.6603 30.6983 15.3624 30.8155 15.0083 30.8125L1.25877 30.6961C0.904618 30.6931 0.608768 30.5708 0.371222 30.3292C0.133678 30.0876 0.0164036 29.7897 0.0194034 29.4355L0.114691 18.1859C0.117691 17.8318 0.239994 17.5359 0.481596 17.2984C0.723201 17.0608 1.02108 16.9436 1.37523 16.9466ZM1.51287 0.697146L10.2626 0.771259C10.6167 0.774259 10.9126 0.896561 11.1501 1.13816C11.3877 1.37977 11.5049 1.67765 11.5019 2.0318L11.4066 13.2814C11.4036 13.6356 11.2813 13.9314 11.0397 14.1689C10.7981 14.4065 10.5003 14.5238 10.1461 14.5208L1.39641 14.4467C1.04226 14.4437 0.746405 14.3214 0.508859 14.0797C0.271315 13.8381 0.154041 13.5403 0.157041 13.1861L0.252328 1.93651C0.255328 1.58236 0.377631 1.28651 0.619234 1.04896C0.860838 0.81142 1.15872 0.694147 1.51287 0.697146ZM16.4912 3.32411L16.417 12.0738L27.6666 12.1691L27.7408 3.41939L16.4912 3.32411ZM2.60401 19.4571L2.5299 28.2067L13.7795 28.302L13.8536 19.5523L2.60401 19.4571ZM21.3533 19.6159L21.2792 28.3656L27.529 28.4185L27.6031 19.6688L21.3533 19.6159ZM2.74165 3.20764L2.66754 11.9573L8.91732 12.0103L8.99143 3.26058L2.74165 3.20764Z" />
-              </svg>Dashboard
+              </svg>
+              Dashboard
             </div>
-            <i className={`fas fa-chevron-${activeMenu === 'dashboard' ? "up" : "down"} ml-2`}></i>
+            <i
+              className={`fas fa-chevron-${activeMenu === "dashboard" ? "up" : "down"} ml-2`}
+            ></i>
           </div>
 
-
-
           {/* ADMANAGER WITH DRAG & DROP IMAGE SECTION  */}
-          <div className={`adminHeadings ${activeMenu === 'admanager' ? 'active' : ''}`}
+          <div
+            className={`adminHeadings ${activeMenu === "admanager" ? "active" : ""}`}
             // onClick={() => handleMenuClick('admanager')}>
-             onClick={(e) => {
-    if (window.innerWidth <= 767) {
-      // Mobile behavior
-      if (activeMenu === 'admanager') {
-        setActiveMenu('');
-        setActiveSubProduct('');
-      } else {
-        setActiveMenu('admanager');
-        setActiveSubProduct('All Products');
-        setActiveVehicleMenu(''); // CLOSE VEHICLES DROPDOWN ON MOBILE
-      }
-    } else {
-      handleMenuClick('admanager');
-    }
-  }}>
-           
-            <div className='sideImageHeading'>
+            onClick={(e) => {
+              if (window.innerWidth <= 767) {
+                // Mobile behavior
+                if (activeMenu === "admanager") {
+                  setActiveMenu("");
+                  setActiveSubProduct("");
+                } else {
+                  setActiveMenu("admanager");
+                  setActiveSubProduct("All Products");
+                  setActiveVehicleMenu(""); // CLOSE VEHICLES DROPDOWN ON MOBILE
+                }
+              } else {
+                handleMenuClick("admanager");
+              }
+            }}
+          >
+            <div className="sideImageHeading">
               {/* <svg xmlns="http://www.w3.org/2000/svg" className='adminHeading-imgs' viewBox="0 0 39 30" fill="currentColor">
                 <path d="M6.76016 0.5H32.8769C34.5025 0.5 35.9833 1.13712 37.0594 2.15092C38.1442 3.17262 38.8184 4.58016 38.8184 6.10764V23.8924C38.8184 25.4164 38.1374 26.8209 37.0545 27.84C35.9728 28.8591 34.4872 29.5 32.8769 29.5H6.76016C5.14635 29.5 3.65582 28.8656 2.57252 27.8446C1.49531 26.8305 0.818359 25.4317 0.818359 23.8924V6.10764C0.818359 4.56534 1.48841 3.16277 2.5677 2.14638C3.64617 1.13062 5.13054 0.5 6.76016 0.5ZM25.0722 19.9679H20.9728V9.93344H25.0306C26.1268 9.93344 27.0742 10.1331 27.875 10.5334C28.6732 10.9335 29.2913 11.5084 29.7254 12.2579C30.16 13.0074 30.3802 13.9065 30.3802 14.9507C30.3802 15.9967 30.1629 16.8935 29.7283 17.6431C29.2961 18.3929 28.6808 18.9678 27.8871 19.3676C27.0936 19.7678 26.1538 19.9679 25.0722 19.9679ZM12.3794 19.9679H9.25696L12.7749 9.93344H16.7279L20.2439 19.9679H17.1234L16.5078 18.0478H12.9946L12.3794 19.9679ZM15.8539 16.0085L14.7919 12.6972H14.7089L13.6482 16.0085H15.8539ZM23.8659 17.6548H24.9694C25.4971 17.6548 25.9462 17.5766 26.3196 17.4156C26.6909 17.2546 26.9763 16.9786 27.1718 16.5879C27.3669 16.1945 27.4649 15.6496 27.4649 14.9507C27.4649 14.2517 27.3669 13.7068 27.167 13.3157C26.9666 12.9223 26.6763 12.6467 26.2929 12.4857C25.9095 12.327 25.4407 12.2465 24.8867 12.2465H23.8659V17.6548ZM32.8769 2.82977H6.76016C5.79502 2.82977 4.92013 3.19925 4.2892 3.79346C3.65864 4.38724 3.26713 5.20665 3.26713 6.10764V23.8924C3.26713 24.7877 3.66346 25.604 4.29402 26.1975C4.9306 26.7974 5.80831 27.1702 6.76016 27.1702H32.8769C33.8228 27.1702 34.6964 26.7928 35.333 26.1929C35.9692 25.5942 36.3696 24.7752 36.3696 23.8924V6.10764C36.3696 5.21917 35.974 4.39717 35.3379 3.798C34.7069 3.2038 33.8357 2.82977 32.8769 2.82977Z" fill={activeMenu === 'admanager' ? 'black' : 'rgba(227, 31, 37, 1)'} />
               </svg> */}
-              <svg xmlns="http://www.w3.org/2000/svg" className='adminHeading-imgs' viewBox="0 0 39 36" fill="none">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="adminHeading-imgs"
+                viewBox="0 0 39 36"
+                fill="none"
+              >
                 <mask id="path-1-inside-1_1763_293017" fill="white">
                   <path d="M10.4699 20.3596C10.3124 20.3596 10.1614 20.2964 10.0501 20.184C9.9387 20.0717 9.87615 19.9192 9.87615 19.7603C9.87615 19.6014 9.9387 19.4489 10.0501 19.3366C10.1614 19.2242 10.3124 19.161 10.4699 19.161H11.3327C11.8382 19.1514 12.3367 19.282 12.7738 19.5387C13.2586 19.8583 13.6038 20.353 13.7386 20.9213C13.7353 20.9287 13.7336 20.9367 13.7336 20.9448C13.7336 20.9528 13.7353 20.9608 13.7386 20.9682L13.8871 21.5924H14.2272V19.1267C14.228 18.9672 14.2912 18.8145 14.4029 18.7017C14.5147 18.5889 14.666 18.5252 14.8241 18.5243H17.9753C18.1333 18.5252 18.2846 18.5889 18.3964 18.7017C18.5082 18.8145 18.5713 18.9672 18.5721 19.1267V20.5905C18.8217 20.3358 19.1188 20.1334 19.4463 19.9952C19.7738 19.857 20.1252 19.7857 20.4802 19.7853C20.7967 19.7838 21.111 19.8399 21.4079 19.9507C21.8177 19.5109 22.3403 19.1944 22.9175 19.0361C23.4948 18.8778 24.1042 18.8841 24.6782 19.0541C25.2522 19.2241 25.7682 19.5513 26.1692 19.9994C26.5701 20.4474 26.8402 20.9988 26.9496 21.5924H27.0949C27.2502 21.5932 27.3988 21.6561 27.5084 21.7672C27.6179 21.8783 27.6794 22.0287 27.6794 22.1854C27.6777 22.2467 27.6683 22.3075 27.6515 22.3664L26.1053 28.6086C26.0757 28.739 26.0028 28.8553 25.8988 28.9382C25.7947 29.021 25.6658 29.0655 25.5332 29.0643H15.891C16.1012 29.8383 16.3146 30.269 16.5899 30.4625C16.9362 30.6904 17.5392 30.706 18.5474 30.6904H25.3786C25.5344 30.6904 25.6839 30.7529 25.7941 30.8641C25.9042 30.9753 25.9662 31.1261 25.9662 31.2834C25.9662 31.4407 25.9042 31.5915 25.7941 31.7027C25.6839 31.8139 25.5344 31.8764 25.3786 31.8764H18.5752C17.3382 31.8764 16.5558 31.8764 15.9404 31.4488C15.325 31.0212 14.9756 30.294 14.6447 28.9707L12.6222 21.2709C12.6222 21.2709 12.6222 21.2709 12.6222 21.2428C12.5953 21.1045 12.5415 20.9729 12.464 20.8556C12.3866 20.7383 12.2869 20.6376 12.1707 20.5593C11.9158 20.414 11.6251 20.3447 11.3327 20.3596H10.4699ZM36.2454 16.9263V33.4682C36.2446 34.0068 36.0323 34.5231 35.6549 34.904C35.2775 35.2848 34.7659 35.4992 34.2323 35.5H5.40447C5.13995 35.4995 4.87813 35.4463 4.63403 35.3435C4.38992 35.2406 4.16832 35.0902 3.98194 34.9007C3.79466 34.7125 3.64608 34.4887 3.54472 34.2424C3.44335 33.996 3.39121 33.7318 3.39128 33.465V16.9482C3.98997 17.0478 4.59728 17.0844 5.20346 17.0574V33.3152C5.20321 33.3616 5.2121 33.4076 5.22962 33.4504C5.24714 33.4933 5.27294 33.5322 5.30551 33.5649C5.33817 33.5972 5.37685 33.6227 5.41931 33.6398C5.46177 33.657 5.50718 33.6655 5.55291 33.6648H15.8786C15.9604 33.3536 16.1418 33.0784 16.3946 32.8819C16.6473 32.6855 16.9574 32.5789 17.2764 32.5787C17.5958 32.5787 17.9063 32.6852 18.1596 32.8816C18.4129 33.078 18.5948 33.3533 18.6773 33.6648H22.2181C22.2999 33.3536 22.4813 33.0784 22.7341 32.8819C22.9869 32.6855 23.2969 32.5789 23.6159 32.5787C23.9354 32.5782 24.2462 32.6845 24.4996 32.881C24.753 33.0775 24.9348 33.3531 25.0168 33.6648H34.0838C34.1765 33.6648 34.2654 33.6276 34.3309 33.5615C34.3965 33.4954 34.4333 33.4056 34.4333 33.3121V16.9794C35.0373 17.0299 35.645 17.0131 36.2454 16.9295V16.9263ZM22.0975 24.0144C22.1161 23.9184 22.1671 23.832 22.2418 23.7698C22.3166 23.7077 22.4104 23.6737 22.5072 23.6737C22.6041 23.6737 22.6979 23.7077 22.7727 23.7698C22.8474 23.832 22.8984 23.9184 22.917 24.0144V26.3084C22.8984 26.4043 22.8474 26.4907 22.7727 26.5529C22.6979 26.615 22.6041 26.649 22.5072 26.649C22.4104 26.649 22.3166 26.615 22.2418 26.5529C22.1671 26.4907 22.1161 26.4043 22.0975 26.3084V24.0144ZM19.6421 24.0144C19.6606 23.9184 19.7117 23.832 19.7864 23.7698C19.8612 23.7077 19.955 23.6737 20.0518 23.6737C20.1487 23.6737 20.2425 23.7077 20.3173 23.7698C20.392 23.832 20.443 23.9184 20.4616 24.0144V26.3084C20.443 26.4043 20.392 26.4907 20.3173 26.5529C20.2425 26.615 20.1487 26.649 20.0518 26.649C19.955 26.649 19.8612 26.615 19.7864 26.5529C19.7117 26.4907 19.6606 26.4043 19.6421 26.3084V24.0144ZM17.1898 24.0144C17.2083 23.9184 17.2594 23.832 17.3341 23.7698C17.4089 23.7077 17.5027 23.6737 17.5995 23.6737C17.6964 23.6737 17.7902 23.7077 17.865 23.7698C17.9397 23.832 17.9907 23.9184 18.0093 24.0144V26.3084C17.9907 26.4043 17.9397 26.4907 17.865 26.5529C17.7902 26.615 17.6964 26.649 17.5995 26.649C17.5027 26.649 17.4089 26.615 17.3341 26.5529C17.2594 26.4907 17.2083 26.4043 17.1898 26.3084V24.0144ZM22.2676 20.475C22.6071 20.7798 22.87 21.1618 23.0345 21.5893H25.9074C25.8135 21.2148 25.6253 20.8712 25.3611 20.5918C25.0969 20.3124 24.7656 20.1066 24.3993 19.9945C24.0331 19.8824 23.6444 19.8677 23.2709 19.9519C22.8974 20.0361 22.5518 20.2163 22.2676 20.475ZM23.2293 22.7753H14.2365L15.5755 27.8658H25.0786L26.3156 22.7753H23.2293ZM17.8887 21.5768C17.8887 21.5362 17.9227 21.4925 17.9413 21.4519V19.5605C17.9413 19.4447 17.8956 19.3335 17.8144 19.2516C17.7333 19.1696 17.6231 19.1236 17.5083 19.1236H15.3529C15.238 19.1236 15.1279 19.1696 15.0467 19.2516C14.9655 19.3335 14.9199 19.4447 14.9199 19.5605V21.5768H17.8887ZM33.6261 14.9819C33.2396 14.7978 32.2871 14.5481 31.9871 14.2484C31.7262 13.9828 31.5053 13.6799 31.3315 13.3496C31.1578 13.6799 30.9369 13.9828 30.676 14.2484C30.0142 14.9132 28.5112 15.3283 27.4938 15.3283C26.4764 15.3283 24.9735 14.9132 24.321 14.2484C24.06 13.9828 23.8392 13.6799 23.6654 13.3496C23.4916 13.6799 23.2707 13.9828 23.0098 14.2484C22.348 14.9132 20.8451 15.3283 19.8276 15.3283C18.8102 15.3283 17.3073 14.9132 16.6455 14.2484C16.378 13.9841 16.1508 13.6812 15.9714 13.3496C15.7976 13.6799 15.5767 13.9828 15.3158 14.2484C14.654 14.9132 13.151 15.3283 12.1336 15.3283C11.1162 15.3283 9.61329 14.9132 8.9515 14.2484C8.69058 13.9828 8.4697 13.6799 8.29591 13.3496C8.12212 13.6799 7.90123 13.9828 7.64031 14.2484C7.20427 14.6854 6.05697 15.0162 5.45085 15.1848C4.22934 15.3346 2.78826 15.1567 1.88217 14.2484C1.54395 13.9065 1.2759 13.5006 1.09335 13.0539C0.910809 12.6072 0.817363 12.1286 0.818367 11.6454V10.1973C0.819307 10.1253 0.837336 10.0547 0.870939 9.99126L3.44386 1.67353C3.65414 0.990012 4.17058 0.549938 5.16944 0.5H34.2663C35.1631 0.596754 35.7476 0.977528 35.9888 1.66729L38.772 9.97566C38.8073 10.0353 38.8275 10.1029 38.8307 10.1723C38.8322 10.1868 38.8322 10.2015 38.8307 10.216V11.6454C38.8305 12.1293 38.7356 12.6083 38.5515 13.055C38.3673 13.5017 38.0975 13.9073 37.7577 14.2484C36.6815 15.3346 35.0425 15.3065 33.6385 14.9819H33.6261Z" />
                 </mask>
-                <path d="M10.4699 20.3596C10.3124 20.3596 10.1614 20.2964 10.0501 20.184C9.9387 20.0717 9.87615 19.9192 9.87615 19.7603C9.87615 19.6014 9.9387 19.4489 10.0501 19.3366C10.1614 19.2242 10.3124 19.161 10.4699 19.161H11.3327C11.8382 19.1514 12.3367 19.282 12.7738 19.5387C13.2586 19.8583 13.6038 20.353 13.7386 20.9213C13.7353 20.9287 13.7336 20.9367 13.7336 20.9448C13.7336 20.9528 13.7353 20.9608 13.7386 20.9682L13.8871 21.5924H14.2272V19.1267C14.228 18.9672 14.2912 18.8145 14.4029 18.7017C14.5147 18.5889 14.666 18.5252 14.8241 18.5243H17.9753C18.1333 18.5252 18.2846 18.5889 18.3964 18.7017C18.5082 18.8145 18.5713 18.9672 18.5721 19.1267V20.5905C18.8217 20.3358 19.1188 20.1334 19.4463 19.9952C19.7738 19.857 20.1252 19.7857 20.4802 19.7853C20.7967 19.7838 21.111 19.8399 21.4079 19.9507C21.8177 19.5109 22.3403 19.1944 22.9175 19.0361C23.4948 18.8778 24.1042 18.8841 24.6782 19.0541C25.2522 19.2241 25.7682 19.5513 26.1692 19.9994C26.5701 20.4474 26.8402 20.9988 26.9496 21.5924H27.0949C27.2502 21.5932 27.3988 21.6561 27.5084 21.7672C27.6179 21.8783 27.6794 22.0287 27.6794 22.1854C27.6777 22.2467 27.6683 22.3075 27.6515 22.3664L26.1053 28.6086C26.0757 28.739 26.0028 28.8553 25.8988 28.9382C25.7947 29.021 25.6658 29.0655 25.5332 29.0643H15.891C16.1012 29.8383 16.3146 30.269 16.5899 30.4625C16.9362 30.6904 17.5392 30.706 18.5474 30.6904H25.3786C25.5344 30.6904 25.6839 30.7529 25.7941 30.8641C25.9042 30.9753 25.9662 31.1261 25.9662 31.2834C25.9662 31.4407 25.9042 31.5915 25.7941 31.7027C25.6839 31.8139 25.5344 31.8764 25.3786 31.8764H18.5752C17.3382 31.8764 16.5558 31.8764 15.9404 31.4488C15.325 31.0212 14.9756 30.294 14.6447 28.9707L12.6222 21.2709C12.6222 21.2709 12.6222 21.2709 12.6222 21.2428C12.5953 21.1045 12.5415 20.9729 12.464 20.8556C12.3866 20.7383 12.2869 20.6376 12.1707 20.5593C11.9158 20.414 11.6251 20.3447 11.3327 20.3596H10.4699ZM36.2454 16.9263V33.4682C36.2446 34.0068 36.0323 34.5231 35.6549 34.904C35.2775 35.2848 34.7659 35.4992 34.2323 35.5H5.40447C5.13995 35.4995 4.87813 35.4463 4.63403 35.3435C4.38992 35.2406 4.16832 35.0902 3.98194 34.9007C3.79466 34.7125 3.64608 34.4887 3.54472 34.2424C3.44335 33.996 3.39121 33.7318 3.39128 33.465V16.9482C3.98997 17.0478 4.59728 17.0844 5.20346 17.0574V33.3152C5.20321 33.3616 5.2121 33.4076 5.22962 33.4504C5.24714 33.4933 5.27294 33.5322 5.30551 33.5649C5.33817 33.5972 5.37685 33.6227 5.41931 33.6398C5.46177 33.657 5.50718 33.6655 5.55291 33.6648H15.8786C15.9604 33.3536 16.1418 33.0784 16.3946 32.8819C16.6473 32.6855 16.9574 32.5789 17.2764 32.5787C17.5958 32.5787 17.9063 32.6852 18.1596 32.8816C18.4129 33.078 18.5948 33.3533 18.6773 33.6648H22.2181C22.2999 33.3536 22.4813 33.0784 22.7341 32.8819C22.9869 32.6855 23.2969 32.5789 23.6159 32.5787C23.9354 32.5782 24.2462 32.6845 24.4996 32.881C24.753 33.0775 24.9348 33.3531 25.0168 33.6648H34.0838C34.1765 33.6648 34.2654 33.6276 34.3309 33.5615C34.3965 33.4954 34.4333 33.4056 34.4333 33.3121V16.9794C35.0373 17.0299 35.645 17.0131 36.2454 16.9295V16.9263ZM22.0975 24.0144C22.1161 23.9184 22.1671 23.832 22.2418 23.7698C22.3166 23.7077 22.4104 23.6737 22.5072 23.6737C22.6041 23.6737 22.6979 23.7077 22.7727 23.7698C22.8474 23.832 22.8984 23.9184 22.917 24.0144V26.3084C22.8984 26.4043 22.8474 26.4907 22.7727 26.5529C22.6979 26.615 22.6041 26.649 22.5072 26.649C22.4104 26.649 22.3166 26.615 22.2418 26.5529C22.1671 26.4907 22.1161 26.4043 22.0975 26.3084V24.0144ZM19.6421 24.0144C19.6606 23.9184 19.7117 23.832 19.7864 23.7698C19.8612 23.7077 19.955 23.6737 20.0518 23.6737C20.1487 23.6737 20.2425 23.7077 20.3173 23.7698C20.392 23.832 20.443 23.9184 20.4616 24.0144V26.3084C20.443 26.4043 20.392 26.4907 20.3173 26.5529C20.2425 26.615 20.1487 26.649 20.0518 26.649C19.955 26.649 19.8612 26.615 19.7864 26.5529C19.7117 26.4907 19.6606 26.4043 19.6421 26.3084V24.0144ZM17.1898 24.0144C17.2083 23.9184 17.2594 23.832 17.3341 23.7698C17.4089 23.7077 17.5027 23.6737 17.5995 23.6737C17.6964 23.6737 17.7902 23.7077 17.865 23.7698C17.9397 23.832 17.9907 23.9184 18.0093 24.0144V26.3084C17.9907 26.4043 17.9397 26.4907 17.865 26.5529C17.7902 26.615 17.6964 26.649 17.5995 26.649C17.5027 26.649 17.4089 26.615 17.3341 26.5529C17.2594 26.4907 17.2083 26.4043 17.1898 26.3084V24.0144ZM22.2676 20.475C22.6071 20.7798 22.87 21.1618 23.0345 21.5893H25.9074C25.8135 21.2148 25.6253 20.8712 25.3611 20.5918C25.0969 20.3124 24.7656 20.1066 24.3993 19.9945C24.0331 19.8824 23.6444 19.8677 23.2709 19.9519C22.8974 20.0361 22.5518 20.2163 22.2676 20.475ZM23.2293 22.7753H14.2365L15.5755 27.8658H25.0786L26.3156 22.7753H23.2293ZM17.8887 21.5768C17.8887 21.5362 17.9227 21.4925 17.9413 21.4519V19.5605C17.9413 19.4447 17.8956 19.3335 17.8144 19.2516C17.7333 19.1696 17.6231 19.1236 17.5083 19.1236H15.3529C15.238 19.1236 15.1279 19.1696 15.0467 19.2516C14.9655 19.3335 14.9199 19.4447 14.9199 19.5605V21.5768H17.8887ZM33.6261 14.9819C33.2396 14.7978 32.2871 14.5481 31.9871 14.2484C31.7262 13.9828 31.5053 13.6799 31.3315 13.3496C31.1578 13.6799 30.9369 13.9828 30.676 14.2484C30.0142 14.9132 28.5112 15.3283 27.4938 15.3283C26.4764 15.3283 24.9735 14.9132 24.321 14.2484C24.06 13.9828 23.8392 13.6799 23.6654 13.3496C23.4916 13.6799 23.2707 13.9828 23.0098 14.2484C22.348 14.9132 20.8451 15.3283 19.8276 15.3283C18.8102 15.3283 17.3073 14.9132 16.6455 14.2484C16.378 13.9841 16.1508 13.6812 15.9714 13.3496C15.7976 13.6799 15.5767 13.9828 15.3158 14.2484C14.654 14.9132 13.151 15.3283 12.1336 15.3283C11.1162 15.3283 9.61329 14.9132 8.9515 14.2484C8.69058 13.9828 8.4697 13.6799 8.29591 13.3496C8.12212 13.6799 7.90123 13.9828 7.64031 14.2484C7.20427 14.6854 6.05697 15.0162 5.45085 15.1848C4.22934 15.3346 2.78826 15.1567 1.88217 14.2484C1.54395 13.9065 1.2759 13.5006 1.09335 13.0539C0.910809 12.6072 0.817363 12.1286 0.818367 11.6454V10.1973C0.819307 10.1253 0.837336 10.0547 0.870939 9.99126L3.44386 1.67353C3.65414 0.990012 4.17058 0.549938 5.16944 0.5H34.2663C35.1631 0.596754 35.7476 0.977528 35.9888 1.66729L38.772 9.97566C38.8073 10.0353 38.8275 10.1029 38.8307 10.1723C38.8322 10.1868 38.8322 10.2015 38.8307 10.216V11.6454C38.8305 12.1293 38.7356 12.6083 38.5515 13.055C38.3673 13.5017 38.0975 13.9073 37.7577 14.2484C36.6815 15.3346 35.0425 15.3065 33.6385 14.9819H33.6261Z" stroke={activeMenu === 'admanager' ? 'black' : 'rgba(227, 31, 37, 1)'} stroke-width="4" mask="url(#path-1-inside-1_1763_293017)" />
+                <path
+                  d="M10.4699 20.3596C10.3124 20.3596 10.1614 20.2964 10.0501 20.184C9.9387 20.0717 9.87615 19.9192 9.87615 19.7603C9.87615 19.6014 9.9387 19.4489 10.0501 19.3366C10.1614 19.2242 10.3124 19.161 10.4699 19.161H11.3327C11.8382 19.1514 12.3367 19.282 12.7738 19.5387C13.2586 19.8583 13.6038 20.353 13.7386 20.9213C13.7353 20.9287 13.7336 20.9367 13.7336 20.9448C13.7336 20.9528 13.7353 20.9608 13.7386 20.9682L13.8871 21.5924H14.2272V19.1267C14.228 18.9672 14.2912 18.8145 14.4029 18.7017C14.5147 18.5889 14.666 18.5252 14.8241 18.5243H17.9753C18.1333 18.5252 18.2846 18.5889 18.3964 18.7017C18.5082 18.8145 18.5713 18.9672 18.5721 19.1267V20.5905C18.8217 20.3358 19.1188 20.1334 19.4463 19.9952C19.7738 19.857 20.1252 19.7857 20.4802 19.7853C20.7967 19.7838 21.111 19.8399 21.4079 19.9507C21.8177 19.5109 22.3403 19.1944 22.9175 19.0361C23.4948 18.8778 24.1042 18.8841 24.6782 19.0541C25.2522 19.2241 25.7682 19.5513 26.1692 19.9994C26.5701 20.4474 26.8402 20.9988 26.9496 21.5924H27.0949C27.2502 21.5932 27.3988 21.6561 27.5084 21.7672C27.6179 21.8783 27.6794 22.0287 27.6794 22.1854C27.6777 22.2467 27.6683 22.3075 27.6515 22.3664L26.1053 28.6086C26.0757 28.739 26.0028 28.8553 25.8988 28.9382C25.7947 29.021 25.6658 29.0655 25.5332 29.0643H15.891C16.1012 29.8383 16.3146 30.269 16.5899 30.4625C16.9362 30.6904 17.5392 30.706 18.5474 30.6904H25.3786C25.5344 30.6904 25.6839 30.7529 25.7941 30.8641C25.9042 30.9753 25.9662 31.1261 25.9662 31.2834C25.9662 31.4407 25.9042 31.5915 25.7941 31.7027C25.6839 31.8139 25.5344 31.8764 25.3786 31.8764H18.5752C17.3382 31.8764 16.5558 31.8764 15.9404 31.4488C15.325 31.0212 14.9756 30.294 14.6447 28.9707L12.6222 21.2709C12.6222 21.2709 12.6222 21.2709 12.6222 21.2428C12.5953 21.1045 12.5415 20.9729 12.464 20.8556C12.3866 20.7383 12.2869 20.6376 12.1707 20.5593C11.9158 20.414 11.6251 20.3447 11.3327 20.3596H10.4699ZM36.2454 16.9263V33.4682C36.2446 34.0068 36.0323 34.5231 35.6549 34.904C35.2775 35.2848 34.7659 35.4992 34.2323 35.5H5.40447C5.13995 35.4995 4.87813 35.4463 4.63403 35.3435C4.38992 35.2406 4.16832 35.0902 3.98194 34.9007C3.79466 34.7125 3.64608 34.4887 3.54472 34.2424C3.44335 33.996 3.39121 33.7318 3.39128 33.465V16.9482C3.98997 17.0478 4.59728 17.0844 5.20346 17.0574V33.3152C5.20321 33.3616 5.2121 33.4076 5.22962 33.4504C5.24714 33.4933 5.27294 33.5322 5.30551 33.5649C5.33817 33.5972 5.37685 33.6227 5.41931 33.6398C5.46177 33.657 5.50718 33.6655 5.55291 33.6648H15.8786C15.9604 33.3536 16.1418 33.0784 16.3946 32.8819C16.6473 32.6855 16.9574 32.5789 17.2764 32.5787C17.5958 32.5787 17.9063 32.6852 18.1596 32.8816C18.4129 33.078 18.5948 33.3533 18.6773 33.6648H22.2181C22.2999 33.3536 22.4813 33.0784 22.7341 32.8819C22.9869 32.6855 23.2969 32.5789 23.6159 32.5787C23.9354 32.5782 24.2462 32.6845 24.4996 32.881C24.753 33.0775 24.9348 33.3531 25.0168 33.6648H34.0838C34.1765 33.6648 34.2654 33.6276 34.3309 33.5615C34.3965 33.4954 34.4333 33.4056 34.4333 33.3121V16.9794C35.0373 17.0299 35.645 17.0131 36.2454 16.9295V16.9263ZM22.0975 24.0144C22.1161 23.9184 22.1671 23.832 22.2418 23.7698C22.3166 23.7077 22.4104 23.6737 22.5072 23.6737C22.6041 23.6737 22.6979 23.7077 22.7727 23.7698C22.8474 23.832 22.8984 23.9184 22.917 24.0144V26.3084C22.8984 26.4043 22.8474 26.4907 22.7727 26.5529C22.6979 26.615 22.6041 26.649 22.5072 26.649C22.4104 26.649 22.3166 26.615 22.2418 26.5529C22.1671 26.4907 22.1161 26.4043 22.0975 26.3084V24.0144ZM19.6421 24.0144C19.6606 23.9184 19.7117 23.832 19.7864 23.7698C19.8612 23.7077 19.955 23.6737 20.0518 23.6737C20.1487 23.6737 20.2425 23.7077 20.3173 23.7698C20.392 23.832 20.443 23.9184 20.4616 24.0144V26.3084C20.443 26.4043 20.392 26.4907 20.3173 26.5529C20.2425 26.615 20.1487 26.649 20.0518 26.649C19.955 26.649 19.8612 26.615 19.7864 26.5529C19.7117 26.4907 19.6606 26.4043 19.6421 26.3084V24.0144ZM17.1898 24.0144C17.2083 23.9184 17.2594 23.832 17.3341 23.7698C17.4089 23.7077 17.5027 23.6737 17.5995 23.6737C17.6964 23.6737 17.7902 23.7077 17.865 23.7698C17.9397 23.832 17.9907 23.9184 18.0093 24.0144V26.3084C17.9907 26.4043 17.9397 26.4907 17.865 26.5529C17.7902 26.615 17.6964 26.649 17.5995 26.649C17.5027 26.649 17.4089 26.615 17.3341 26.5529C17.2594 26.4907 17.2083 26.4043 17.1898 26.3084V24.0144ZM22.2676 20.475C22.6071 20.7798 22.87 21.1618 23.0345 21.5893H25.9074C25.8135 21.2148 25.6253 20.8712 25.3611 20.5918C25.0969 20.3124 24.7656 20.1066 24.3993 19.9945C24.0331 19.8824 23.6444 19.8677 23.2709 19.9519C22.8974 20.0361 22.5518 20.2163 22.2676 20.475ZM23.2293 22.7753H14.2365L15.5755 27.8658H25.0786L26.3156 22.7753H23.2293ZM17.8887 21.5768C17.8887 21.5362 17.9227 21.4925 17.9413 21.4519V19.5605C17.9413 19.4447 17.8956 19.3335 17.8144 19.2516C17.7333 19.1696 17.6231 19.1236 17.5083 19.1236H15.3529C15.238 19.1236 15.1279 19.1696 15.0467 19.2516C14.9655 19.3335 14.9199 19.4447 14.9199 19.5605V21.5768H17.8887ZM33.6261 14.9819C33.2396 14.7978 32.2871 14.5481 31.9871 14.2484C31.7262 13.9828 31.5053 13.6799 31.3315 13.3496C31.1578 13.6799 30.9369 13.9828 30.676 14.2484C30.0142 14.9132 28.5112 15.3283 27.4938 15.3283C26.4764 15.3283 24.9735 14.9132 24.321 14.2484C24.06 13.9828 23.8392 13.6799 23.6654 13.3496C23.4916 13.6799 23.2707 13.9828 23.0098 14.2484C22.348 14.9132 20.8451 15.3283 19.8276 15.3283C18.8102 15.3283 17.3073 14.9132 16.6455 14.2484C16.378 13.9841 16.1508 13.6812 15.9714 13.3496C15.7976 13.6799 15.5767 13.9828 15.3158 14.2484C14.654 14.9132 13.151 15.3283 12.1336 15.3283C11.1162 15.3283 9.61329 14.9132 8.9515 14.2484C8.69058 13.9828 8.4697 13.6799 8.29591 13.3496C8.12212 13.6799 7.90123 13.9828 7.64031 14.2484C7.20427 14.6854 6.05697 15.0162 5.45085 15.1848C4.22934 15.3346 2.78826 15.1567 1.88217 14.2484C1.54395 13.9065 1.2759 13.5006 1.09335 13.0539C0.910809 12.6072 0.817363 12.1286 0.818367 11.6454V10.1973C0.819307 10.1253 0.837336 10.0547 0.870939 9.99126L3.44386 1.67353C3.65414 0.990012 4.17058 0.549938 5.16944 0.5H34.2663C35.1631 0.596754 35.7476 0.977528 35.9888 1.66729L38.772 9.97566C38.8073 10.0353 38.8275 10.1029 38.8307 10.1723C38.8322 10.1868 38.8322 10.2015 38.8307 10.216V11.6454C38.8305 12.1293 38.7356 12.6083 38.5515 13.055C38.3673 13.5017 38.0975 13.9073 37.7577 14.2484C36.6815 15.3346 35.0425 15.3065 33.6385 14.9819H33.6261Z"
+                  stroke={
+                    activeMenu === "admanager"
+                      ? "black"
+                      : "rgba(227, 31, 37, 1)"
+                  }
+                  stroke-width="4"
+                  mask="url(#path-1-inside-1_1763_293017)"
+                />
               </svg>
               Products
             </div>
-            <i className={`fas fa-chevron-${activeMenu === 'admanager' ? "up" : "down"} ml-2`}></i>
+            <i
+              className={`fas fa-chevron-${activeMenu === "admanager" ? "up" : "down"} ml-2`}
+            ></i>
           </div>
 
           {/* SubProducts with products and add product section */}
-          {activeMenu === 'admanager' && (
+          {activeMenu === "admanager" && (
             <div className="subcategory-list pl-6">
               <div
-                className={`subcategory-item ${activeSubProduct === 'All Products' ? 'active' : ''}`}
+                className={`subcategory-item ${activeSubProduct === "All Products" ? "active" : ""}`}
                 onClick={() => {
-                  // setEditProduct(null); 
-                  setActiveSubProduct('All Products')
-                }}>
+                  // setEditProduct(null);
+                  setActiveSubProduct("All Products");
+                }}
+              >
                 All Products
               </div>
               <div
-                className={`subcategory-item ${activeSubProduct === 'Add Products' ? 'active' : ''}`}
+                className={`subcategory-item ${activeSubProduct === "Add Products" ? "active" : ""}`}
                 onClick={() => {
-                  setEditVehicle(null); 
-                  setActiveSubProduct('Add Products')
+                  setEditVehicle(null);
+                  setActiveSubProduct("Add Products");
 
                   // ✅ Also make sure state from URL is cleared (rare case fallback)
                   // window.history.replaceState({}, document.title, location.pathname + '#admanager');
-                }}>
+                }}
+              >
                 {isEditing ? "Edit Product" : "Add Product"}
               </div>
             </div>
           )}
 
+          {/* VEHICLES SECTION - FIXED */}
+          <div
+            className={`adminHeadings ${activeVehicleMenu === "vehicles" ? "active" : ""}`}
+            onClick={() => {
+              // Toggle vehicles menu
+              if (activeVehicleMenu === "vehicles") {
+                setActiveVehicleMenu("");
+                setActiveSubProduct(""); // Clear subproduct when closing
+              } else {
+                setActiveVehicleMenu("vehicles");
+                setActiveSubProduct("Vehicles Info"); // Set default subproduct
+                setActiveProductMenu(""); // THIS LINE DEACTIVATES PRODUCTS
+                setActiveMenu(""); // THIS LINE DEACTIVATES DASHBOARD
+              }
+            }}
+          >
+            <div className="sideImageHeading">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="adminHeading-imgs"
+                viewBox="0 0 39 36"
+                fill="none"
+              >
+                <mask id="path-1-inside-1_1763_293017" fill="white">
+                  <path d="M10.4699 20.3596C10.3124 20.3596 10.1614 20.2964 10.0501 20.184C9.9387 20.0717 9.87615 19.9192 9.87615 19.7603C9.87615 19.6014 9.9387 19.4489 10.0501 19.3366C10.1614 19.2242 10.3124 19.161 10.4699 19.161H11.3327C11.8382 19.1514 12.3367 19.282 12.7738 19.5387C13.2586 19.8583 13.6038 20.353 13.7386 20.9213C13.7353 20.9287 13.7336 20.9367 13.7336 20.9448C13.7336 20.9528 13.7353 20.9608 13.7386 20.9682L13.8871 21.5924H14.2272V19.1267C14.228 18.9672 14.2912 18.8145 14.4029 18.7017C14.5147 18.5889 14.666 18.5252 14.8241 18.5243H17.9753C18.1333 18.5252 18.2846 18.5889 18.3964 18.7017C18.5082 18.8145 18.5713 18.9672 18.5721 19.1267V20.5905C18.8217 20.3358 19.1188 20.1334 19.4463 19.9952C19.7738 19.857 20.1252 19.7857 20.4802 19.7853C20.7967 19.7838 21.111 19.8399 21.4079 19.9507C21.8177 19.5109 22.3403 19.1944 22.9175 19.0361C23.4948 18.8778 24.1042 18.8841 24.6782 19.0541C25.2522 19.2241 25.7682 19.5513 26.1692 19.9994C26.5701 20.4474 26.8402 20.9988 26.9496 21.5924H27.0949C27.2502 21.5932 27.3988 21.6561 27.5084 21.7672C27.6179 21.8783 27.6794 22.0287 27.6794 22.1854C27.6777 22.2467 27.6683 22.3075 27.6515 22.3664L26.1053 28.6086C26.0757 28.739 26.0028 28.8553 25.8988 28.9382C25.7947 29.021 25.6658 29.0655 25.5332 29.0643H15.891C16.1012 29.8383 16.3146 30.269 16.5899 30.4625C16.9362 30.6904 17.5392 30.706 18.5474 30.6904H25.3786C25.5344 30.6904 25.6839 30.7529 25.7941 30.8641C25.9042 30.9753 25.9662 31.1261 25.9662 31.2834C25.9662 31.4407 25.9042 31.5915 25.7941 31.7027C25.6839 31.8139 25.5344 31.8764 25.3786 31.8764H18.5752C17.3382 31.8764 16.5558 31.8764 15.9404 31.4488C15.325 31.0212 14.9756 30.294 14.6447 28.9707L12.6222 21.2709C12.6222 21.2709 12.6222 21.2709 12.6222 21.2428C12.5953 21.1045 12.5415 20.9729 12.464 20.8556C12.3866 20.7383 12.2869 20.6376 12.1707 20.5593C11.9158 20.414 11.6251 20.3447 11.3327 20.3596H10.4699ZM36.2454 16.9263V33.4682C36.2446 34.0068 36.0323 34.5231 35.6549 34.904C35.2775 35.2848 34.7659 35.4992 34.2323 35.5H5.40447C5.13995 35.4995 4.87813 35.4463 4.63403 35.3435C4.38992 35.2406 4.16832 35.0902 3.98194 34.9007C3.79466 34.7125 3.64608 34.4887 3.54472 34.2424C3.44335 33.996 3.39121 33.7318 3.39128 33.465V16.9482C3.98997 17.0478 4.59728 17.0844 5.20346 17.0574V33.3152C5.20321 33.3616 5.2121 33.4076 5.22962 33.4504C5.24714 33.4933 5.27294 33.5322 5.30551 33.5649C5.33817 33.5972 5.37685 33.6227 5.41931 33.6398C5.46177 33.657 5.50718 33.6655 5.55291 33.6648H15.8786C15.9604 33.3536 16.1418 33.0784 16.3946 32.8819C16.6473 32.6855 16.9574 32.5789 17.2764 32.5787C17.5958 32.5787 17.9063 32.6852 18.1596 32.8816C18.4129 33.078 18.5948 33.3533 18.6773 33.6648H22.2181C22.2999 33.3536 22.4813 33.0784 22.7341 32.8819C22.9869 32.6855 23.2969 32.5789 23.6159 32.5787C23.9354 32.5782 24.2462 32.6845 24.4996 32.881C24.753 33.0775 24.9348 33.3531 25.0168 33.6648H34.0838C34.1765 33.6648 34.2654 33.6276 34.3309 33.5615C34.3965 33.4954 34.4333 33.4056 34.4333 33.3121V16.9794C35.0373 17.0299 35.645 17.0131 36.2454 16.9295V16.9263ZM22.0975 24.0144C22.1161 23.9184 22.1671 23.832 22.2418 23.7698C22.3166 23.7077 22.4104 23.6737 22.5072 23.6737C22.6041 23.6737 22.6979 23.7077 22.7727 23.7698C22.8474 23.832 22.8984 23.9184 22.917 24.0144V26.3084C22.8984 26.4043 22.8474 26.4907 22.7727 26.5529C22.6979 26.615 22.6041 26.649 22.5072 26.649C22.4104 26.649 22.3166 26.615 22.2418 26.5529C22.1671 26.4907 22.1161 26.4043 22.0975 26.3084V24.0144ZM19.6421 24.0144C19.6606 23.9184 19.7117 23.832 19.7864 23.7698C19.8612 23.7077 19.955 23.6737 20.0518 23.6737C20.1487 23.6737 20.2425 23.7077 20.3173 23.7698C20.392 23.832 20.443 23.9184 20.4616 24.0144V26.3084C20.443 26.4043 20.392 26.4907 20.3173 26.5529C20.2425 26.615 20.1487 26.649 20.0518 26.649C19.955 26.649 19.8612 26.615 19.7864 26.5529C19.7117 26.4907 19.6606 26.4043 19.6421 26.3084V24.0144ZM17.1898 24.0144C17.2083 23.9184 17.2594 23.832 17.3341 23.7698C17.4089 23.7077 17.5027 23.6737 17.5995 23.6737C17.6964 23.6737 17.7902 23.7077 17.865 23.7698C17.9397 23.832 17.9907 23.9184 18.0093 24.0144V26.3084C17.9907 26.4043 17.9397 26.4907 17.865 26.5529C17.7902 26.615 17.6964 26.649 17.5995 26.649C17.5027 26.649 17.4089 26.615 17.3341 26.5529C17.2594 26.4907 17.2083 26.4043 17.1898 26.3084V24.0144ZM22.2676 20.475C22.6071 20.7798 22.87 21.1618 23.0345 21.5893H25.9074C25.8135 21.2148 25.6253 20.8712 25.3611 20.5918C25.0969 20.3124 24.7656 20.1066 24.3993 19.9945C24.0331 19.8824 23.6444 19.8677 23.2709 19.9519C22.8974 20.0361 22.5518 20.2163 22.2676 20.475ZM23.2293 22.7753H14.2365L15.5755 27.8658H25.0786L26.3156 22.7753H23.2293ZM17.8887 21.5768C17.8887 21.5362 17.9227 21.4925 17.9413 21.4519V19.5605C17.9413 19.4447 17.8956 19.3335 17.8144 19.2516C17.7333 19.1696 17.6231 19.1236 17.5083 19.1236H15.3529C15.238 19.1236 15.1279 19.1696 15.0467 19.2516C14.9655 19.3335 14.9199 19.4447 14.9199 19.5605V21.5768H17.8887ZM33.6261 14.9819C33.2396 14.7978 32.2871 14.5481 31.9871 14.2484C31.7262 13.9828 31.5053 13.6799 31.3315 13.3496C31.1578 13.6799 30.9369 13.9828 30.676 14.2484C30.0142 14.9132 28.5112 15.3283 27.4938 15.3283C26.4764 15.3283 24.9735 14.9132 24.321 14.2484C24.06 13.9828 23.8392 13.6799 23.6654 13.3496C23.4916 13.6799 23.2707 13.9828 23.0098 14.2484C22.348 14.9132 20.8451 15.3283 19.8276 15.3283C18.8102 15.3283 17.3073 14.9132 16.6455 14.2484C16.378 13.9841 16.1508 13.6812 15.9714 13.3496C15.7976 13.6799 15.5767 13.9828 15.3158 14.2484C14.654 14.9132 13.151 15.3283 12.1336 15.3283C11.1162 15.3283 9.61329 14.9132 8.9515 14.2484C8.69058 13.9828 8.4697 13.6799 8.29591 13.3496C8.12212 13.6799 7.90123 13.9828 7.64031 14.2484C7.20427 14.6854 6.05697 15.0162 5.45085 15.1848C4.22934 15.3346 2.78826 15.1567 1.88217 14.2484C1.54395 13.9065 1.2759 13.5006 1.09335 13.0539C0.910809 12.6072 0.817363 12.1286 0.818367 11.6454V10.1973C0.819307 10.1253 0.837336 10.0547 0.870939 9.99126L3.44386 1.67353C3.65414 0.990012 4.17058 0.549938 5.16944 0.5H34.2663C35.1631 0.596754 35.7476 0.977528 35.9888 1.66729L38.772 9.97566C38.8073 10.0353 38.8275 10.1029 38.8307 10.1723C38.8322 10.1868 38.8322 10.2015 38.8307 10.216V11.6454C38.8305 12.1293 38.7356 12.6083 38.5515 13.055C38.3673 13.5017 38.0975 13.9073 37.7577 14.2484C36.6815 15.3346 35.0425 15.3065 33.6385 14.9819H33.6261Z" />
+                </mask>
+                <path
+                  d="M10.4699 20.3596C10.3124 20.3596 10.1614 20.2964 10.0501 20.184C9.9387 20.0717 9.87615 19.9192 9.87615 19.7603C9.87615 19.6014 9.9387 19.4489 10.0501 19.3366C10.1614 19.2242 10.3124 19.161 10.4699 19.161H11.3327C11.8382 19.1514 12.3367 19.282 12.7738 19.5387C13.2586 19.8583 13.6038 20.353 13.7386 20.9213C13.7353 20.9287 13.7336 20.9367 13.7336 20.9448C13.7336 20.9528 13.7353 20.9608 13.7386 20.9682L13.8871 21.5924H14.2272V19.1267C14.228 18.9672 14.2912 18.8145 14.4029 18.7017C14.5147 18.5889 14.666 18.5252 14.8241 18.5243H17.9753C18.1333 18.5252 18.2846 18.5889 18.3964 18.7017C18.5082 18.8145 18.5713 18.9672 18.5721 19.1267V20.5905C18.8217 20.3358 19.1188 20.1334 19.4463 19.9952C19.7738 19.857 20.1252 19.7857 20.4802 19.7853C20.7967 19.7838 21.111 19.8399 21.4079 19.9507C21.8177 19.5109 22.3403 19.1944 22.9175 19.0361C23.4948 18.8778 24.1042 18.8841 24.6782 19.0541C25.2522 19.2241 25.7682 19.5513 26.1692 19.9994C26.5701 20.4474 26.8402 20.9988 26.9496 21.5924H27.0949C27.2502 21.5932 27.3988 21.6561 27.5084 21.7672C27.6179 21.8783 27.6794 22.0287 27.6794 22.1854C27.6777 22.2467 27.6683 22.3075 27.6515 22.3664L26.1053 28.6086C26.0757 28.739 26.0028 28.8553 25.8988 28.9382C25.7947 29.021 25.6658 29.0655 25.5332 29.0643H15.891C16.1012 29.8383 16.3146 30.269 16.5899 30.4625C16.9362 30.6904 17.5392 30.706 18.5474 30.6904H25.3786C25.5344 30.6904 25.6839 30.7529 25.7941 30.8641C25.9042 30.9753 25.9662 31.1261 25.9662 31.2834C25.9662 31.4407 25.9042 31.5915 25.7941 31.7027C25.6839 31.8139 25.5344 31.8764 25.3786 31.8764H18.5752C17.3382 31.8764 16.5558 31.8764 15.9404 31.4488C15.325 31.0212 14.9756 30.294 14.6447 28.9707L12.6222 21.2709C12.6222 21.2709 12.6222 21.2709 12.6222 21.2428C12.5953 21.1045 12.5415 20.9729 12.464 20.8556C12.3866 20.7383 12.2869 20.6376 12.1707 20.5593C11.9158 20.414 11.6251 20.3447 11.3327 20.3596H10.4699ZM36.2454 16.9263V33.4682C36.2446 34.0068 36.0323 34.5231 35.6549 34.904C35.2775 35.2848 34.7659 35.4992 34.2323 35.5H5.40447C5.13995 35.4995 4.87813 35.4463 4.63403 35.3435C4.38992 35.2406 4.16832 35.0902 3.98194 34.9007C3.79466 34.7125 3.64608 34.4887 3.54472 34.2424C3.44335 33.996 3.39121 33.7318 3.39128 33.465V16.9482C3.98997 17.0478 4.59728 17.0844 5.20346 17.0574V33.3152C5.20321 33.3616 5.2121 33.4076 5.22962 33.4504C5.24714 33.4933 5.27294 33.5322 5.30551 33.5649C5.33817 33.5972 5.37685 33.6227 5.41931 33.6398C5.46177 33.657 5.50718 33.6655 5.55291 33.6648H15.8786C15.9604 33.3536 16.1418 33.0784 16.3946 32.8819C16.6473 32.6855 16.9574 32.5789 17.2764 32.5787C17.5958 32.5787 17.9063 32.6852 18.1596 32.8816C18.4129 33.078 18.5948 33.3533 18.6773 33.6648H22.2181C22.2999 33.3536 22.4813 33.0784 22.7341 32.8819C22.9869 32.6855 23.2969 32.5789 23.6159 32.5787C23.9354 32.5782 24.2462 32.6845 24.4996 32.881C24.753 33.0775 24.9348 33.3531 25.0168 33.6648H34.0838C34.1765 33.6648 34.2654 33.6276 34.3309 33.5615C34.3965 33.4954 34.4333 33.4056 34.4333 33.3121V16.9794C35.0373 17.0299 35.645 17.0131 36.2454 16.9295V16.9263ZM22.0975 24.0144C22.1161 23.9184 22.1671 23.832 22.2418 23.7698C22.3166 23.7077 22.4104 23.6737 22.5072 23.6737C22.6041 23.6737 22.6979 23.7077 22.7727 23.7698C22.8474 23.832 22.8984 23.9184 22.917 24.0144V26.3084C22.8984 26.4043 22.8474 26.4907 22.7727 26.5529C22.6979 26.615 22.6041 26.649 22.5072 26.649C22.4104 26.649 22.3166 26.615 22.2418 26.5529C22.1671 26.4907 22.1161 26.4043 22.0975 26.3084V24.0144ZM19.6421 24.0144C19.6606 23.9184 19.7117 23.832 19.7864 23.7698C19.8612 23.7077 19.955 23.6737 20.0518 23.6737C20.1487 23.6737 20.2425 23.7077 20.3173 23.7698C20.392 23.832 20.443 23.9184 20.4616 24.0144V26.3084C20.443 26.4043 20.392 26.4907 20.3173 26.5529C20.2425 26.615 20.1487 26.649 20.0518 26.649C19.955 26.649 19.8612 26.615 19.7864 26.5529C19.7117 26.4907 19.6606 26.4043 19.6421 26.3084V24.0144ZM17.1898 24.0144C17.2083 23.9184 17.2594 23.832 17.3341 23.7698C17.4089 23.7077 17.5027 23.6737 17.5995 23.6737C17.6964 23.6737 17.7902 23.7077 17.865 23.7698C17.9397 23.832 17.9907 23.9184 18.0093 24.0144V26.3084C17.9907 26.4043 17.9397 26.4907 17.865 26.5529C17.7902 26.615 17.6964 26.649 17.5995 26.649C17.5027 26.649 17.4089 26.615 17.3341 26.5529C17.2594 26.4907 17.2083 26.4043 17.1898 26.3084V24.0144ZM22.2676 20.475C22.6071 20.7798 22.87 21.1618 23.0345 21.5893H25.9074C25.8135 21.2148 25.6253 20.8712 25.3611 20.5918C25.0969 20.3124 24.7656 20.1066 24.3993 19.9945C24.0331 19.8824 23.6444 19.8677 23.2709 19.9519C22.8974 20.0361 22.5518 20.2163 22.2676 20.475ZM23.2293 22.7753H14.2365L15.5755 27.8658H25.0786L26.3156 22.7753H23.2293ZM17.8887 21.5768C17.8887 21.5362 17.9227 21.4925 17.9413 21.4519V19.5605C17.9413 19.4447 17.8956 19.3335 17.8144 19.2516C17.7333 19.1696 17.6231 19.1236 17.5083 19.1236H15.3529C15.238 19.1236 15.1279 19.1696 15.0467 19.2516C14.9655 19.3335 14.9199 19.4447 14.9199 19.5605V21.5768H17.8887ZM33.6261 14.9819C33.2396 14.7978 32.2871 14.5481 31.9871 14.2484C31.7262 13.9828 31.5053 13.6799 31.3315 13.3496C31.1578 13.6799 30.9369 13.9828 30.676 14.2484C30.0142 14.9132 28.5112 15.3283 27.4938 15.3283C26.4764 15.3283 24.9735 14.9132 24.321 14.2484C24.06 13.9828 23.8392 13.6799 23.6654 13.3496C23.4916 13.6799 23.2707 13.9828 23.0098 14.2484C22.348 14.9132 20.8451 15.3283 19.8276 15.3283C18.8102 15.3283 17.3073 14.9132 16.6455 14.2484C16.378 13.9841 16.1508 13.6812 15.9714 13.3496C15.7976 13.6799 15.5767 13.9828 15.3158 14.2484C14.654 14.9132 13.151 15.3283 12.1336 15.3283C11.1162 15.3283 9.61329 14.9132 8.9515 14.2484C8.69058 13.9828 8.4697 13.6799 8.29591 13.3496C8.12212 13.6799 7.90123 13.9828 7.64031 14.2484C7.20427 14.6854 6.05697 15.0162 5.45085 15.1848C4.22934 15.3346 2.78826 15.1567 1.88217 14.2484C1.54395 13.9065 1.2759 13.5006 1.09335 13.0539C0.910809 12.6072 0.817363 12.1286 0.818367 11.6454V10.1973C0.819307 10.1253 0.837336 10.0547 0.870939 9.99126L3.44386 1.67353C3.65414 0.990012 4.17058 0.549938 5.16944 0.5H34.2663C35.1631 0.596754 35.7476 0.977528 35.9888 1.66729L38.772 9.97566C38.8073 10.0353 38.8275 10.1029 38.8307 10.1723C38.8322 10.1868 38.8322 10.2015 38.8307 10.216V11.6454C38.8305 12.1293 38.7356 12.6083 38.5515 13.055C38.3673 13.5017 38.0975 13.9073 37.7577 14.2484C36.6815 15.3346 35.0425 15.3065 33.6385 14.9819H33.6261Z"
+                  stroke={
+                    activeVehicleMenu === "vehicles"
+                      ? "black"
+                      : "rgba(227, 31, 37, 1)"
+                  }
+                  strokeWidth="4"
+                  mask="url(#path-1-inside-1_1763_293017)"
+                />
+              </svg>
+              Vehicles
+            </div>
+            <i
+              className={`fas fa-chevron-${activeVehicleMenu === "vehicles" ? "up" : "down"} ml-2`}
+            ></i>
+          </div>
 
-      {/* VEHICLES SECTION - FIXED */}
-<div className={`adminHeadings ${activeVehicleMenu === 'vehicles' ? 'active' : ''}`}
-  // onClick={() => {
-  //   // Toggle vehicles menu
-  //   if (activeVehicleMenu === 'vehicles') {
-  //     setActiveVehicleMenu('');
-  //   } else {
-  //     setActiveVehicleMenu('vehicles');
-  //     setActiveSubProduct(''); // Close products submenu
-  //   }
-  // }}>
-  onClick={() => {
-    // Toggle vehicles menu
-    if (activeVehicleMenu === 'vehicles') {
-      setActiveVehicleMenu('');
-      setActiveSubProduct(''); // Clear subproduct when closing
-    } else {
-      setActiveVehicleMenu('vehicles');
-      setActiveSubProduct('Vehicles Info'); // Set default subproduct
-      setActiveProductMenu(''); // THIS LINE DEACTIVATES PRODUCTS
-      setActiveMenu(''); // THIS LINE DEACTIVATES DASHBOARD
-    }
-  }}>
-  <div className='sideImageHeading'>
-    <svg xmlns="http://www.w3.org/2000/svg" className='adminHeading-imgs' viewBox="0 0 39 36" fill="none">
-      <mask id="path-1-inside-1_1763_293017" fill="white">
-        <path d="M10.4699 20.3596C10.3124 20.3596 10.1614 20.2964 10.0501 20.184C9.9387 20.0717 9.87615 19.9192 9.87615 19.7603C9.87615 19.6014 9.9387 19.4489 10.0501 19.3366C10.1614 19.2242 10.3124 19.161 10.4699 19.161H11.3327C11.8382 19.1514 12.3367 19.282 12.7738 19.5387C13.2586 19.8583 13.6038 20.353 13.7386 20.9213C13.7353 20.9287 13.7336 20.9367 13.7336 20.9448C13.7336 20.9528 13.7353 20.9608 13.7386 20.9682L13.8871 21.5924H14.2272V19.1267C14.228 18.9672 14.2912 18.8145 14.4029 18.7017C14.5147 18.5889 14.666 18.5252 14.8241 18.5243H17.9753C18.1333 18.5252 18.2846 18.5889 18.3964 18.7017C18.5082 18.8145 18.5713 18.9672 18.5721 19.1267V20.5905C18.8217 20.3358 19.1188 20.1334 19.4463 19.9952C19.7738 19.857 20.1252 19.7857 20.4802 19.7853C20.7967 19.7838 21.111 19.8399 21.4079 19.9507C21.8177 19.5109 22.3403 19.1944 22.9175 19.0361C23.4948 18.8778 24.1042 18.8841 24.6782 19.0541C25.2522 19.2241 25.7682 19.5513 26.1692 19.9994C26.5701 20.4474 26.8402 20.9988 26.9496 21.5924H27.0949C27.2502 21.5932 27.3988 21.6561 27.5084 21.7672C27.6179 21.8783 27.6794 22.0287 27.6794 22.1854C27.6777 22.2467 27.6683 22.3075 27.6515 22.3664L26.1053 28.6086C26.0757 28.739 26.0028 28.8553 25.8988 28.9382C25.7947 29.021 25.6658 29.0655 25.5332 29.0643H15.891C16.1012 29.8383 16.3146 30.269 16.5899 30.4625C16.9362 30.6904 17.5392 30.706 18.5474 30.6904H25.3786C25.5344 30.6904 25.6839 30.7529 25.7941 30.8641C25.9042 30.9753 25.9662 31.1261 25.9662 31.2834C25.9662 31.4407 25.9042 31.5915 25.7941 31.7027C25.6839 31.8139 25.5344 31.8764 25.3786 31.8764H18.5752C17.3382 31.8764 16.5558 31.8764 15.9404 31.4488C15.325 31.0212 14.9756 30.294 14.6447 28.9707L12.6222 21.2709C12.6222 21.2709 12.6222 21.2709 12.6222 21.2428C12.5953 21.1045 12.5415 20.9729 12.464 20.8556C12.3866 20.7383 12.2869 20.6376 12.1707 20.5593C11.9158 20.414 11.6251 20.3447 11.3327 20.3596H10.4699ZM36.2454 16.9263V33.4682C36.2446 34.0068 36.0323 34.5231 35.6549 34.904C35.2775 35.2848 34.7659 35.4992 34.2323 35.5H5.40447C5.13995 35.4995 4.87813 35.4463 4.63403 35.3435C4.38992 35.2406 4.16832 35.0902 3.98194 34.9007C3.79466 34.7125 3.64608 34.4887 3.54472 34.2424C3.44335 33.996 3.39121 33.7318 3.39128 33.465V16.9482C3.98997 17.0478 4.59728 17.0844 5.20346 17.0574V33.3152C5.20321 33.3616 5.2121 33.4076 5.22962 33.4504C5.24714 33.4933 5.27294 33.5322 5.30551 33.5649C5.33817 33.5972 5.37685 33.6227 5.41931 33.6398C5.46177 33.657 5.50718 33.6655 5.55291 33.6648H15.8786C15.9604 33.3536 16.1418 33.0784 16.3946 32.8819C16.6473 32.6855 16.9574 32.5789 17.2764 32.5787C17.5958 32.5787 17.9063 32.6852 18.1596 32.8816C18.4129 33.078 18.5948 33.3533 18.6773 33.6648H22.2181C22.2999 33.3536 22.4813 33.0784 22.7341 32.8819C22.9869 32.6855 23.2969 32.5789 23.6159 32.5787C23.9354 32.5782 24.2462 32.6845 24.4996 32.881C24.753 33.0775 24.9348 33.3531 25.0168 33.6648H34.0838C34.1765 33.6648 34.2654 33.6276 34.3309 33.5615C34.3965 33.4954 34.4333 33.4056 34.4333 33.3121V16.9794C35.0373 17.0299 35.645 17.0131 36.2454 16.9295V16.9263ZM22.0975 24.0144C22.1161 23.9184 22.1671 23.832 22.2418 23.7698C22.3166 23.7077 22.4104 23.6737 22.5072 23.6737C22.6041 23.6737 22.6979 23.7077 22.7727 23.7698C22.8474 23.832 22.8984 23.9184 22.917 24.0144V26.3084C22.8984 26.4043 22.8474 26.4907 22.7727 26.5529C22.6979 26.615 22.6041 26.649 22.5072 26.649C22.4104 26.649 22.3166 26.615 22.2418 26.5529C22.1671 26.4907 22.1161 26.4043 22.0975 26.3084V24.0144ZM19.6421 24.0144C19.6606 23.9184 19.7117 23.832 19.7864 23.7698C19.8612 23.7077 19.955 23.6737 20.0518 23.6737C20.1487 23.6737 20.2425 23.7077 20.3173 23.7698C20.392 23.832 20.443 23.9184 20.4616 24.0144V26.3084C20.443 26.4043 20.392 26.4907 20.3173 26.5529C20.2425 26.615 20.1487 26.649 20.0518 26.649C19.955 26.649 19.8612 26.615 19.7864 26.5529C19.7117 26.4907 19.6606 26.4043 19.6421 26.3084V24.0144ZM17.1898 24.0144C17.2083 23.9184 17.2594 23.832 17.3341 23.7698C17.4089 23.7077 17.5027 23.6737 17.5995 23.6737C17.6964 23.6737 17.7902 23.7077 17.865 23.7698C17.9397 23.832 17.9907 23.9184 18.0093 24.0144V26.3084C17.9907 26.4043 17.9397 26.4907 17.865 26.5529C17.7902 26.615 17.6964 26.649 17.5995 26.649C17.5027 26.649 17.4089 26.615 17.3341 26.5529C17.2594 26.4907 17.2083 26.4043 17.1898 26.3084V24.0144ZM22.2676 20.475C22.6071 20.7798 22.87 21.1618 23.0345 21.5893H25.9074C25.8135 21.2148 25.6253 20.8712 25.3611 20.5918C25.0969 20.3124 24.7656 20.1066 24.3993 19.9945C24.0331 19.8824 23.6444 19.8677 23.2709 19.9519C22.8974 20.0361 22.5518 20.2163 22.2676 20.475ZM23.2293 22.7753H14.2365L15.5755 27.8658H25.0786L26.3156 22.7753H23.2293ZM17.8887 21.5768C17.8887 21.5362 17.9227 21.4925 17.9413 21.4519V19.5605C17.9413 19.4447 17.8956 19.3335 17.8144 19.2516C17.7333 19.1696 17.6231 19.1236 17.5083 19.1236H15.3529C15.238 19.1236 15.1279 19.1696 15.0467 19.2516C14.9655 19.3335 14.9199 19.4447 14.9199 19.5605V21.5768H17.8887ZM33.6261 14.9819C33.2396 14.7978 32.2871 14.5481 31.9871 14.2484C31.7262 13.9828 31.5053 13.6799 31.3315 13.3496C31.1578 13.6799 30.9369 13.9828 30.676 14.2484C30.0142 14.9132 28.5112 15.3283 27.4938 15.3283C26.4764 15.3283 24.9735 14.9132 24.321 14.2484C24.06 13.9828 23.8392 13.6799 23.6654 13.3496C23.4916 13.6799 23.2707 13.9828 23.0098 14.2484C22.348 14.9132 20.8451 15.3283 19.8276 15.3283C18.8102 15.3283 17.3073 14.9132 16.6455 14.2484C16.378 13.9841 16.1508 13.6812 15.9714 13.3496C15.7976 13.6799 15.5767 13.9828 15.3158 14.2484C14.654 14.9132 13.151 15.3283 12.1336 15.3283C11.1162 15.3283 9.61329 14.9132 8.9515 14.2484C8.69058 13.9828 8.4697 13.6799 8.29591 13.3496C8.12212 13.6799 7.90123 13.9828 7.64031 14.2484C7.20427 14.6854 6.05697 15.0162 5.45085 15.1848C4.22934 15.3346 2.78826 15.1567 1.88217 14.2484C1.54395 13.9065 1.2759 13.5006 1.09335 13.0539C0.910809 12.6072 0.817363 12.1286 0.818367 11.6454V10.1973C0.819307 10.1253 0.837336 10.0547 0.870939 9.99126L3.44386 1.67353C3.65414 0.990012 4.17058 0.549938 5.16944 0.5H34.2663C35.1631 0.596754 35.7476 0.977528 35.9888 1.66729L38.772 9.97566C38.8073 10.0353 38.8275 10.1029 38.8307 10.1723C38.8322 10.1868 38.8322 10.2015 38.8307 10.216V11.6454C38.8305 12.1293 38.7356 12.6083 38.5515 13.055C38.3673 13.5017 38.0975 13.9073 37.7577 14.2484C36.6815 15.3346 35.0425 15.3065 33.6385 14.9819H33.6261Z" />
-      </mask>
-      <path d="M10.4699 20.3596C10.3124 20.3596 10.1614 20.2964 10.0501 20.184C9.9387 20.0717 9.87615 19.9192 9.87615 19.7603C9.87615 19.6014 9.9387 19.4489 10.0501 19.3366C10.1614 19.2242 10.3124 19.161 10.4699 19.161H11.3327C11.8382 19.1514 12.3367 19.282 12.7738 19.5387C13.2586 19.8583 13.6038 20.353 13.7386 20.9213C13.7353 20.9287 13.7336 20.9367 13.7336 20.9448C13.7336 20.9528 13.7353 20.9608 13.7386 20.9682L13.8871 21.5924H14.2272V19.1267C14.228 18.9672 14.2912 18.8145 14.4029 18.7017C14.5147 18.5889 14.666 18.5252 14.8241 18.5243H17.9753C18.1333 18.5252 18.2846 18.5889 18.3964 18.7017C18.5082 18.8145 18.5713 18.9672 18.5721 19.1267V20.5905C18.8217 20.3358 19.1188 20.1334 19.4463 19.9952C19.7738 19.857 20.1252 19.7857 20.4802 19.7853C20.7967 19.7838 21.111 19.8399 21.4079 19.9507C21.8177 19.5109 22.3403 19.1944 22.9175 19.0361C23.4948 18.8778 24.1042 18.8841 24.6782 19.0541C25.2522 19.2241 25.7682 19.5513 26.1692 19.9994C26.5701 20.4474 26.8402 20.9988 26.9496 21.5924H27.0949C27.2502 21.5932 27.3988 21.6561 27.5084 21.7672C27.6179 21.8783 27.6794 22.0287 27.6794 22.1854C27.6777 22.2467 27.6683 22.3075 27.6515 22.3664L26.1053 28.6086C26.0757 28.739 26.0028 28.8553 25.8988 28.9382C25.7947 29.021 25.6658 29.0655 25.5332 29.0643H15.891C16.1012 29.8383 16.3146 30.269 16.5899 30.4625C16.9362 30.6904 17.5392 30.706 18.5474 30.6904H25.3786C25.5344 30.6904 25.6839 30.7529 25.7941 30.8641C25.9042 30.9753 25.9662 31.1261 25.9662 31.2834C25.9662 31.4407 25.9042 31.5915 25.7941 31.7027C25.6839 31.8139 25.5344 31.8764 25.3786 31.8764H18.5752C17.3382 31.8764 16.5558 31.8764 15.9404 31.4488C15.325 31.0212 14.9756 30.294 14.6447 28.9707L12.6222 21.2709C12.6222 21.2709 12.6222 21.2709 12.6222 21.2428C12.5953 21.1045 12.5415 20.9729 12.464 20.8556C12.3866 20.7383 12.2869 20.6376 12.1707 20.5593C11.9158 20.414 11.6251 20.3447 11.3327 20.3596H10.4699ZM36.2454 16.9263V33.4682C36.2446 34.0068 36.0323 34.5231 35.6549 34.904C35.2775 35.2848 34.7659 35.4992 34.2323 35.5H5.40447C5.13995 35.4995 4.87813 35.4463 4.63403 35.3435C4.38992 35.2406 4.16832 35.0902 3.98194 34.9007C3.79466 34.7125 3.64608 34.4887 3.54472 34.2424C3.44335 33.996 3.39121 33.7318 3.39128 33.465V16.9482C3.98997 17.0478 4.59728 17.0844 5.20346 17.0574V33.3152C5.20321 33.3616 5.2121 33.4076 5.22962 33.4504C5.24714 33.4933 5.27294 33.5322 5.30551 33.5649C5.33817 33.5972 5.37685 33.6227 5.41931 33.6398C5.46177 33.657 5.50718 33.6655 5.55291 33.6648H15.8786C15.9604 33.3536 16.1418 33.0784 16.3946 32.8819C16.6473 32.6855 16.9574 32.5789 17.2764 32.5787C17.5958 32.5787 17.9063 32.6852 18.1596 32.8816C18.4129 33.078 18.5948 33.3533 18.6773 33.6648H22.2181C22.2999 33.3536 22.4813 33.0784 22.7341 32.8819C22.9869 32.6855 23.2969 32.5789 23.6159 32.5787C23.9354 32.5782 24.2462 32.6845 24.4996 32.881C24.753 33.0775 24.9348 33.3531 25.0168 33.6648H34.0838C34.1765 33.6648 34.2654 33.6276 34.3309 33.5615C34.3965 33.4954 34.4333 33.4056 34.4333 33.3121V16.9794C35.0373 17.0299 35.645 17.0131 36.2454 16.9295V16.9263ZM22.0975 24.0144C22.1161 23.9184 22.1671 23.832 22.2418 23.7698C22.3166 23.7077 22.4104 23.6737 22.5072 23.6737C22.6041 23.6737 22.6979 23.7077 22.7727 23.7698C22.8474 23.832 22.8984 23.9184 22.917 24.0144V26.3084C22.8984 26.4043 22.8474 26.4907 22.7727 26.5529C22.6979 26.615 22.6041 26.649 22.5072 26.649C22.4104 26.649 22.3166 26.615 22.2418 26.5529C22.1671 26.4907 22.1161 26.4043 22.0975 26.3084V24.0144ZM19.6421 24.0144C19.6606 23.9184 19.7117 23.832 19.7864 23.7698C19.8612 23.7077 19.955 23.6737 20.0518 23.6737C20.1487 23.6737 20.2425 23.7077 20.3173 23.7698C20.392 23.832 20.443 23.9184 20.4616 24.0144V26.3084C20.443 26.4043 20.392 26.4907 20.3173 26.5529C20.2425 26.615 20.1487 26.649 20.0518 26.649C19.955 26.649 19.8612 26.615 19.7864 26.5529C19.7117 26.4907 19.6606 26.4043 19.6421 26.3084V24.0144ZM17.1898 24.0144C17.2083 23.9184 17.2594 23.832 17.3341 23.7698C17.4089 23.7077 17.5027 23.6737 17.5995 23.6737C17.6964 23.6737 17.7902 23.7077 17.865 23.7698C17.9397 23.832 17.9907 23.9184 18.0093 24.0144V26.3084C17.9907 26.4043 17.9397 26.4907 17.865 26.5529C17.7902 26.615 17.6964 26.649 17.5995 26.649C17.5027 26.649 17.4089 26.615 17.3341 26.5529C17.2594 26.4907 17.2083 26.4043 17.1898 26.3084V24.0144ZM22.2676 20.475C22.6071 20.7798 22.87 21.1618 23.0345 21.5893H25.9074C25.8135 21.2148 25.6253 20.8712 25.3611 20.5918C25.0969 20.3124 24.7656 20.1066 24.3993 19.9945C24.0331 19.8824 23.6444 19.8677 23.2709 19.9519C22.8974 20.0361 22.5518 20.2163 22.2676 20.475ZM23.2293 22.7753H14.2365L15.5755 27.8658H25.0786L26.3156 22.7753H23.2293ZM17.8887 21.5768C17.8887 21.5362 17.9227 21.4925 17.9413 21.4519V19.5605C17.9413 19.4447 17.8956 19.3335 17.8144 19.2516C17.7333 19.1696 17.6231 19.1236 17.5083 19.1236H15.3529C15.238 19.1236 15.1279 19.1696 15.0467 19.2516C14.9655 19.3335 14.9199 19.4447 14.9199 19.5605V21.5768H17.8887ZM33.6261 14.9819C33.2396 14.7978 32.2871 14.5481 31.9871 14.2484C31.7262 13.9828 31.5053 13.6799 31.3315 13.3496C31.1578 13.6799 30.9369 13.9828 30.676 14.2484C30.0142 14.9132 28.5112 15.3283 27.4938 15.3283C26.4764 15.3283 24.9735 14.9132 24.321 14.2484C24.06 13.9828 23.8392 13.6799 23.6654 13.3496C23.4916 13.6799 23.2707 13.9828 23.0098 14.2484C22.348 14.9132 20.8451 15.3283 19.8276 15.3283C18.8102 15.3283 17.3073 14.9132 16.6455 14.2484C16.378 13.9841 16.1508 13.6812 15.9714 13.3496C15.7976 13.6799 15.5767 13.9828 15.3158 14.2484C14.654 14.9132 13.151 15.3283 12.1336 15.3283C11.1162 15.3283 9.61329 14.9132 8.9515 14.2484C8.69058 13.9828 8.4697 13.6799 8.29591 13.3496C8.12212 13.6799 7.90123 13.9828 7.64031 14.2484C7.20427 14.6854 6.05697 15.0162 5.45085 15.1848C4.22934 15.3346 2.78826 15.1567 1.88217 14.2484C1.54395 13.9065 1.2759 13.5006 1.09335 13.0539C0.910809 12.6072 0.817363 12.1286 0.818367 11.6454V10.1973C0.819307 10.1253 0.837336 10.0547 0.870939 9.99126L3.44386 1.67353C3.65414 0.990012 4.17058 0.549938 5.16944 0.5H34.2663C35.1631 0.596754 35.7476 0.977528 35.9888 1.66729L38.772 9.97566C38.8073 10.0353 38.8275 10.1029 38.8307 10.1723C38.8322 10.1868 38.8322 10.2015 38.8307 10.216V11.6454C38.8305 12.1293 38.7356 12.6083 38.5515 13.055C38.3673 13.5017 38.0975 13.9073 37.7577 14.2484C36.6815 15.3346 35.0425 15.3065 33.6385 14.9819H33.6261Z" stroke={activeVehicleMenu === 'vehicles' ? 'black' : 'rgba(227, 31, 37, 1)'} strokeWidth="4" mask="url(#path-1-inside-1_1763_293017)" />
-    </svg>
-    Vehicles 
-  </div>
-  <i className={`fas fa-chevron-${activeVehicleMenu === 'vehicles' ? "up" : "down"} ml-2`}></i>
-</div>
+          {/* VEHICLES SUBMENU - FIXED */}
+          {activeVehicleMenu === "vehicles" && (
+            <div className="subcategory-list pl-6">
+              <div
+                className={`subcategory-item ${activeSubProduct === "Vehicles Info" ? "active" : ""}`}
+                onClick={() => {
+                  setActiveSubProduct("Vehicles Info");
+                }}
+              >
+                Vehicles Info
+              </div>
+              <div
+                className={`subcategory-item ${activeSubProduct === "Entry Vehicles" ? "active" : ""}`}
+                onClick={() => {
+                  setEditVehicle(null);
+                  setActiveSubProduct("Entry Vehicles");
+                }}
+              >
+                {isEditing ? "Edit Vehicles" : "Entry Vehicles"}
+              </div>
+            </div>
+          )}
+          {/* Add new vehicle info details */}
+                {/* VEHICLES SECTION - FIXED */}
+          <div
+            className={`adminHeadings ${activeVehicleMenu === "new_vehicles" ? "active" : ""}`}
+            onClick={() => {
+              // Toggle vehicles menu
+              if (activeVehicleMenu === "new_vehicles") {
+                setActiveVehicleMenu("");
+                setActiveSubProduct(""); // Clear subproduct when closing
+              } else {
+                setActiveVehicleMenu("new_vehicles");
+                setActiveSubProduct("New Vehicles Info"); // Set default subproduct
+                setActiveProductMenu(""); // THIS LINE DEACTIVATES PRODUCTS
+                setActiveMenu(""); // THIS LINE DEACTIVATES DASHBOARD
+              }
+            }}
+          >
+            <div className="sideImageHeading">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="adminHeading-imgs"
+                viewBox="0 0 39 36"
+                fill="none"
+              >
+                <mask id="path-1-inside-1_1763_293017" fill="white">
+                  <path d="M10.4699 20.3596C10.3124 20.3596 10.1614 20.2964 10.0501 20.184C9.9387 20.0717 9.87615 19.9192 9.87615 19.7603C9.87615 19.6014 9.9387 19.4489 10.0501 19.3366C10.1614 19.2242 10.3124 19.161 10.4699 19.161H11.3327C11.8382 19.1514 12.3367 19.282 12.7738 19.5387C13.2586 19.8583 13.6038 20.353 13.7386 20.9213C13.7353 20.9287 13.7336 20.9367 13.7336 20.9448C13.7336 20.9528 13.7353 20.9608 13.7386 20.9682L13.8871 21.5924H14.2272V19.1267C14.228 18.9672 14.2912 18.8145 14.4029 18.7017C14.5147 18.5889 14.666 18.5252 14.8241 18.5243H17.9753C18.1333 18.5252 18.2846 18.5889 18.3964 18.7017C18.5082 18.8145 18.5713 18.9672 18.5721 19.1267V20.5905C18.8217 20.3358 19.1188 20.1334 19.4463 19.9952C19.7738 19.857 20.1252 19.7857 20.4802 19.7853C20.7967 19.7838 21.111 19.8399 21.4079 19.9507C21.8177 19.5109 22.3403 19.1944 22.9175 19.0361C23.4948 18.8778 24.1042 18.8841 24.6782 19.0541C25.2522 19.2241 25.7682 19.5513 26.1692 19.9994C26.5701 20.4474 26.8402 20.9988 26.9496 21.5924H27.0949C27.2502 21.5932 27.3988 21.6561 27.5084 21.7672C27.6179 21.8783 27.6794 22.0287 27.6794 22.1854C27.6777 22.2467 27.6683 22.3075 27.6515 22.3664L26.1053 28.6086C26.0757 28.739 26.0028 28.8553 25.8988 28.9382C25.7947 29.021 25.6658 29.0655 25.5332 29.0643H15.891C16.1012 29.8383 16.3146 30.269 16.5899 30.4625C16.9362 30.6904 17.5392 30.706 18.5474 30.6904H25.3786C25.5344 30.6904 25.6839 30.7529 25.7941 30.8641C25.9042 30.9753 25.9662 31.1261 25.9662 31.2834C25.9662 31.4407 25.9042 31.5915 25.7941 31.7027C25.6839 31.8139 25.5344 31.8764 25.3786 31.8764H18.5752C17.3382 31.8764 16.5558 31.8764 15.9404 31.4488C15.325 31.0212 14.9756 30.294 14.6447 28.9707L12.6222 21.2709C12.6222 21.2709 12.6222 21.2709 12.6222 21.2428C12.5953 21.1045 12.5415 20.9729 12.464 20.8556C12.3866 20.7383 12.2869 20.6376 12.1707 20.5593C11.9158 20.414 11.6251 20.3447 11.3327 20.3596H10.4699ZM36.2454 16.9263V33.4682C36.2446 34.0068 36.0323 34.5231 35.6549 34.904C35.2775 35.2848 34.7659 35.4992 34.2323 35.5H5.40447C5.13995 35.4995 4.87813 35.4463 4.63403 35.3435C4.38992 35.2406 4.16832 35.0902 3.98194 34.9007C3.79466 34.7125 3.64608 34.4887 3.54472 34.2424C3.44335 33.996 3.39121 33.7318 3.39128 33.465V16.9482C3.98997 17.0478 4.59728 17.0844 5.20346 17.0574V33.3152C5.20321 33.3616 5.2121 33.4076 5.22962 33.4504C5.24714 33.4933 5.27294 33.5322 5.30551 33.5649C5.33817 33.5972 5.37685 33.6227 5.41931 33.6398C5.46177 33.657 5.50718 33.6655 5.55291 33.6648H15.8786C15.9604 33.3536 16.1418 33.0784 16.3946 32.8819C16.6473 32.6855 16.9574 32.5789 17.2764 32.5787C17.5958 32.5787 17.9063 32.6852 18.1596 32.8816C18.4129 33.078 18.5948 33.3533 18.6773 33.6648H22.2181C22.2999 33.3536 22.4813 33.0784 22.7341 32.8819C22.9869 32.6855 23.2969 32.5789 23.6159 32.5787C23.9354 32.5782 24.2462 32.6845 24.4996 32.881C24.753 33.0775 24.9348 33.3531 25.0168 33.6648H34.0838C34.1765 33.6648 34.2654 33.6276 34.3309 33.5615C34.3965 33.4954 34.4333 33.4056 34.4333 33.3121V16.9794C35.0373 17.0299 35.645 17.0131 36.2454 16.9295V16.9263ZM22.0975 24.0144C22.1161 23.9184 22.1671 23.832 22.2418 23.7698C22.3166 23.7077 22.4104 23.6737 22.5072 23.6737C22.6041 23.6737 22.6979 23.7077 22.7727 23.7698C22.8474 23.832 22.8984 23.9184 22.917 24.0144V26.3084C22.8984 26.4043 22.8474 26.4907 22.7727 26.5529C22.6979 26.615 22.6041 26.649 22.5072 26.649C22.4104 26.649 22.3166 26.615 22.2418 26.5529C22.1671 26.4907 22.1161 26.4043 22.0975 26.3084V24.0144ZM19.6421 24.0144C19.6606 23.9184 19.7117 23.832 19.7864 23.7698C19.8612 23.7077 19.955 23.6737 20.0518 23.6737C20.1487 23.6737 20.2425 23.7077 20.3173 23.7698C20.392 23.832 20.443 23.9184 20.4616 24.0144V26.3084C20.443 26.4043 20.392 26.4907 20.3173 26.5529C20.2425 26.615 20.1487 26.649 20.0518 26.649C19.955 26.649 19.8612 26.615 19.7864 26.5529C19.7117 26.4907 19.6606 26.4043 19.6421 26.3084V24.0144ZM17.1898 24.0144C17.2083 23.9184 17.2594 23.832 17.3341 23.7698C17.4089 23.7077 17.5027 23.6737 17.5995 23.6737C17.6964 23.6737 17.7902 23.7077 17.865 23.7698C17.9397 23.832 17.9907 23.9184 18.0093 24.0144V26.3084C17.9907 26.4043 17.9397 26.4907 17.865 26.5529C17.7902 26.615 17.6964 26.649 17.5995 26.649C17.5027 26.649 17.4089 26.615 17.3341 26.5529C17.2594 26.4907 17.2083 26.4043 17.1898 26.3084V24.0144ZM22.2676 20.475C22.6071 20.7798 22.87 21.1618 23.0345 21.5893H25.9074C25.8135 21.2148 25.6253 20.8712 25.3611 20.5918C25.0969 20.3124 24.7656 20.1066 24.3993 19.9945C24.0331 19.8824 23.6444 19.8677 23.2709 19.9519C22.8974 20.0361 22.5518 20.2163 22.2676 20.475ZM23.2293 22.7753H14.2365L15.5755 27.8658H25.0786L26.3156 22.7753H23.2293ZM17.8887 21.5768C17.8887 21.5362 17.9227 21.4925 17.9413 21.4519V19.5605C17.9413 19.4447 17.8956 19.3335 17.8144 19.2516C17.7333 19.1696 17.6231 19.1236 17.5083 19.1236H15.3529C15.238 19.1236 15.1279 19.1696 15.0467 19.2516C14.9655 19.3335 14.9199 19.4447 14.9199 19.5605V21.5768H17.8887ZM33.6261 14.9819C33.2396 14.7978 32.2871 14.5481 31.9871 14.2484C31.7262 13.9828 31.5053 13.6799 31.3315 13.3496C31.1578 13.6799 30.9369 13.9828 30.676 14.2484C30.0142 14.9132 28.5112 15.3283 27.4938 15.3283C26.4764 15.3283 24.9735 14.9132 24.321 14.2484C24.06 13.9828 23.8392 13.6799 23.6654 13.3496C23.4916 13.6799 23.2707 13.9828 23.0098 14.2484C22.348 14.9132 20.8451 15.3283 19.8276 15.3283C18.8102 15.3283 17.3073 14.9132 16.6455 14.2484C16.378 13.9841 16.1508 13.6812 15.9714 13.3496C15.7976 13.6799 15.5767 13.9828 15.3158 14.2484C14.654 14.9132 13.151 15.3283 12.1336 15.3283C11.1162 15.3283 9.61329 14.9132 8.9515 14.2484C8.69058 13.9828 8.4697 13.6799 8.29591 13.3496C8.12212 13.6799 7.90123 13.9828 7.64031 14.2484C7.20427 14.6854 6.05697 15.0162 5.45085 15.1848C4.22934 15.3346 2.78826 15.1567 1.88217 14.2484C1.54395 13.9065 1.2759 13.5006 1.09335 13.0539C0.910809 12.6072 0.817363 12.1286 0.818367 11.6454V10.1973C0.819307 10.1253 0.837336 10.0547 0.870939 9.99126L3.44386 1.67353C3.65414 0.990012 4.17058 0.549938 5.16944 0.5H34.2663C35.1631 0.596754 35.7476 0.977528 35.9888 1.66729L38.772 9.97566C38.8073 10.0353 38.8275 10.1029 38.8307 10.1723C38.8322 10.1868 38.8322 10.2015 38.8307 10.216V11.6454C38.8305 12.1293 38.7356 12.6083 38.5515 13.055C38.3673 13.5017 38.0975 13.9073 37.7577 14.2484C36.6815 15.3346 35.0425 15.3065 33.6385 14.9819H33.6261Z" />
+                </mask>
+                <path
+                  d="M10.4699 20.3596C10.3124 20.3596 10.1614 20.2964 10.0501 20.184C9.9387 20.0717 9.87615 19.9192 9.87615 19.7603C9.87615 19.6014 9.9387 19.4489 10.0501 19.3366C10.1614 19.2242 10.3124 19.161 10.4699 19.161H11.3327C11.8382 19.1514 12.3367 19.282 12.7738 19.5387C13.2586 19.8583 13.6038 20.353 13.7386 20.9213C13.7353 20.9287 13.7336 20.9367 13.7336 20.9448C13.7336 20.9528 13.7353 20.9608 13.7386 20.9682L13.8871 21.5924H14.2272V19.1267C14.228 18.9672 14.2912 18.8145 14.4029 18.7017C14.5147 18.5889 14.666 18.5252 14.8241 18.5243H17.9753C18.1333 18.5252 18.2846 18.5889 18.3964 18.7017C18.5082 18.8145 18.5713 18.9672 18.5721 19.1267V20.5905C18.8217 20.3358 19.1188 20.1334 19.4463 19.9952C19.7738 19.857 20.1252 19.7857 20.4802 19.7853C20.7967 19.7838 21.111 19.8399 21.4079 19.9507C21.8177 19.5109 22.3403 19.1944 22.9175 19.0361C23.4948 18.8778 24.1042 18.8841 24.6782 19.0541C25.2522 19.2241 25.7682 19.5513 26.1692 19.9994C26.5701 20.4474 26.8402 20.9988 26.9496 21.5924H27.0949C27.2502 21.5932 27.3988 21.6561 27.5084 21.7672C27.6179 21.8783 27.6794 22.0287 27.6794 22.1854C27.6777 22.2467 27.6683 22.3075 27.6515 22.3664L26.1053 28.6086C26.0757 28.739 26.0028 28.8553 25.8988 28.9382C25.7947 29.021 25.6658 29.0655 25.5332 29.0643H15.891C16.1012 29.8383 16.3146 30.269 16.5899 30.4625C16.9362 30.6904 17.5392 30.706 18.5474 30.6904H25.3786C25.5344 30.6904 25.6839 30.7529 25.7941 30.8641C25.9042 30.9753 25.9662 31.1261 25.9662 31.2834C25.9662 31.4407 25.9042 31.5915 25.7941 31.7027C25.6839 31.8139 25.5344 31.8764 25.3786 31.8764H18.5752C17.3382 31.8764 16.5558 31.8764 15.9404 31.4488C15.325 31.0212 14.9756 30.294 14.6447 28.9707L12.6222 21.2709C12.6222 21.2709 12.6222 21.2709 12.6222 21.2428C12.5953 21.1045 12.5415 20.9729 12.464 20.8556C12.3866 20.7383 12.2869 20.6376 12.1707 20.5593C11.9158 20.414 11.6251 20.3447 11.3327 20.3596H10.4699ZM36.2454 16.9263V33.4682C36.2446 34.0068 36.0323 34.5231 35.6549 34.904C35.2775 35.2848 34.7659 35.4992 34.2323 35.5H5.40447C5.13995 35.4995 4.87813 35.4463 4.63403 35.3435C4.38992 35.2406 4.16832 35.0902 3.98194 34.9007C3.79466 34.7125 3.64608 34.4887 3.54472 34.2424C3.44335 33.996 3.39121 33.7318 3.39128 33.465V16.9482C3.98997 17.0478 4.59728 17.0844 5.20346 17.0574V33.3152C5.20321 33.3616 5.2121 33.4076 5.22962 33.4504C5.24714 33.4933 5.27294 33.5322 5.30551 33.5649C5.33817 33.5972 5.37685 33.6227 5.41931 33.6398C5.46177 33.657 5.50718 33.6655 5.55291 33.6648H15.8786C15.9604 33.3536 16.1418 33.0784 16.3946 32.8819C16.6473 32.6855 16.9574 32.5789 17.2764 32.5787C17.5958 32.5787 17.9063 32.6852 18.1596 32.8816C18.4129 33.078 18.5948 33.3533 18.6773 33.6648H22.2181C22.2999 33.3536 22.4813 33.0784 22.7341 32.8819C22.9869 32.6855 23.2969 32.5789 23.6159 32.5787C23.9354 32.5782 24.2462 32.6845 24.4996 32.881C24.753 33.0775 24.9348 33.3531 25.0168 33.6648H34.0838C34.1765 33.6648 34.2654 33.6276 34.3309 33.5615C34.3965 33.4954 34.4333 33.4056 34.4333 33.3121V16.9794C35.0373 17.0299 35.645 17.0131 36.2454 16.9295V16.9263ZM22.0975 24.0144C22.1161 23.9184 22.1671 23.832 22.2418 23.7698C22.3166 23.7077 22.4104 23.6737 22.5072 23.6737C22.6041 23.6737 22.6979 23.7077 22.7727 23.7698C22.8474 23.832 22.8984 23.9184 22.917 24.0144V26.3084C22.8984 26.4043 22.8474 26.4907 22.7727 26.5529C22.6979 26.615 22.6041 26.649 22.5072 26.649C22.4104 26.649 22.3166 26.615 22.2418 26.5529C22.1671 26.4907 22.1161 26.4043 22.0975 26.3084V24.0144ZM19.6421 24.0144C19.6606 23.9184 19.7117 23.832 19.7864 23.7698C19.8612 23.7077 19.955 23.6737 20.0518 23.6737C20.1487 23.6737 20.2425 23.7077 20.3173 23.7698C20.392 23.832 20.443 23.9184 20.4616 24.0144V26.3084C20.443 26.4043 20.392 26.4907 20.3173 26.5529C20.2425 26.615 20.1487 26.649 20.0518 26.649C19.955 26.649 19.8612 26.615 19.7864 26.5529C19.7117 26.4907 19.6606 26.4043 19.6421 26.3084V24.0144ZM17.1898 24.0144C17.2083 23.9184 17.2594 23.832 17.3341 23.7698C17.4089 23.7077 17.5027 23.6737 17.5995 23.6737C17.6964 23.6737 17.7902 23.7077 17.865 23.7698C17.9397 23.832 17.9907 23.9184 18.0093 24.0144V26.3084C17.9907 26.4043 17.9397 26.4907 17.865 26.5529C17.7902 26.615 17.6964 26.649 17.5995 26.649C17.5027 26.649 17.4089 26.615 17.3341 26.5529C17.2594 26.4907 17.2083 26.4043 17.1898 26.3084V24.0144ZM22.2676 20.475C22.6071 20.7798 22.87 21.1618 23.0345 21.5893H25.9074C25.8135 21.2148 25.6253 20.8712 25.3611 20.5918C25.0969 20.3124 24.7656 20.1066 24.3993 19.9945C24.0331 19.8824 23.6444 19.8677 23.2709 19.9519C22.8974 20.0361 22.5518 20.2163 22.2676 20.475ZM23.2293 22.7753H14.2365L15.5755 27.8658H25.0786L26.3156 22.7753H23.2293ZM17.8887 21.5768C17.8887 21.5362 17.9227 21.4925 17.9413 21.4519V19.5605C17.9413 19.4447 17.8956 19.3335 17.8144 19.2516C17.7333 19.1696 17.6231 19.1236 17.5083 19.1236H15.3529C15.238 19.1236 15.1279 19.1696 15.0467 19.2516C14.9655 19.3335 14.9199 19.4447 14.9199 19.5605V21.5768H17.8887ZM33.6261 14.9819C33.2396 14.7978 32.2871 14.5481 31.9871 14.2484C31.7262 13.9828 31.5053 13.6799 31.3315 13.3496C31.1578 13.6799 30.9369 13.9828 30.676 14.2484C30.0142 14.9132 28.5112 15.3283 27.4938 15.3283C26.4764 15.3283 24.9735 14.9132 24.321 14.2484C24.06 13.9828 23.8392 13.6799 23.6654 13.3496C23.4916 13.6799 23.2707 13.9828 23.0098 14.2484C22.348 14.9132 20.8451 15.3283 19.8276 15.3283C18.8102 15.3283 17.3073 14.9132 16.6455 14.2484C16.378 13.9841 16.1508 13.6812 15.9714 13.3496C15.7976 13.6799 15.5767 13.9828 15.3158 14.2484C14.654 14.9132 13.151 15.3283 12.1336 15.3283C11.1162 15.3283 9.61329 14.9132 8.9515 14.2484C8.69058 13.9828 8.4697 13.6799 8.29591 13.3496C8.12212 13.6799 7.90123 13.9828 7.64031 14.2484C7.20427 14.6854 6.05697 15.0162 5.45085 15.1848C4.22934 15.3346 2.78826 15.1567 1.88217 14.2484C1.54395 13.9065 1.2759 13.5006 1.09335 13.0539C0.910809 12.6072 0.817363 12.1286 0.818367 11.6454V10.1973C0.819307 10.1253 0.837336 10.0547 0.870939 9.99126L3.44386 1.67353C3.65414 0.990012 4.17058 0.549938 5.16944 0.5H34.2663C35.1631 0.596754 35.7476 0.977528 35.9888 1.66729L38.772 9.97566C38.8073 10.0353 38.8275 10.1029 38.8307 10.1723C38.8322 10.1868 38.8322 10.2015 38.8307 10.216V11.6454C38.8305 12.1293 38.7356 12.6083 38.5515 13.055C38.3673 13.5017 38.0975 13.9073 37.7577 14.2484C36.6815 15.3346 35.0425 15.3065 33.6385 14.9819H33.6261Z"
+                  stroke={
+                    activeVehicleMenu === "vehicles"
+                      ? "black"
+                      : "rgba(227, 31, 37, 1)"
+                  }
+                  strokeWidth="4"
+                  mask="url(#path-1-inside-1_1763_293017)"
+                />
+              </svg>
+              N Vehicles
+            </div>
+            <i
+              className={`fas fa-chevron-${activeVehicleMenu === "new_vehicles" ? "up" : "down"} ml-2`}
+            ></i>
+          </div>
 
-{/* VEHICLES SUBMENU - FIXED */}
-{activeVehicleMenu === 'vehicles' && (
-  <div className="subcategory-list pl-6">
-    <div
-      className={`subcategory-item ${activeSubProduct === 'Vehicles Info' ? 'active' : ''}`}
-      onClick={() => {
-        setActiveSubProduct('Vehicles Info')
-      }}>
-      Vehicles Info
-    </div>
-    <div
-      className={`subcategory-item ${activeSubProduct === 'Entry Vehicles' ? 'active' : ''}`}
-      onClick={() => {
-        setEditVehicle(null);
-        setActiveSubProduct('Entry Vehicles')
-      }}>
-      {isEditing ? "Edit Vehicles" : "Entry Vehicles"}
-    </div>
-  </div>
-)}
-
+          {/* VEHICLES SUBMENU - FIXED */}
+          {activeVehicleMenu === "new_vehicles" && (
+            <div className="subcategory-list pl-6">
+              <div
+                className={`subcategory-item ${activeSubProduct === "New Vehicles Info" ? "active" : ""}`}
+                onClick={() => {
+                  setActiveSubProduct("New Vehicles Info");
+                }}
+              >
+               New Vehicles Info
+              </div>
+              <div
+                className={`subcategory-item ${activeSubProduct === "New Entry Vehicles" ? "active" : ""}`}
+                onClick={() => {
+                  setEditVehicle(null);
+                  setActiveSubProduct("New Entry Vehicles");
+                }}
+              >
+                {isEditing ? "Edit Vehicles" : "New Entry Vehicles"}
+              </div>
+            </div>
+          )}
         </div>
-
-
 
         {/* RIGHT CONTENT  */}
         {/* DASHBOARD SECTION WITH CHARTS  */}
-        {activeMenu === 'dashboard' && (
-          <div className='dashboardMain' style={{ width: '100%', margin: '20px' }}>
+        {activeMenu === "dashboard" && (
+          <div
+            className="dashboardMain"
+            style={{ width: "100%", margin: "20px" }}
+          >
             <div className="dashboardSummary-wrapper">
-              {
-                dashboardSummary.map(
-                  (summary) => (
-                    <div className='dashboardSummary ' key={summary.id}>
-                      <div className="cards">
-                        <div className="summaryIcon"><img src={summary.icons}></img></div>
-                        <div className="content">
-                          <span className="summaryHeading">{summary.summaryHeading}</span><br></br>
-                          <span className="summaryCount">{summary.summaryCount}</span>
-                        </div>
-                      </div>
+              {dashboardSummary.map((summary) => (
+                <div className="dashboardSummary " key={summary.id}>
+                  <div className="cards">
+                    <div className="summaryIcon">
+                      <img src={summary.icons}></img>
                     </div>
-                  )
-
-                )
-              }
+                    <div className="content">
+                      <span className="summaryHeading">
+                        {summary.summaryHeading}
+                      </span>
+                      <br></br>
+                      <span className="summaryCount">
+                        {summary.summaryCount}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
 
-            <div className='dashboardCharts'>
-              <div className='RevenueChartMain'>
-                <div className='revenueHeader'>
+            <div className="dashboardCharts">
+              <div className="RevenueChartMain">
+                <div className="revenueHeader">
+                  <div>Revenue by Month</div>
                   <div>
-                    Revenue by Month
-                  </div>
-                  <div>
-                    <select className='RevenueInputSelect'>
-                      <option >2020</option>
-                      <option value='2021'>2021</option>
-                      <option value='2022'>2022</option>
-                      <option value='2023'>2023</option>
-                      <option value='2024'>2024</option>
-                      <option value='2025'>2025</option>
+                    <select className="RevenueInputSelect">
+                      <option>2020</option>
+                      <option value="2021">2021</option>
+                      <option value="2022">2022</option>
+                      <option value="2023">2023</option>
+                      <option value="2024">2024</option>
+                      <option value="2025">2025</option>
                     </select>
                   </div>
                 </div>
-                <div className='revenueBar'>
-                  <div className='revenueContent'> <div className='revenubarContent'></div>Jan</div>
-                  <div className='revenueContent'> <div className='revenubarContent'></div>Feb</div>
-                  <div className='revenueContent'> <div className='revenubarContent'></div>Mar</div>
-                  <div className='revenueContent'> <div className='revenubarContent'></div>Apr</div>
-                  <div className='revenueContent'> <div className='revenubarContent'></div>May</div>
-                  <div className='revenueContent'> <div className='revenubarContent'></div>Jun</div>
-                  <div className='revenueContent'> <div className='revenubarContent'></div>Jul</div>
-                  <div className='revenueContent'> <div className='revenubarContent'></div>Aug</div>
-                  <div className='revenueContent'> <div className='revenubarContent'></div>Sep</div>
-                  <div className='revenueContent'> <div className='revenubarContent'></div>Oct</div>
-                  <div className='revenueContent'> <div className='revenubarContent'></div>Nov</div>
-                  <div className='revenueContent'> <div className='revenubarContent'></div>Dec</div>
+                <div className="revenueBar">
+                  <div className="revenueContent">
+                    {" "}
+                    <div className="revenubarContent"></div>Jan
+                  </div>
+                  <div className="revenueContent">
+                    {" "}
+                    <div className="revenubarContent"></div>Feb
+                  </div>
+                  <div className="revenueContent">
+                    {" "}
+                    <div className="revenubarContent"></div>Mar
+                  </div>
+                  <div className="revenueContent">
+                    {" "}
+                    <div className="revenubarContent"></div>Apr
+                  </div>
+                  <div className="revenueContent">
+                    {" "}
+                    <div className="revenubarContent"></div>May
+                  </div>
+                  <div className="revenueContent">
+                    {" "}
+                    <div className="revenubarContent"></div>Jun
+                  </div>
+                  <div className="revenueContent">
+                    {" "}
+                    <div className="revenubarContent"></div>Jul
+                  </div>
+                  <div className="revenueContent">
+                    {" "}
+                    <div className="revenubarContent"></div>Aug
+                  </div>
+                  <div className="revenueContent">
+                    {" "}
+                    <div className="revenubarContent"></div>Sep
+                  </div>
+                  <div className="revenueContent">
+                    {" "}
+                    <div className="revenubarContent"></div>Oct
+                  </div>
+                  <div className="revenueContent">
+                    {" "}
+                    <div className="revenubarContent"></div>Nov
+                  </div>
+                  <div className="revenueContent">
+                    {" "}
+                    <div className="revenubarContent"></div>Dec
+                  </div>
                 </div>
               </div>
-              <div className='RevenueChartMain UsersChartMain'>
-                <div className='revenueHeader userHeader'>
+              <div className="RevenueChartMain UsersChartMain">
+                <div className="revenueHeader userHeader">
                   <div> Users by Weekly </div>
                   <div>
-                    <select className='RevenueInputSelect'>
-                      <option >March</option>
-                      <option value='April'>April</option>
-                      <option value='May'>May</option>
-                      <option value='June'>June</option>
-                      <option value='July'>July</option>
-                      <option value='August'>August</option>
+                    <select className="RevenueInputSelect">
+                      <option>March</option>
+                      <option value="April">April</option>
+                      <option value="May">May</option>
+                      <option value="June">June</option>
+                      <option value="July">July</option>
+                      <option value="August">August</option>
                     </select>
                   </div>
                 </div>
-                <div className='usersbyWeek'>
-                  <div className='usersbyWeekContent'>
+                <div className="usersbyWeek">
+                  <div className="usersbyWeekContent">
                     <PieSection />
                   </div>
-                  <div className='usersbyWeekContent'>
-                    <div className='usersCount'>Week1 <br></br>5000</div>
-                    <div className='usersCount'>Week2 <br></br>10000</div>
-                    <div className='usersCount'>Week3 <br></br>4000</div>
-                    <div className='usersCount'>Week4 <br></br>6000</div>
+                  <div className="usersbyWeekContent">
+                    <div className="usersCount">
+                      Week1 <br></br>5000
+                    </div>
+                    <div className="usersCount">
+                      Week2 <br></br>10000
+                    </div>
+                    <div className="usersCount">
+                      Week3 <br></br>4000
+                    </div>
+                    <div className="usersCount">
+                      Week4 <br></br>6000
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
         )}
-
-
-
-
 
         {/* ADMANAGER WITH DRAG & DROP IMAGE SECTION  */}
         {/* Show subproduct content */}
-        {activeSubProduct === 'All Products' && (
-          <div className='productsMain'>
+        {activeSubProduct === "All Products" && (
+          <div className="productsMain">
             <div>
-            <VehicleLists/>
+              <VehicleLists />
             </div>
           </div>
         )}
 
-        {activeSubProduct === 'Add Products' && (
-          <div className="pl-6" id='admanager' style={{ display: activeSubProduct === 'Add Products' ? 'block' : 'none' }}>
-                         <VehicleUpload  editVehicle={editVehicle}/>
+        {activeSubProduct === "Add Products" && (
+          <div
+            className="pl-6"
+            id="admanager"
+            style={{
+              display: activeSubProduct === "Add Products" ? "block" : "none",
+            }}
+          >
+            <VehicleUpload editVehicle={editVehicle} />
 
+            {/* <ImageUploadPage editProduct={editProduct} /> */}
+          </div>
+        )}
+
+        {activeSubProduct === "Entry Vehicles" && (
+          <div
+            className="pl-6"
+            id="admanager"
+            style={{
+              display: activeSubProduct === "Entry Vehicles" ? "block" : "none",
+            }}
+          >
+            <EntryVehicles editVehicle={editVehicle} />
+
+            {/* <ImageUploadPage editProduct={editProduct} /> */}
+          </div>
+        )}
+
+         {activeSubProduct === "New Entry Vehicles" && (
+          <div
+            className="pl-6"
+            id="admanager"
+            style={{
+              display: activeSubProduct === "New Entry Vehicles" ? "block" : "none",
+            }}
+          >
+            <EntryNewVehicles editVehicle={editVehicle} />
+
+            {/* <ImageUploadPage editProduct={editProduct} /> */}
+          </div>
+        )}
+
+          {activeSubProduct === "New Vehicles Info" && (
+          <div
+            className="pl-6"
+            id="admanager"
+            style={{
+              display: activeSubProduct === "New Vehicles Info" ? "block" : "none",
+            }}
+          >
+             
+
+            <Ad1EntryNewVehiclesDetails editVehicle={editVehicle} />
+
+            
+          </div>
+        )}
+
+
+        {activeSubProduct === "Vehicles Info" && (
+          <div
+            className="pl-6"
+            id="admanager"
+            style={{
+              display: activeSubProduct === "Vehicles Info" ? "block" : "none",
+            }}
+          >
+            <AllVehiclesInfo editVehicle={editVehicle} />
 
             {/* <ImageUploadPage editProduct={editProduct} /> */}
           </div>
         )}
 
         
-        {activeSubProduct === 'Entry Vehicles' && (
-          <div className="pl-6" id='admanager' style={{ display: activeSubProduct === 'Entry Vehicles' ? 'block' : 'none' }}>
-                         <EntryVehicles  editVehicle={editVehicle}/>
+      
 
-
-            {/* <ImageUploadPage editProduct={editProduct} /> */}
-          </div>
-        )}
-
-            {activeSubProduct === 'Vehicles Info' && (
-          <div className="pl-6" id='admanager' style={{ display: activeSubProduct === 'Vehicles Info' ? 'block' : 'none' }}>
-                         <AllVehiclesInfo  editVehicle={editVehicle}/>
-
-
-            {/* <ImageUploadPage editProduct={editProduct} /> */}
-          </div>
-        )}
-
-
+        
       </div>
-
-
     </div>
-
-
-
   );
 };
 
