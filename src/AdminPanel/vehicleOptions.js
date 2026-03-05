@@ -20,3 +20,23 @@ export const availabilityStatus = [
 ];
 
 export const permitTypes = ["Local", "State", "National"];
+
+export const modelTypes = [
+  "2 Side LED",
+  "3 Side Premium",
+  "3 Side",
+  "Ultra Single Side",
+];
+
+export const tamilNaduCities = [
+  "Chennai",
+  "Coimbatore",
+  "Madurai",
+  "Trichy",
+  "Salem",
+  "Tirunelveli",
+  "Erode",
+  "Vellore",
+  "Thoothukudi",
+  "Dindigul",
+];

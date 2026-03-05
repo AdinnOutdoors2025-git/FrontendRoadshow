@@ -17,6 +17,8 @@ import {
   campaignTypes,
   availabilityStatus,
   permitTypes,
+  modelTypes,
+  tamilNaduCities,
 } from "./vehicleOptions";
 
 const EntryNewVehicles = () => {
@@ -314,13 +316,35 @@ const EntryNewVehicles = () => {
                 </div>
 
                 <div className="form-group">
-                  <label>Brand & Model</label>
-                  <input
-                    type="text"
+                  <label>Vehicle Model Type</label>
+                  <select
                     name="model"
                     value={formData.model}
                     onChange={handleChange}
-                  />
+                  >
+                    <option value="">Select Model Type</option>
+                    {modelTypes.map((model, index) => (
+                      <option key={index} value={model}>
+                        {model}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="form-group">
+                  <label>City</label>
+                  <select
+                    name="city"
+                    value={formData.city}
+                    onChange={handleChange}
+                  >
+                    <option value="">Select City</option>
+                    {tamilNaduCities.map((city, index) => (
+                      <option key={index} value={city}>
+                        {city}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
                 <div className="form-group">

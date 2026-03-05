@@ -16,7 +16,6 @@ function Ad1EntryNewVehiclesDetails() {
   const [nameFilter, setNameFilter] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
 
-
   const fetchVehicles = async () => {
     try {
       const response = await fetch(`${baseUrl}/getNewVehicles`);
@@ -48,23 +47,23 @@ function Ad1EntryNewVehiclesDetails() {
 
   const indexOfLast = currentPage * vehiclesPerPage;
   const indexOfFirst = indexOfLast - vehiclesPerPage;
-const filteredVehicles = vehicles.filter((vehicle) => {
-  const matchesDropdownFilters =
-    (!statusFilter || vehicle.availability === statusFilter) &&
-    (!modelFilter || vehicle.model === modelFilter) &&
-    (!nameFilter || vehicle.vehicleName === nameFilter);
+  const filteredVehicles = vehicles.filter((vehicle) => {
+    const matchesDropdownFilters =
+      (!statusFilter || vehicle.availability === statusFilter) &&
+      (!modelFilter || vehicle.model === modelFilter) &&
+      (!nameFilter || vehicle.vehicleName === nameFilter);
 
-  const matchesSearch =
-    !searchTerm ||
-    vehicle.vehicleName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    vehicle.model?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    vehicle.vehicleNumber?.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch =
+      !searchTerm ||
+      vehicle.vehicleName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      vehicle.model?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      vehicle.vehicleNumber?.toLowerCase().includes(searchTerm.toLowerCase());
 
-  return matchesDropdownFilters && matchesSearch;
-});
+    return matchesDropdownFilters && matchesSearch;
+  });
 
-const totalPages = Math.ceil(filteredVehicles.length / vehiclesPerPage);
-const currentVehicles = filteredVehicles.slice(indexOfFirst, indexOfLast);
+  const totalPages = Math.ceil(filteredVehicles.length / vehiclesPerPage);
+  const currentVehicles = filteredVehicles.slice(indexOfFirst, indexOfLast);
 
   const goToPage = (page) => {
     setCurrentPage(page);
@@ -107,51 +106,63 @@ const currentVehicles = filteredVehicles.slice(indexOfFirst, indexOfLast);
       <h2 className="page-title">All Vehicles</h2>
       {/* {filter start} */}
       <div className="filter-bar">
-  {/* STATUS FILTER */}
-  <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
-    <option value="">All Status</option>
-    <option value="Available">Available</option>
-    <option value="Unavailable">Unavailable</option>
-  </select>
+        {/* STATUS FILTER */}
+        <select
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+        >
+          <option value="">All Status</option>
+          <option value="Available">Available</option>
+          <option value="Unavailable">Unavailable</option>
+        </select>
 
-  {/* MODEL FILTER */}
-  <select value={modelFilter} onChange={(e) => setModelFilter(e.target.value)}>
-    <option value="">All Models</option>
-    {uniqueModels.map((model, i) => (
-      <option key={i} value={model}>{model}</option>
-    ))}
-  </select>
+        {/* MODEL FILTER */}
+        <select
+          value={modelFilter}
+          onChange={(e) => setModelFilter(e.target.value)}
+        >
+          <option value="">All Models</option>
+          {uniqueModels.map((model, i) => (
+            <option key={i} value={model}>
+              {model}
+            </option>
+          ))}
+        </select>
 
-  {/* VEHICLE NAME FILTER */}
-  <select value={nameFilter} onChange={(e) => setNameFilter(e.target.value)}>
-    <option value="">All Vehicles</option>
-    {uniqueNames.map((name, i) => (
-      <option key={i} value={name}>{name}</option>
-    ))}
-  </select>
-  {/* SEARCH INPUT */}
-<input
-  type="text"
-  placeholder="Search by name, model, vehicle number..."
-  value={searchTerm}
-  onChange={(e) => setSearchTerm(e.target.value)}
-  className="search-input"
-/>
-  {/* RESET */}
-  <button
-    className="reset-btn"
-    onClick={() => {
-      setStatusFilter("");
-  setModelFilter("");
-  setNameFilter("");
-  setSearchTerm("");
-  setCurrentPage(1);
-    }}
-  >
-    Reset
-  </button>
-
-</div>
+        {/* VEHICLE NAME FILTER */}
+        <select
+          value={nameFilter}
+          onChange={(e) => setNameFilter(e.target.value)}
+        >
+          <option value="">All Vehicles</option>
+          {uniqueNames.map((name, i) => (
+            <option key={i} value={name}>
+              {name}
+            </option>
+          ))}
+        </select>
+        {/* SEARCH INPUT */}
+        <input
+          type="text"
+          placeholder="Search by name, model, vehicle number..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
+        />
+        {/* RESET */}
+        <button
+          className="reset-btn"
+          onClick={() => {
+            setStatusFilter("");
+            setModelFilter("");
+            setNameFilter("");
+            setSearchTerm("");
+            setCurrentPage(1);
+          }}
+        >
+          Reset
+        </button>
+      </div>
       {/* {filter end} */}
 
       {loading ? (
