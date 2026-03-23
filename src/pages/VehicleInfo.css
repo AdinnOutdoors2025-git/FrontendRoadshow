@@ -489,8 +489,9 @@ body {
 .glass-dropdown {
   position: absolute;
   top: 110%;
-  left: 0;
-  width: 100%;
+  right: 4%;
+  width: 260px;
+  max-width: 90%;
 
 
   padding: 8px 0;
