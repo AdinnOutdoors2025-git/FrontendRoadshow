@@ -161,7 +161,7 @@ function VehicleInfo() {
           <div className="header-count-badges">
             <div className="count-badge available-badge">
               <span className="count-icon">🟢</span>
-              <span className="count-number">{formatWithCommas(totalAvailable)}</span>
+              <span className="count-number">{formatWithCommas(totalRemaining)}</span>
               <span className="count-label">Available</span>
             </div>
             <div className="count-badge unavailable-badge">
@@ -169,13 +169,12 @@ function VehicleInfo() {
               <span className="count-number">{formatWithCommas(totalUnavailable)}</span>
               <span className="count-label">Unavailable</span>
             </div>
-            <div className="count-badge remaining-badge">
+            {/* <div className="count-badge remaining-badge">
               <span className="count-icon">🟡
-                {/* 🟠 */}
               </span>
               <span className="count-number">{formatWithCommas(totalRemaining)}</span>
               <span className="count-label">Remaining</span>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -183,7 +182,9 @@ function VehicleInfo() {
           {/* ===== MOBILE VIEW (≤ 768px) ===== */}
           <div className="mobile-view">
             {/* Mobile Filter Row - 2 column grid */}
-            <div className="mobile-filter-row" style={{ gridTemplateColumns: "1fr 1fr" }}>
+            <div className="mobile-filter-row" 
+            // style={{ gridTemplateColumns: "1fr 1fr" }}
+            >
               <div className="filter-item">
                 <select
                   value={selectedModel}
@@ -334,8 +335,8 @@ function VehicleInfo() {
                   <h3>🚘 {vehicle.modelName}</h3>
                   {/* <p>📦 Available: {vehicle.availableCount || 0} | Unavailable: {vehicle.unavailableCount || 0}</p>
                 <p>✅ Remaining: {vehicle.remainingCount || 0}</p> */}
-                  <p>📦 Available: {formatWithCommas(vehicle.availableCount || 0)} | Unavailable: {formatWithCommas(vehicle.unavailableCount || 0)}</p>
-                  <p>✅ Remaining: {formatWithCommas(vehicle.remainingCount || 0)}</p>
+                  <p>📦 Total: {formatWithCommas(vehicle.availableCount || 0)} | Unavailable: {formatWithCommas(vehicle.unavailableCount || 0)}</p>
+                  {/* <p>✅ Remaining: {formatWithCommas(vehicle.remainingCount || 0)}</p> */}
                   {vehicle.location && (
                     <p>📍 {vehicle.location.charAt(0).toUpperCase() + vehicle.location.slice(1).toLowerCase()}</p>
                   )}
@@ -353,7 +354,7 @@ function VehicleInfo() {
                     {vehicle.remainingCount === 0
                       ? "Unavailable"
                       : vehicle.availableCount > 0
-                        ? `Available (${formatWithCommas(vehicle.availableCount)})`
+                        ? `Available (${formatWithCommas(vehicle.remainingCount)})`
                         : vehicle.statusReason || "Unavailable"}
                   </div>
                 </div>

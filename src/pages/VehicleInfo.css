@@ -1956,7 +1956,18 @@ td {
     display: flex;
     gap: 20px;
     padding: 4px;
+    /* ELECTION CSS FIX  */
+    flex-wrap: wrap;
+    justify-content: center;
   }
+
+     .status-badge {
+        width: max-content;
+        font-size: 14px;
+        padding: 8px 13px;
+    }
+
+  /* ELECTION CSS FIX  */
 
   .count-badge {
     gap: 8px;
@@ -2014,9 +2025,13 @@ td {
   /* Mobile Filter Row - 3 Column Grid */
   .mobile-filter-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr 1fr; */
     gap: 0.5rem;
     width: 100%;
+    /* ELECTION CSS FIX  */
+    margin: auto;
+    justify-content: center;
+    /* ELECTION CSS FIX  */
   }
 
   .filter-item {
@@ -2147,7 +2162,18 @@ td {
     display: flex;
     gap: 5px;
     padding: 4px;
+  /* ELECTION CSS FIX  */
+    flex-wrap: wrap;
+    justify-content: center;
   }
+
+    .status-badge {
+        width: max-content;
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+ 
+    /* ELECTION CSS FIX  */
 
   .count-badge {
     gap: 5px;
@@ -2205,9 +2231,13 @@ td {
   /* Mobile Filter Row - 3 Column Grid */
   .mobile-filter-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr 1fr; */
     gap: 0.5rem;
     width: 100%;
+    /* ELECTION CSS FIX  */
+    margin: auto;
+    justify-content: center;
+    /* ELECTION CSS FIX  */
   }
 
   .filter-item {
@@ -2339,7 +2369,16 @@ td {
     display: flex;
     gap: 11px;
     padding: 4px;
+  /* ELECTION CSS FIX  */
+    flex-wrap: wrap;
+    justify-content: center;
   }
+
+    .status-badge {
+        width: max-content;
+        font-size: 13px;
+        padding: 8px 12px;
+    }
 
   .count-badge {
     gap: 10px;
@@ -2397,9 +2436,13 @@ td {
   /* Mobile Filter Row - 3 Column Grid */
   .mobile-filter-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr 1fr; */
     gap: 0.5rem;
     width: 100%;
+    /* ELECTION CSS FIX  */
+    margin: auto;
+    justify-content: center;
+    /* ELECTION CSS FIX  */
   }
 
   .filter-item {
@@ -2534,10 +2577,18 @@ td {
 
   .header-count-badges {
     display: flex;
-    gap: 11px;
+    gap: 5px;
     padding: 4px;
+  /* ELECTION CSS FIX  */
+    /* flex-wrap: wrap;
+    justify-content: center; */
   }
 
+    .status-badge {
+        width: max-content;
+        font-size: 13px;
+        padding: 8px 12px;
+    }
   .count-badge {
     gap: 10px;
     font-size: 14px;
@@ -2594,9 +2645,13 @@ td {
   /* Mobile Filter Row - 3 Column Grid */
   .mobile-filter-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr 1fr; */
     gap: 0.5rem;
     width: 100%;
+    /* ELECTION CSS FIX  */
+    margin: auto;
+    justify-content: center;
+    /* ELECTION CSS FIX  */
   }
 
   .filter-item {
