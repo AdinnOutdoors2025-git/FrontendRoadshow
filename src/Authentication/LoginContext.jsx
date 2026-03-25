@@ -306,7 +306,7 @@ export const LoginProvider = ({ children }) => {
     };
 
     const handleUserActivity = () => {
-        console.log('User activity detected at', new Date().toISOString());
+        // console.log('User activity detected at', new Date().toISOString());
         lastActivityTime.current = Date.now();
         if (user && !localStorage.getItem('user')) {
             startInactivityTimer();

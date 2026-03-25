@@ -89,3 +89,204 @@
     height: 532px;
     overflow-x: auto;
 }
+
+
+/* Vehicle list section styles */
+.manageClientInformation {
+  display: flex;
+  gap: 10px; /* thendral added */
+}
+
+/* LEFT FORM */
+.manageClientInfoLeft {
+  width: 45%;
+}
+
+/* RIGHT LIST */
+.manageClientInfoRight {
+  width: 50%; /*Thendral added*/
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  min-height: 400px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  overflow-y: auto;
+}
+
+/* LIST DESIGN */
+.vehicleListHeading {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.vehicleCard {
+  background: #f9f9f9;
+  padding: 14px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  border-left: 4px solid #e53935;
+  transition: 0.2s ease;
+}
+
+
+.vehicleActions {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.editBtn {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.deleteBtn {
+  background: #d32f2f;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.editBtn:hover {
+  background: #1565c0;
+}
+
+.deleteBtn:hover {
+  background: #b71c1c;
+}
+
+.vehicleCard:hover {
+  background: #f1f1f1;
+  transform: translateY(-2px);
+}
+
+.vehicleNumber {
+ font-weight: 600;
+  font-size: 16px;
+}
+
+.vehicleModel {
+  font-size: 14px;
+  color: #555;
+}
+
+.noVehicleText {
+  color: #999;
+}
+
+.vehicleScrollContainer {
+  max-height: 450px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.vehicleScrollContainer::-webkit-scrollbar {
+  width: 6px;
+}
+
+.vehicleScrollContainer::-webkit-scrollbar-thumb {
+  background: #e53935;
+  border-radius: 10px;
+}
+/* Vehicle list section styles */
+/* Right Side Vehicle List Container */
+.vehicleListBox {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Scrollable List */
+.vehicleScroll {
+  max-height: 500px;          /* Adjust height as needed */
+  overflow-y: auto;
+  padding-right: 10px;
+  /* Smooth scroll */
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar (Modern Look) */
+.vehicleScroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.vehicleScroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.vehicleScroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #4e73df, #224abe);
+  border-radius: 10px;
+}
+
+.vehicleScroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #2e59d9, #1c3faa);
+}
+
+
+
+
+
+/* Scrollable List */
+.vehicleManageModelScroll{
+   margin-bottom: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+}
+.vehicleManageModelScroll {
+  max-height: 250px;          /* Adjust height as needed */
+  overflow-y: auto;
+  padding-right: 10px;
+  /* Smooth scroll */
+  scroll-behavior: smooth;
+ 
+}
+/* Custom Scrollbar (Modern Look) */
+.vehicleManageModelScroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.vehicleManageModelScroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.vehicleManageModelScroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #4e73df, #224abe);
+  border-radius: 10px;
+}
+
+.vehicleManageModelScroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #2e59d9, #1c3faa);
+}
+
+
+
+
+
+
+
+
+
+
+.vehicleListHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.vehicleSearchInput {
+  padding: 6px 10px;
+  width: 250px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}

@@ -22,6 +22,10 @@ import VehicleDetailsWrapper from './Authentication/VehicleDetailsWrapper.jsx';
 //ABOUT US SECTION
 import AboutUs from './components/a4About.jsx';
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import VehicleInfo from './pages/VehicleInfo.js'
+
 function App() {
   const [load, upadateLoad] = useState(true);
 
@@ -34,13 +38,21 @@ function App() {
   }, []);
 
   return (
+    
     <LoginProvider>
       <VehicleProvider>
         <div>
+           <ToastContainer
+              position="top-right"
+              autoClose={3000}
+              theme="colored"
+            />
           <Router>
+          
             <PreLoad load={load} />
             <ScrollToTop />
             <Routes>
+                <Route path="/vehicleinfo" element={<VehicleInfo />} />
               <Route path="*" element={<NotFound />} />
               <Route path="/" element={<Home />} />
               <Route path='/navbar' element={<Navbar />} />
