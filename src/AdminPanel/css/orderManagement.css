@@ -30,6 +30,7 @@ letter-spacing:0.5px;
 
 .order-card{
 background:white;
+position: relative;
 padding:18px;
 border-radius:12px;
 margin-bottom:14px;
@@ -58,6 +59,23 @@ margin-bottom:4px;
 font-size:13px;
 color:#777;
 margin-bottom:8px;
+}
+
+.order-header {
+  display: flex;
+  justify-content: flex-end;  /* ← tag goes to right */
+  min-height: 22px;           /* ← keeps spacing even when no tag */
+  margin-bottom: 10px;
+}
+
+.swipe-name-tag {
+  background: #eef0ff;
+  color: #6c63ff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+  white-space: nowrap;
 }
 
 .order-meta{
@@ -108,10 +126,36 @@ border:1px solid #eef1f5;
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin-bottom:25px;
+margin-bottom:20px;
 
 border-bottom:1px solid #eee;
-padding-bottom:10px;
+padding-bottom:12px;
+}
+
+.popup-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.popup-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.popup-title-row h2 {
+  margin: 0;
+}
+
+.handler-badge {
+  background: #eef0ff;
+  color: #6c63ff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
 }
 
 .close-btn{
@@ -137,6 +181,33 @@ padding:18px;
 border-radius:10px;
 border:1px solid #f0f0f0;
 }
+
+.reason-box {
+  background: #fff8e1;
+  border-left: 4px solid #f59e0b;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+
+.reason-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #e70a0a;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.reason-desc {
+  font-size: 14px;
+  color: #444;
+  margin: 0;
+}
+
 
 /* Vehicle table */
 
@@ -170,6 +241,8 @@ color:#1677ff;
 border-top:1px solid #eee;
 padding-top:15px;
 }
+
+
 .status-badge{
 margin-left:10px;
 padding:4px 10px;
@@ -312,3 +385,30 @@ border-radius:10px;
 background:#888;
 }
 /* Pipline history */
+
+
+/* handler model  */
+
+/* .swipe-name-tag {
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  font-size: 12px;
+  color: #6c63ff;
+  font-weight: 500;
+} */
+
+
+.swipe-modal { max-width: 420px !important; width: 90% !important; }
+.swipe-modal-desc { margin-bottom: 12px; color: #888; font-size: 14px; }
+.field-group { margin-bottom: 14px; }
+.field-label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; color: #555; }
+.swipe-input { width: 100%; padding: 10px 14px; border: 1.5px solid #ddd; border-radius: 8px; font-size: 14px; outline: none; box-sizing: border-box; transition: border-color 0.2s; }
+.swipe-input:focus { border-color: #6c63ff; }
+.reason-textarea { resize: vertical; font-family: inherit; }
+.swipe-error { color: #e74c3c; font-size: 13px; margin-top: 6px; }
+.swipe-modal-footer { display: flex; justify-content: flex-end; gap: 10px; padding-top: 10px; }
+.btn-cancel { padding: 9px 20px; border: 1.5px solid #ddd; background: #fff; border-radius: 8px; cursor: pointer; font-size: 14px; color: #555; }
+.btn-cancel:hover { background: #f5f5f5; }
+.btn-confirm { padding: 9px 22px; background: #6c63ff; color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; transition: background 0.2s, opacity 0.2s; }
+.btn-confirm:not(:disabled):hover { background: #574fd6; }
