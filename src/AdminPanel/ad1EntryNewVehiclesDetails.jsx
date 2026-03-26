@@ -176,7 +176,7 @@ function Ad1EntryNewVehiclesDetails() {
               return (
                 <div
                   key={vehicle._id}
-                  className="vehicle-card"
+                  className="vehicle-card-senior"
                   onClick={() => setSelectedVehicle(vehicle)}
                 >
                   <div className="card-image">

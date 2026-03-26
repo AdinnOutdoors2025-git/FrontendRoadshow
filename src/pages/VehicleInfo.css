@@ -210,6 +210,38 @@
   }
 }
 
+/* ELECTION BLINK UNAVAILABLE COUNT  */
+/* NEW: Blinking animation for remaining count 0 */
+.status-badge.unavailable.blinking {
+  background: linear-gradient(135deg, #d50000, #ff1744);
+  color: white;
+  box-shadow: 0 0 15px rgba(213, 0, 0, 0.6);
+  animation: pulseRed 2.5s infinite;
+}
+
+@keyframes blinkRed {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    background: linear-gradient(135deg, #ff0000, #cc0000);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #ff4444, #ff0000);
+    box-shadow: 0 0 30px rgba(255, 0, 0, 1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    background: linear-gradient(135deg, #ff0000, #cc0000);
+  }
+}
+
+/* ELECTION BLINK UNAVAILABLE COUNT  */
+
 
 /* ================= Hover Effect ================= */
 
@@ -457,8 +489,9 @@ body {
 .glass-dropdown {
   position: absolute;
   top: 110%;
-  left: 0;
-  width: 100%;
+  right: 4%;
+  width: 260px;
+  max-width: 90%;
 
 
   padding: 8px 0;
@@ -1127,6 +1160,12 @@ td {
   color: #f87171;
   text-shadow: 0 0 15px rgba(248, 113, 113, 0.5);
   border-left: 3px solid #f87171;
+}
+
+.count-badge.remaining-badge {
+  color: #f1d54b;
+  text-shadow: 0 0 15px rgba(227, 237, 85, 0.5);
+  border-left: 3px solid #f1d54b;
 }
 
 .count-icon {
@@ -1917,7 +1956,18 @@ td {
     display: flex;
     gap: 20px;
     padding: 4px;
+    /* ELECTION CSS FIX  */
+    flex-wrap: wrap;
+    justify-content: center;
   }
+
+     .status-badge {
+        width: max-content;
+        font-size: 14px;
+        padding: 8px 13px;
+    }
+
+  /* ELECTION CSS FIX  */
 
   .count-badge {
     gap: 8px;
@@ -1975,9 +2025,13 @@ td {
   /* Mobile Filter Row - 3 Column Grid */
   .mobile-filter-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr 1fr; */
     gap: 0.5rem;
     width: 100%;
+    /* ELECTION CSS FIX  */
+    margin: auto;
+    justify-content: center;
+    /* ELECTION CSS FIX  */
   }
 
   .filter-item {
@@ -2108,7 +2162,18 @@ td {
     display: flex;
     gap: 5px;
     padding: 4px;
+  /* ELECTION CSS FIX  */
+    flex-wrap: wrap;
+    justify-content: center;
   }
+
+    .status-badge {
+        width: max-content;
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+ 
+    /* ELECTION CSS FIX  */
 
   .count-badge {
     gap: 5px;
@@ -2166,9 +2231,13 @@ td {
   /* Mobile Filter Row - 3 Column Grid */
   .mobile-filter-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr 1fr; */
     gap: 0.5rem;
     width: 100%;
+    /* ELECTION CSS FIX  */
+    margin: auto;
+    justify-content: center;
+    /* ELECTION CSS FIX  */
   }
 
   .filter-item {
@@ -2300,7 +2369,16 @@ td {
     display: flex;
     gap: 11px;
     padding: 4px;
+  /* ELECTION CSS FIX  */
+    flex-wrap: wrap;
+    justify-content: center;
   }
+
+    .status-badge {
+        width: max-content;
+        font-size: 13px;
+        padding: 8px 12px;
+    }
 
   .count-badge {
     gap: 10px;
@@ -2358,9 +2436,13 @@ td {
   /* Mobile Filter Row - 3 Column Grid */
   .mobile-filter-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr 1fr; */
     gap: 0.5rem;
     width: 100%;
+    /* ELECTION CSS FIX  */
+    margin: auto;
+    justify-content: center;
+    /* ELECTION CSS FIX  */
   }
 
   .filter-item {
@@ -2495,10 +2577,18 @@ td {
 
   .header-count-badges {
     display: flex;
-    gap: 11px;
+    gap: 5px;
     padding: 4px;
+  /* ELECTION CSS FIX  */
+    /* flex-wrap: wrap;
+    justify-content: center; */
   }
 
+    .status-badge {
+        width: max-content;
+        font-size: 13px;
+        padding: 8px 12px;
+    }
   .count-badge {
     gap: 10px;
     font-size: 14px;
@@ -2555,9 +2645,13 @@ td {
   /* Mobile Filter Row - 3 Column Grid */
   .mobile-filter-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr 1fr; */
     gap: 0.5rem;
     width: 100%;
+    /* ELECTION CSS FIX  */
+    margin: auto;
+    justify-content: center;
+    /* ELECTION CSS FIX  */
   }
 
   .filter-item {

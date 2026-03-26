@@ -208,7 +208,6 @@
   max-height: 500px;          /* Adjust height as needed */
   overflow-y: auto;
   padding-right: 10px;
-
   /* Smooth scroll */
   scroll-behavior: smooth;
 }
@@ -231,6 +230,53 @@
 .vehicleScroll::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #2e59d9, #1c3faa);
 }
+
+
+
+
+
+/* Scrollable List */
+.vehicleManageModelScroll{
+   margin-bottom: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+}
+.vehicleManageModelScroll {
+  max-height: 250px;          /* Adjust height as needed */
+  overflow-y: auto;
+  padding-right: 10px;
+  /* Smooth scroll */
+  scroll-behavior: smooth;
+ 
+}
+/* Custom Scrollbar (Modern Look) */
+.vehicleManageModelScroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.vehicleManageModelScroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.vehicleManageModelScroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #4e73df, #224abe);
+  border-radius: 10px;
+}
+
+.vehicleManageModelScroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #2e59d9, #1c3faa);
+}
+
+
+
+
+
+
+
+
+
+
 .vehicleListHeader {
   display: flex;
   justify-content: space-between;
