@@ -6,15 +6,18 @@ import './ad1VehicleUploadVideos.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
-import { baseUrl } from '../Authentication/BASE_URL';
+import { baseUrls } from '../Authentication/BASE_URL';
 import './RichText.css';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { useAuth } from '../Authentication/LoginContext';
 
 function VehicleUpload() {
     const { state } = useLocation();
     const { id } = useParams();
     const navigate = useNavigate();
+
+      const { getAuthHeaders } = useAuth();
 
     // // Rating Stars Components (keep your existing code)
     // const RatingStars = ({ rating }) => {
@@ -172,20 +175,38 @@ const [vehicleScreenresolution, setVehicleScreenresolution] = useState("");
     };
 
     // Fetch vehicles data
+    // useEffect(() => {
+    //     fetch(`${baseUrl}/vehicles`)
+    //         .then((response) => response.json())
+    //         .then((data) => {
+    //             const vehiclesWithVisibility = data.map((vehicle) => ({
+    //                 ...vehicle,
+    //                 visible: vehicle.vehicleDetails?.visible !== false,
+    //             }));
+    //             setVehiclesData(vehiclesWithVisibility.sort((a, b) =>
+    //                 b.vehicleDetails?.visible - a.vehicleDetails?.visible
+    //             ));
+    //         })
+    //         .catch(error => console.error('Error fetching vehicles:', error));
+    // }, []);
+
     useEffect(() => {
-        fetch(`${baseUrl}/vehicles`)
-            .then((response) => response.json())
-            .then((data) => {
-                const vehiclesWithVisibility = data.map((vehicle) => ({
-                    ...vehicle,
-                    visible: vehicle.vehicleDetails?.visible !== false,
-                }));
-                setVehiclesData(vehiclesWithVisibility.sort((a, b) =>
-                    b.vehicleDetails?.visible - a.vehicleDetails?.visible
-                ));
-            })
-            .catch(error => console.error('Error fetching vehicles:', error));
-    }, []);
+    fetch(`${baseUrls}/vehicles`, {
+        method: 'GET',
+        headers: getAuthHeaders()
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            const vehiclesWithVisibility = data.map((vehicle) => ({
+                ...vehicle,
+                visible: vehicle.vehicleDetails?.visible !== false,
+            }));
+            setVehiclesData(vehiclesWithVisibility.sort((a, b) =>
+                b.vehicleDetails?.visible - a.vehicleDetails?.visible
+            ));
+        })
+        .catch(error => console.error('Error fetching vehicles:', error));
+}, []);
 
     // Prefill form for editing
     useEffect(() => {
@@ -457,7 +478,7 @@ const [vehicleScreenresolution, setVehicleScreenresolution] = useState("");
         setUploading(true);
 
         const method = editVehicle ? 'PUT' : 'POST';
-        const url = editVehicle ? `${baseUrl}/vehicles/${editVehicle._id}` : `${baseUrl}/vehicles`;
+        const url = editVehicle ? `${baseUrls}/vehicles/${editVehicle._id}` : `${baseUrls}/vehicles`;
 
         try {
             // Your existing file upload logic here...
@@ -467,8 +488,9 @@ const [vehicleScreenresolution, setVehicleScreenresolution] = useState("");
             if (imageFile && !image.startsWith('http')) {
                 const formData = new FormData();
                 formData.append("file", imageFile);
-                const uploadResponse = await fetch(`${baseUrl}/upload`, {
+                const uploadResponse = await fetch(`${baseUrls}/upload`, {
                     method: "POST",
+                    //   headers: getAuthHeaders(), 
                     body: formData
                 });
                 if (!uploadResponse.ok) {
@@ -496,8 +518,9 @@ const [vehicleScreenresolution, setVehicleScreenresolution] = useState("");
                     formData.append('files', fileObj.file);
                 });
 
-                const filesResponse = await fetch(`${baseUrl}/save-videos`, {
+                const filesResponse = await fetch(`${baseUrls}/save-videos`, {
                     method: 'POST',
+                    // headers: getAuthHeaders(), 
                     body: formData
                 });
 
@@ -532,9 +555,9 @@ const [vehicleScreenresolution, setVehicleScreenresolution] = useState("");
             const filesToDelete = additionalFiles.filter(file => file.markedForDeletion && file.public_id);
             for (const file of filesToDelete) {
                 try {
-                    await fetch(`${baseUrl}/delete-video`, {
+                    await fetch(`${baseUrls}/delete-video`, {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: getAuthHeaders(), 
                         body: JSON.stringify({
                             public_id: file.public_id,
                             resource_type: file.type
@@ -548,9 +571,7 @@ const [vehicleScreenresolution, setVehicleScreenresolution] = useState("");
             // CORRECTED: Submit data with proper similar vehicles format
             const response = await fetch(url, {
                 method: method,
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                 headers: getAuthHeaders(), 
                 body: JSON.stringify({
                     vehicleDetails: {
                         vehicleID: vehicleID,

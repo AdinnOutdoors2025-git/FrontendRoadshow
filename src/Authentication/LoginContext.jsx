@@ -220,38 +220,46 @@ export const LoginProvider = ({ children }) => {
         }
     };
 
-    const loginUser = (userData, rememberMe = false) => {
-        const userWithId = {
-            ...userData,
-            _id: userData._id || userData.id,
-            isAdmin: userData.role === 'admin',
-            userType: 'customer'
-        };
-        
-        setUser(userWithId);
-        if (rememberMe) {
-            localStorage.setItem('user', JSON.stringify(userWithId));
-            sessionStorage.removeItem('user');
-        } else {
-            sessionStorage.setItem('user', JSON.stringify(userWithId));
-            localStorage.removeItem('user');
-            if (!userWithId.isAdmin) {
-                startInactivityTimer();
-            }
-        }
+  
 
-        // For admin users, don't start inactivity timer
-        if (userWithId.isAdmin) {
-            clearInactivityTimer();
-        }
-
-        // Handle redirect
-        const redirectPath = sessionStorage.getItem('loginRedirect');
-        if (redirectPath) {
-            sessionStorage.removeItem('loginRedirect');
-            window.location.href = redirectPath;
-        }
+const loginUser = (userData, rememberMe = false) => {
+    const userWithId = {
+        ...userData,
+        _id: userData._id || userData.id,
+        isAdmin: userData.role === 'admin',
+        // userType: 'customer'
     };
+
+    setUser(userWithId);
+
+   
+    const token = userData.token;
+
+    if (rememberMe) {
+        localStorage.setItem('user', JSON.stringify(userWithId));
+        localStorage.setItem('authToken', token);       
+        sessionStorage.removeItem('user');
+        sessionStorage.removeItem('authToken');         
+    } else {
+        sessionStorage.setItem('user', JSON.stringify(userWithId));
+        sessionStorage.setItem('authToken', token);     
+        localStorage.removeItem('user');
+        localStorage.removeItem('authToken');           
+        if (!userWithId.isAdmin) {
+            startInactivityTimer();
+        }
+    }
+
+    if (userWithId.isAdmin) {
+        clearInactivityTimer();
+    }
+
+    const redirectPath = sessionStorage.getItem('loginRedirect');
+    if (redirectPath) {
+        sessionStorage.removeItem('loginRedirect');
+        window.location.href = redirectPath;
+    }
+};
 
     const loginEmployee = (employeeData, rememberMe = false) => {
         const employeeWithType = {
@@ -274,14 +282,24 @@ export const LoginProvider = ({ children }) => {
         }
     };
 
+    // const logoutUser = () => {
+    //     console.log('Logging out due to inactivity');
+    //     setUser(null);
+    //     localStorage.removeItem('user');
+    //     sessionStorage.removeItem('user');
+    //     localStorage.removeItem('cartItems');
+    //     clearInactivityTimer();
+    // };
+
     const logoutUser = () => {
-        console.log('Logging out due to inactivity');
-        setUser(null);
-        localStorage.removeItem('user');
-        sessionStorage.removeItem('user');
-        localStorage.removeItem('cartItems');
-        clearInactivityTimer();
-    };
+    setUser(null);
+    localStorage.removeItem('user');
+    localStorage.removeItem('authToken');       
+    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('authToken');     
+    localStorage.removeItem('cartItems');
+    clearInactivityTimer();
+};
 
     const logoutEmployee = () => {
         console.log('Logging out employee');
@@ -378,4 +396,32 @@ export const useLogin = () => {
         throw new Error('useLogin must be used within a LoginProvider');
     }
     return context;
+};
+
+
+
+export const useAuth = () => {
+    const context = useContext(LoginContext);
+    if (!context) {
+        throw new Error('useAuth must be used within a LoginProvider');
+    }
+
+    // எங்கே store ஆனாலும் token எடுக்கும்
+    const getToken = () => {
+        return localStorage.getItem('authToken') 
+            || sessionStorage.getItem('authToken') 
+            || null;
+    };
+
+    // Protected API calls-க்கு ready-made headers
+    const getAuthHeaders = () => ({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${getToken()}`
+    });
+
+    return {
+        ...context,
+        getToken,
+        getAuthHeaders,
+    };
 };

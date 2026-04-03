@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './ad1VehiclesList.css';
 import { useNavigate } from 'react-router-dom';
 //BASE URL OF http://localhost:3001 FILE IMPORT 
-import { baseUrl } from '../Authentication/BASE_URL';
+import { baseUrls } from '../Authentication/BASE_URL';
+import { useAuth } from '../Authentication/LoginContext';
+
+
 const VehiclesListTable = () => {
     // NAVIGATE 
     const navigate = useNavigate();
@@ -13,40 +16,77 @@ const VehiclesListTable = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchVehicles = async () => {
-            try {
-                setLoading(true);
-                setError(null);
-                const response = await fetch(`${baseUrl}/vehicles`);
-                if (!response.ok) {
-                    throw new Error('Failed to fetch products');
-                }
-                const data = await response.json();
-                const vehicleWithVisibility = data.map((vehicle) => ({
-                    ...vehicle,
-                    visible: vehicle.vehicleDetails.visible !== false,
-                }));
-                const sortedVehicles = vehicleWithVisibility.sort((a, b) => b.visible - a.visible);
-                setVehicles(sortedVehicles);
-                setFilteredVehicles(sortedVehicles);
-            } catch (err) {
-                console.error('Error fetching products:', err);
-                setError(err.message);
-            } finally {
-                setLoading(false);
+     const { getAuthHeaders } = useAuth();
+
+
+    // useEffect(() => {
+    //     const fetchVehicles = async () => {
+    //         try {
+    //             setLoading(true);
+    //             setError(null);
+    //             const response = await fetch(`${baseUrl}/vehicles`);
+    //             if (!response.ok) {
+    //                 throw new Error('Failed to fetch products');
+    //             }
+    //             const data = await response.json();
+    //             const vehicleWithVisibility = data.map((vehicle) => ({
+    //                 ...vehicle,
+    //                 visible: vehicle.vehicleDetails.visible !== false,
+    //             }));
+    //             const sortedVehicles = vehicleWithVisibility.sort((a, b) => b.visible - a.visible);
+    //             setVehicles(sortedVehicles);
+    //             setFilteredVehicles(sortedVehicles);
+    //         } catch (err) {
+    //             console.error('Error fetching products:', err);
+    //             setError(err.message);
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //     };
+
+    //     fetchVehicles();
+    // }, []);
+
+useEffect(() => {
+    const fetchVehicles = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+
+            const response = await fetch(`${baseUrls}/vehicles`, {
+                method: 'GET',
+               headers: getAuthHeaders(),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch products');
             }
-        };
 
-        fetchVehicles();
-    }, []);
+            const data = await response.json();
+            const vehicleWithVisibility = data.map((vehicle) => ({
+                ...vehicle,
+                visible: vehicle.vehicleDetails.visible !== false,
+            }));
+            const sortedVehicles = vehicleWithVisibility.sort((a, b) => b.visible - a.visible);
+            setVehicles(sortedVehicles);
+            setFilteredVehicles(sortedVehicles);
 
+        } catch (err) {
+            console.error('Error fetching products:', err);
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
 
+    fetchVehicles();
+}, []);
     const handleDelete = async (id) => {
         // Show confirmation dialog
         if (window.confirm("Are you sure you want to delete this product permanently?")) {
-            await fetch(`${baseUrl}/vehicles/${id}`, {
+            await fetch(`${baseUrls}/vehicles/${id}`, {
                 method: 'DELETE',
+                headers: getAuthHeaders(),
             });
             // setProducts(prev => prev.filter(p => p._id !== id));
             // Update both products and filtered products
@@ -73,9 +113,9 @@ const VehiclesListTable = () => {
         if (!window.confirm(message)) return;
 
         try {
-            const response = await fetch(`${baseUrl}/vehicles/${vehicleId}`, {
+            const response = await fetch(`${baseUrls}/vehicles/${vehicleId}`, {
                 method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
+             headers: getAuthHeaders(),
                 body: JSON.stringify({ "vehicleDetails.visible": !currentVisibility }),
             });
 

@@ -11,7 +11,7 @@ import PreLoad from './components/PreLoad';
 // PROTECTED FILES 
 import Admin from './AdminPanel/ad1.jsx';
 import CreativeAdminLogin from './Authentication/CreativeLogin_UserAdmin.jsx';
-import ProtectedRoute from './Authentication/PROTECTED_ROUTE.jsx';
+// import ProtectedRoute from './Authentication/PROTECTED_ROUTE.jsx';
 import NotFound from './components/404NOT_FOUND.jsx';
 // VEHICLE CONTEXT 
 import { VehicleProvider } from './components/A_VehicleContext.jsx';
@@ -25,6 +25,7 @@ import AboutUs from './components/a4About.jsx';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import VehicleInfo from './pages/VehicleInfo.js'
+import ProtectedRoute from './Authentication/ProtectedRoute.js';
 
 function App() {
   const [load, upadateLoad] = useState(true);
@@ -75,7 +76,7 @@ function App() {
 
               {/* Protected Admin Routes */}
               <Route path="/admin" element={
-                <ProtectedRoute adminOnly>
+                <ProtectedRoute>
                   <Admin />
                 </ProtectedRoute>
               } />

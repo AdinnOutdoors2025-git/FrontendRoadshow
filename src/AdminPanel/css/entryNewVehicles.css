@@ -7,36 +7,59 @@ body {
 
 /* Animated gradient */
 @keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
+
 @media (max-width: 1200px) {
   .sections-grid {
     grid-template-columns: 1fr;
   }
 }
+
 /* ============================= */
 /* SECTION GRID LAYOUT */
 /* ============================= */
 
 .sections-grid {
-   display: block;
+  display: block;
   grid-template-columns: repeat(1, 1fr);
   gap: 30px;
   align-items: start;
 }
+
 /* ============================= */
 /* PAGE LAYOUT */
 /* ============================= */
 
-.form-container {
-   width: 100%;
+/* .form-container {
+  position: relative;
+  width: 100%;
   margin: 30px;
   padding: 30px;
   background: #ffffff;
   border-radius: 16px;
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
+} */
+
+.form-container {
+  position: relative;
+  width: 100%;
+  margin: 30px;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
+  isolation: isolate; /* Add this */
 }
 
 .submit-btn:disabled {
@@ -63,7 +86,7 @@ body {
 }
 
 .form-section h2 {
-   font-size: 18px;
+  font-size: 18px;
   font-weight: 600;
   margin-bottom: 22px;
   color: #111827;
@@ -301,7 +324,7 @@ input[type="file"] {
   object-fit: cover;
   border-radius: 10px;
   border: 2px solid #e0e0e0;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }
 
@@ -346,4 +369,238 @@ input[type="file"] {
 .replace-btn:hover {
   background: #0f66c3;
 }
+
 /*  all images preview section */
+
+
+/* Vehicletypemodel */
+
+.custom-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.custom-select-trigger {
+  width: 100%;
+  padding: 9px 36px 9px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: white;
+  font-size: 14px;
+  color: #111827;
+  cursor: pointer;
+  text-align: left;
+  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: border-color 0.2s;
+}
+
+.custom-select-trigger:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.custom-select-trigger .placeholder {
+  color: #9ca3af;
+}
+
+.custom-select-trigger .chevron {
+  font-size: 10px;
+  color: #6b7280;
+  pointer-events: none;
+  transition: transform 0.2s;
+}
+
+.custom-select-trigger.open .chevron {
+  transform: rotate(180deg);
+}
+
+.custom-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  z-index: 500;
+  overflow: hidden;
+  max-height: 240px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-options {
+  overflow-y: auto;
+  flex: 1;
+}
+
+.dropdown-option {
+  padding: 10px 14px;
+  font-size: 14px;
+  color: #111827;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.dropdown-option:hover {
+  background: #f3f4f6;
+}
+
+.dropdown-option.selected {
+  background: #eff6ff;
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.dropdown-option.loading-opt {
+  color: #9ca3af;
+  cursor: default;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 0;
+}
+
+.dropdown-add-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2563eb;
+  cursor: pointer;
+  background: white;
+  border: none;
+  width: 100%;
+  text-align: left;
+  transition: background 0.15s;
+}
+
+.dropdown-add-btn:hover {
+  background: #eff6ff;
+}
+
+.dropdown-add-btn .plus-icon {
+  width: 20px;
+  height: 20px;
+  background: #2563eb;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Modal styles */
+/* .modal-overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(0,0,0,0.5);
+          z-index: 1000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          
+        } */
+
+/* Change this in entryNewVehicles.css */
+/* .modal-overlay {
+  position: absolute;
+
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+ 
+} */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.modal-box {
+  background: white;
+  border-radius: 16px;
+  padding: 28px;
+  width: 400px;
+  max-width: 90vw;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+}
+
+.modal-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+.modal-subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.btn {
+  padding: 9px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-cancel {
+  border: 1px solid #e5e7eb;
+  background: white;
+  color: #374151;
+}
+
+.btn-cancel:hover {
+  background: #f9fafb;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

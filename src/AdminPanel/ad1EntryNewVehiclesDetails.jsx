@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { baseUrl } from "../Authentication/BASE_URL";
+import {baseUrls } from "../Authentication/BASE_URL";
 import { ToastContainer, toast } from "react-toastify";
 import "./showNewVehiclesEntry.css";
+import { useAuth } from '../Authentication/LoginContext';
 
 function Ad1EntryNewVehiclesDetails() {
   const [vehicles, setVehicles] = useState([]);
@@ -15,10 +16,14 @@ function Ad1EntryNewVehiclesDetails() {
   const [modelFilter, setModelFilter] = useState("");
   const [nameFilter, setNameFilter] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+    const { getAuthHeaders } = useAuth();
 
-  const fetchVehicles = async () => {
+const fetchVehicles = async () => {
     try {
-      const response = await fetch(`${baseUrl}/getNewVehicles`);
+      const response = await fetch(`${baseUrls}/getNewVehicles`, {
+        method: 'GET',
+        headers: getAuthHeaders(),   
+      });
       const data = await response.json();
 
       if (data.success) {
@@ -88,7 +93,7 @@ function Ad1EntryNewVehiclesDetails() {
           {images.map((img, i) => (
             <img
               key={i}
-              src={`${baseUrl}/uploads/${folderName}/${img}`}
+              src={`${baseUrls}/uploads/${folderName}/${img}`}
               alt=""
             />
           ))}
@@ -182,7 +187,7 @@ function Ad1EntryNewVehiclesDetails() {
                   <div className="card-image">
                     {vehicle.mainImage?.length > 0 && (
                       <img
-                        src={`${baseUrl}/uploads/${folderName}/${vehicle.mainImage[0]}`}
+                        src={`${baseUrls}/uploads/${folderName}/${vehicle.mainImage[0]}`}
                         alt={vehicle.vehicleName}
                       />
                     )}

@@ -354,17 +354,13 @@
 
 
 
-
-
-
-
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useLogin } from './LoginContext';
 import './LoginContext';
-import { baseUrl } from './BASE_URL';
+import { baseUrls } from './BASE_URL';
 import './creativelogin.css';
+
 
 const AdminAuth = () => {
     const [isRegistering, setIsRegistering] = useState(false);
@@ -383,6 +379,7 @@ const AdminAuth = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [authField, setAuthField] = useState('password');
+    
 
     useEffect(() => {
         if (location.state?.registrationSuccess) {
@@ -390,6 +387,8 @@ const AdminAuth = () => {
             setSuccessMessage('Registration successful! Please login.');
         }
     }, [location.state]);
+
+    
 
     const handleChange = (e) => {
         setFormData({
@@ -442,8 +441,8 @@ const AdminAuth = () => {
         }
 
         const endpoint = isRegistering
-            ? `${baseUrl}/adminUserLogin/register-admin`
-            : `${baseUrl}/adminUserLogin/admin`;
+            ? `${baseUrls}/register-admin`
+            : `${baseUrls}/admin`;
 
         try {
             let payload;
@@ -479,7 +478,7 @@ const AdminAuth = () => {
                     setSuccessMessage('Registration successful! Please login.');
                     setIsRegistering(false);
                     setFormData({
-                        username: formData.username,
+                        username: "",
                         password: '',
                         secretCode: ''
                     });

@@ -9,7 +9,8 @@ import "./css/entryNewVehicles.css";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
-import { baseUrl } from "../Authentication/BASE_URL";
+import { baseUrls } from "../Authentication/BASE_URL";
+import { useAuth } from '../Authentication/LoginContext';
 import {
   vehicleTypes,
   fuelTypes,
@@ -17,9 +18,10 @@ import {
   campaignTypes,
   availabilityStatus,
   permitTypes,
-  modelTypes,
+  // modelTypes,
   tamilNaduCities,
 } from "./vehicleOptions";
+import VehicleModelSelect from "./VehicleModelSelect";
 
 const EntryNewVehicles = () => {
   const initialFormState = {
@@ -84,6 +86,8 @@ const EntryNewVehicles = () => {
 
   const [step, setStep] = useState(1);
   const totalSteps = 7;
+ const { getAuthHeaders } = useAuth();
+
 
   const nextStep = () => {
     if (!validate()) return;
@@ -211,8 +215,9 @@ const EntryNewVehicles = () => {
         }
       });
 
-      const response = await fetch(`${baseUrl}/createVehicle`, {
+      const response = await fetch(`${baseUrls}/createVehicle`, {
         method: "POST",
+        headers: getAuthHeaders(), 
         body: formDataToSend,
       });
 
@@ -315,7 +320,7 @@ const EntryNewVehicles = () => {
                   )}
                 </div>
 
-                <div className="form-group">
+                {/* <div className="form-group">
                   <label>Vehicle Model Type</label>
                   <select
                     name="model"
@@ -329,7 +334,12 @@ const EntryNewVehicles = () => {
                       </option>
                     ))}
                   </select>
-                </div>
+                </div> */}
+                 <VehicleModelSelect
+                    value={formData.model}
+                    onChange={handleChange}
+                  
+                  />
 
                 <div className="form-group">
                   <label>City</label>

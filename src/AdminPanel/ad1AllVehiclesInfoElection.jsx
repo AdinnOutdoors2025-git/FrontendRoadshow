@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
-import { baseUrl } from "../Authentication/BASE_URL";
+import { baseUrls } from "../Authentication/BASE_URL";
 import "./RichText.css";
 import "./ad1VehiclesInfo1.css";
 import "react-quill/dist/quill.snow.css";
+import { useAuth } from '../Authentication/LoginContext';
 
 function AllVehiclesInfoElection() {
   const [vehicles, setVehicles] = useState([]);
@@ -36,6 +37,7 @@ function AllVehiclesInfoElection() {
     const unavailableNum = parseInt(unavailable) || 0;
     return availableNum - unavailableNum;
   };
+     const { getAuthHeaders } = useAuth();
 
   const remainingVehicleCount = calculateRemainingCount(vehicleAvailabilityCount, vehicleUnavailabilityCount);
 
@@ -58,9 +60,12 @@ function AllVehiclesInfoElection() {
   };
 
   // Fetch all vehicle models
-  const fetchModels = async () => {
+const fetchModels = async () => {
     try {
-      const response = await fetch(`${baseUrl}/getVehicleModelsElection`);
+      const response = await fetch(`${baseUrls}/getVehicleModelsElection`, {
+        method: 'GET',
+        headers: getAuthHeaders(),  
+      });
       const data = await response.json();
       if (data.status === true) {
         setModels(data.data);
@@ -71,10 +76,13 @@ function AllVehiclesInfoElection() {
   };
 
   // Fetch vehicles (entry vehicles)
-  useEffect(() => {
+useEffect(() => {
     const fetchVehicles = async () => {
       try {
-        const response = await fetch(`${baseUrl}/getVehicles`);
+        const response = await fetch(`${baseUrls}/getVehicles`, {
+          method: 'GET',
+          headers: getAuthHeaders(),  
+        });
         const data = await response.json();
         if (data.status === true) {
           setVehicles(data.data);
@@ -88,9 +96,12 @@ function AllVehiclesInfoElection() {
   }, []);
 
   // Fetch availability list
-  const fetchAvailability = async () => {
+const fetchAvailability = async () => {
     try {
-      const response = await fetch(`${baseUrl}/getVehiclesAvailabilityElection`);
+      const response = await fetch(`${baseUrls}/getVehiclesAvailabilityElection`, {
+        method: 'GET',
+        headers: getAuthHeaders(),   
+      });
       const data = await response.json();
       if (data.success) {
         setAvailabilityList(data.data);
@@ -141,11 +152,9 @@ function AllVehiclesInfoElection() {
     }
 
     try {
-      const response = await fetch(`${baseUrl}/saveVehicleModelElection`, {
+      const response = await fetch(`${baseUrls}/saveVehicleModelElection`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: getAuthHeaders(), 
         body: JSON.stringify({
           modelName: newModelName.toUpperCase(),
         }),
@@ -188,11 +197,9 @@ function AllVehiclesInfoElection() {
     }
 
     try {
-      const response = await fetch(`${baseUrl}/updateVehicleModelElection/${editingModelId}`, {
+      const response = await fetch(`${baseUrls}/updateVehicleModelElection/${editingModelId}`, {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: getAuthHeaders(), 
         body: JSON.stringify({
           modelName: editModelName.toUpperCase(),
         }),
@@ -236,8 +243,9 @@ function AllVehiclesInfoElection() {
     }
 
     try {
-      const response = await fetch(`${baseUrl}/deleteVehicleModelElection/${modelId}`, {
+      const response = await fetch(`${baseUrls}/deleteVehicleModelElection/${modelId}`, {
         method: "DELETE",
+         headers: getAuthHeaders(), 
       });
 
       const data = await response.json();
@@ -319,14 +327,14 @@ function AllVehiclesInfoElection() {
 
     try {
       const url = editId
-        ? `${baseUrl}/updateVehiclesAvailabilityElection/${editId}`
-        : `${baseUrl}/saveVehiclesAvailabilityElection`;
+        ? `${baseUrls}/updateVehiclesAvailabilityElection/${editId}`
+        : `${baseUrls}/saveVehiclesAvailabilityElection`;
 
       const method = editId ? "PUT" : "POST";
 
       const response = await fetch(url, {
         method,
-        headers: { "Content-Type": "application/json" },
+       headers: getAuthHeaders(), 
         body: JSON.stringify({
           modelId: selectedModelId,
           modelName: modelName,
@@ -371,8 +379,8 @@ function AllVehiclesInfoElection() {
 
     try {
       const response = await fetch(
-        `${baseUrl}/deleteVehiclesAvailabilityElection/${id}`,
-        { method: "DELETE" }
+        `${baseUrls}/deleteVehiclesAvailabilityElection/${id}`,
+        { method: "DELETE" , headers: getAuthHeaders(), }
       );
 
       const data = await response.json();

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { baseUrl } from "../Authentication/BASE_URL";
+import { baseUrls } from "../Authentication/BASE_URL";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import axios from "axios";
 import "./css/orderManagement.css";
@@ -46,7 +46,7 @@ function Ad1OrdersManagement() {
 
   const fetchOrders = useCallback(async () => {
     try {
-      const res = await axios.get(`${baseUrl}/getOrders`);
+      const res = await axios.get(`${baseUrls}/getOrders`);
       if (res.data && res.data.orders) setOrders(res.data.orders);
     } catch (err) {
       console.log("Fetch orders error:", err);
@@ -143,7 +143,7 @@ function Ad1OrdersManagement() {
     }
 
     try {
-      await axios.put(`${baseUrl}/updateOrderPipeline/${orderId}`, {
+      await axios.put(`${baseUrls}/updateOrderPipeline/${orderId}`, {
         pipelineStatus: newStage,
         movedBy: handlername || "Admin",
         handlername: handlername || undefined,
