@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
+import { baseUrls } from "../Authentication/BASE_URL";
+import { useAuth } from '../Authentication/LoginContext';
 
 function AddModelModal({ isOpen, onClose, onSaved }) {
   const [modelName, setModelName] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState("");
+   const { getAuthHeaders } = useAuth();
+  
 
   // ✅ Prevent background scroll when modal is open
   useEffect(() => {
@@ -26,11 +30,9 @@ function AddModelModal({ isOpen, onClose, onSaved }) {
     setIsSaving(true);
     setError("");
     try {
-      const response = await fetch(`http://localhost:3001/saveVehicleModel`, {
+      const response = await fetch(`${baseUrls}/saveVehicleModel`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+         headers: getAuthHeaders(), 
         body: JSON.stringify({ modelName: modelName.trim() }),
       });
       const data = await response.json();
@@ -95,7 +97,7 @@ function AddModelModal({ isOpen, onClose, onSaved }) {
         </div>
       </div>
     </div>,
-    document.body  // ✅ Renders outside the form DOM entirely
+    document.body 
   );
 }
 

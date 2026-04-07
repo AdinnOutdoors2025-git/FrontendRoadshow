@@ -709,7 +709,16 @@ const [vehicleScreenresolution, setVehicleScreenresolution] = useState("");
                     <div className='adManageContentLeft'>
                         <div className='clientDetailHeading'> Primary Image</div>
                         <div className='ManageLeftImg1'>
-                            <img src={image} className='ManageLeftImg1' alt="Vehicle_Image" />
+
+                            {image ? (
+                                  <img src={image} className='ManageLeftImg1' alt="Vehicle_Image" />
+                            ) : (
+                                 <div className={`videoPreview`}>
+                                            <div className="emptyPreview">No file</div>
+                                        </div>
+                            )}
+                          
+                            
                         </div>
 
                         {/* Additional Images/Videos */}
@@ -854,7 +863,7 @@ const [vehicleScreenresolution, setVehicleScreenresolution] = useState("");
                                 <input type="file" accept="image/*" id='fileInput' onChange={handleImageUpload} hidden />
                                 <label htmlFor="fileInput" className={`file-upload-box ${errors.image ? 'AdminProdinput-error' : ''}`}>
                                     <center>
-                                        <img src="./images/FileUpload.svg" height={50} width={50} alt="Upload Icon" />
+                                        <img src="/images/FileUpload.svg" height={50} width={50} alt="Upload Icon" />
                                     </center>
                                     <div className="upload-text">
                                         <div className="FileHeading">Drag and Drop an Image or Choose File</div>
@@ -870,8 +879,9 @@ const [vehicleScreenresolution, setVehicleScreenresolution] = useState("");
                             <div className='clientDetailHeading'> Additional Images </div>
                             <div className='adminProductVideoRight'>
                                 <center>
-                                    <img src="./images/FileUpload.svg" height={50} width={50} alt="Upload Icon" />
+                                    <img src="/images/FileUpload.svg" height={50} width={50} alt="Upload Icon" />
                                 </center>
+
                                 <input
                                     type='file'
                                     accept='video/*,image/*'

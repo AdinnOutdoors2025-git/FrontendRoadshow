@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import AddModelModal from "../reusablemodel/vehiclemodeltype";
-
+import { baseUrls } from "../Authentication/BASE_URL";
+import { useAuth } from '../Authentication/LoginContext';
 
 function VehicleModelSelect({ value, onChange}) {
   const [modelTypes, setModelTypes] = useState([]);
@@ -10,15 +11,13 @@ function VehicleModelSelect({ value, onChange}) {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const wrapperRef = useRef(null);
+  const { getAuthHeaders } = useAuth();
 
   const fetchModels = async () => {
     setIsLoading(true);
     try {
-       const response = await fetch(`http://localhost:3001/getVehicleModels`, {
-        headers: {
-              "Content-Type": "application/json",
-        
-        },
+       const response = await fetch(`${baseUrls}/getVehicleModels`, {
+        headers: getAuthHeaders(), 
       });
       const data = await response.json();
       if (data.status) setModelTypes(data.data);
@@ -45,7 +44,7 @@ function VehicleModelSelect({ value, onChange}) {
   }, []);
 
   const handleSelect = (model) => {
-    onChange({ target: { name: "model", value: model._id } });
+    onChange({ target: { name: "model", value: model.modelName } });
     setIsOpen(false);
   };
 
@@ -76,13 +75,13 @@ const handleModelSaved = async (savedData) => {
       (m) => m.modelName.toLowerCase() === savedName.toLowerCase()
     );
     if (found) {
-      onChange({ target: { name: "model", value: found._id } });
+      onChange({ target: { name: "model", value: found.modelName} });
     }
     return prev;
   });
 };
 
-  const selectedModel = modelTypes.find((m) => m._id === value);
+  const selectedModel = modelTypes.find((m) => m.modelName === value);
 
   return (
     <>
@@ -120,7 +119,7 @@ const handleModelSaved = async (savedData) => {
                     <div
                       key={model._id}
                       className={`dropdown-option ${
-                        value === model._id ? "selected" : ""
+                        value === model.modelName ? "selected" : ""
                       }`}
                       onClick={() => handleSelect(model)}
                     >
