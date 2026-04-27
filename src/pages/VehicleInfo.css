@@ -58,7 +58,7 @@
   padding: 8px 18px;
   border-radius: 25px;
   border: none;
-  background: white;
+  /* background: white; */
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   transition: 0.3s;

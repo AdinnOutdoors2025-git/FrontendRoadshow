@@ -1,0 +1,550 @@
+/* ══════════════════════════════════════════
+   DASHBOARD PAGE
+══════════════════════════════════════════ */
+.dashboard-content {
+  display: flex; 
+  flex-direction: column;
+   /* gap: 32px; */
+   padding: 24px 24px;
+}
+ 
+.section-label {
+  font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 16px;
+}
+
+/* ══════════════════════════════════════════
+   METRICS ROW  —  2 columns (cards | donut)
+══════════════════════════════════════════ */
+.metrics-row {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 16px;
+  align-items: start;
+}
+
+.metrics-cards {
+  /* stats-grid இதுக்குள்ள இருக்கும் */
+}
+
+.metrics-donut {
+  position: sticky;
+  top: 16px;
+}
+
+/* doughnut card — full height match */
+.doughnut-card {
+  height: 100%;
+  min-height: 300px;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .metrics-row {
+    grid-template-columns: 1fr;   /* stack vertically */
+  }
+  .metrics-donut {
+    position: static;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+}
+ 
+/* ══════════════════════════════════════════
+   STATS GRID  —  3 rows × 2 columns
+══════════════════════════════════════════ */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  cursor: pointer;
+}
+ 
+/* ══════════════════════════════════════════
+   STAT CARD  (dark, image-matched)
+══════════════════════════════════════════ */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+ 
+.stat-card {
+  background: #e31f311a;
+  border: 1px solid #e31f311a;
+  border-radius: 14px;
+  /* padding: 20px 22px; */
+  padding: 14px 16px;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  transition: transform 0.22s var(--ease), box-shadow 0.22s var(--ease), border-color 0.22s;
+  box-shadow: var(--shadow-card);
+  animation: fadeSlideUp 0.45s var(--ease) both;
+  /* min-height: 160px; */
+  min-height: 110px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+ 
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--accent-border, rgba(255,255,255,0.15));
+  background: #e31f311a;
+}
+ 
+/* top accent line — matches screenshot */
+.stat-accent-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: var(--accent);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+ 
+/* label + icon */
+.stat-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+ 
+.stat-label {
+  font-size: 10.5px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+ 
+.stat-icon-wrap {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: var(--icon-bg);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+ 
+/* big value */
+.stat-value {
+  font-size: 28px; font-weight: 700;
+  color: var(--text-primary); letter-spacing: -0.04em;
+  line-height: 1; margin: 8px 0;
+}
+ 
+/* divider */
+.stat-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.07);
+  margin: 4px 0 8px;
+}
+ 
+/* footer */
+.stat-footer {
+  display: flex; align-items: center; justify-content: end;
+}
+ 
+.stat-trend {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 13px; font-weight: 600;
+}
+.trend-up { color: #22c55e; }
+.trend-dn { color: #ef4444; }
+ 
+.stat-period { font-size: 11px; color: var(--text-muted); }
+ 
+/* ── Vehicle extras ── */
+.veh-row {
+  display: flex; gap: 8px;
+}
+ 
+.veh-tag {
+  flex: 1; padding: 5px 8px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 12px; font-weight: 500; line-height: 1;
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+}
+.veh-live { background: rgba(22,163,74,0.15); color: #209f4efc; border: 1px solid rgba(74,222,128,0.2); }
+.veh-off  { background: #cacaca52; color: var(--text-secondary); border: 1px solid rgba(255,255,255,0.08); }
+ 
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50%     { opacity: 0.4; transform: scale(0.6); }
+}
+.live-dot {
+  display: inline-block; width: 7px; height: 7px;
+  border-radius: 50%; background: #22c55e; flex-shrink: 0;
+  animation: pulse 1.8s ease-in-out infinite;
+}
+ 
+/* ══════════════════════════════════════════
+   CHARTS SECTION
+══════════════════════════════════════════ */
+/* .charts-section { display: flex; flex-direction: column; gap: 68px; } */
+
+
+.charts-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 68px;
+}
+
+.charts-section > * {
+  width: calc(50% - 34px); /* two columns */
+}
+ 
+.chart-card {
+  background: var(--bg-card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  /* padding: 1px 24px; */
+  box-shadow: var(--shadow-card);
+  animation: fadeSlideUp 0.5s var(--ease) both;
+}
+ 
+.chart-head {
+  display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 12px; margin-bottom: 4px;
+}
+ 
+.chart-title {
+  font-size: 15px; font-weight: 600;
+  color: var(--text-primary); letter-spacing: -0.01em;
+}
+.chart-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+ 
+.year-select {
+  font-family: var(--font-sans); font-size: 12px;
+  padding: 5px 10px;
+  border: 1px solid var(--border-med);
+  border-radius: 7px;
+  background: rgba(255,255,255,0.06);
+  color: var(--text-primary);
+  cursor: pointer; outline: none;
+  transition: border-color 0.15s; flex-shrink: 0;
+}
+.year-select:hover, .year-select:focus { border-color: #3b82f6; }
+.year-select option { background: #ffe8e8; }
+ 
+.chart-meta {
+  display: flex; align-items: center;
+  justify-content: space-between; margin: 14px 0 10px;
+}
+ 
+.chart-legend {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 11.5px; color: var(--text-secondary);
+}
+.leg-line { width: 20px; height: 2.5px; border-radius: 2px; }
+ 
+.chart-total { font-size: 11.5px; color: var(--text-muted); }
+.chart-total span { font-weight: 600; font-size: 13px; color: var(--text-primary); }
+ 
+.canvas-wrap { position: relative; width: 100%; height: 210px; }
+ 
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+ 
+@media (max-width: 900px) {
+  :root { --sidebar-w: 64px; }
+  .logo-text, .nav-item span, .nav-chevron,
+  .nav-section-label, .user-info, .user-name, .user-role { display: none; }
+  .sidebar { align-items: center; padding: 16px 8px; }
+  .sidebar-logo { padding: 4px 0 14px; justify-content: center; }
+  .nav-item { justify-content: center; padding: 10px; }
+  .sidebar-user { justify-content: center; padding: 8px 0; }
+  .main-scroll { padding: 18px 16px; }
+  .topbar { padding: 14px 18px; }
+}
+ 
+@media (max-width: 600px) {
+  .stats-grid { grid-template-columns: 1fr; }
+  .search-box { display: none; }
+  .stat-value { font-size: 34px; }
+}
+ 
+/* ═══════════════════════════════════════════════════════════════════
+   PASTE THIS INTO YOUR dashboard.css
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Filter Bar ─────────────────────────────────────────────────────────── */
+.dashboard-filter {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filter-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 6px 16px;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: transparent;
+  color: #6b7280;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  line-height: 1.4;
+}
+.filter-btn:hover { background: #f3f4f6; color: #374151; }
+.filter-btn--active {
+  background: #eff6ff;
+  color: #2563eb;
+  border-color: #93c5fd;
+  font-weight: 500;
+}
+
+.filter-clear-btn {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  border: 1px solid #fca5a5;
+  border-radius: 8px;
+  background: #fef2f2;
+  color: #dc2626;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.filter-clear-btn:hover { background: #fee2e2; }
+
+/* ── Custom date row ────────────────────────────────────────────────────── */
+.filter-custom-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 10px 14px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+.filter-date-sep {
+  font-size: 16px;
+  color: #9ca3af;
+  padding-bottom: 20px;
+}
+
+.filter-apply-btn {
+  padding: 8px 20px;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  border: 1px solid #93c5fd;
+  border-radius: 8px;
+  background: #eff6ff;
+  color: #2563eb;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.15s;
+  align-self: flex-end;
+  margin-bottom: 2px;
+}
+.filter-apply-btn:hover { background: #dbeafe; }
+
+.filter-error {
+  font-size: 12px;
+  color: #dc2626;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ── Calendar Picker ────────────────────────────────────────────────────── */
+.cal-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.filter-date-label {
+  font-size: 11px;
+  color: #9ca3af;
+  font-family: 'DM Sans', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+/* Trigger button (looks like an input) */
+.cal-trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  min-width: 148px;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  text-align: left;
+}
+.cal-trigger--open,
+.cal-trigger:focus { border-color: #93c5fd; outline: none; }
+.cal-trigger--set  { color: #111827; }
+
+.cal-icon  { font-size: 14px; }
+.cal-value { flex: 1; font-variant-numeric: tabular-nums; }
+.cal-arrow { font-size: 9px; color: #9ca3af; }
+
+/* Dropdown */
+.cal-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 999;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  padding: 12px;
+  width: 240px;
+  user-select: none;
+}
+
+/* Header row */
+.cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.cal-nav {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  color: #374151;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background 0.12s;
+}
+.cal-nav:hover { background: #f3f4f6; }
+
+.cal-title-row { flex: 1; text-align: center; }
+.cal-month-btn {
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  color: #111827;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.12s;
+}
+.cal-month-btn:hover { background: #f3f4f6; }
+
+/* Day grid */
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.cal-day-hdr {
+  font-size: 10px;
+  font-weight: 600;
+  color: #9ca3af;
+  text-align: center;
+  padding: 4px 0;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.cal-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  border: none;
+  background: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #374151;
+  transition: background 0.12s, color 0.12s;
+}
+.cal-day:hover:not(.cal-day--disabled) { background: #eff6ff; color: #2563eb; }
+.cal-day--selected {
+  background: #2563eb !important;
+  color: #ffffff !important;
+  font-weight: 600;
+}
+.cal-day--disabled {
+  color: #d1d5db;
+  cursor: not-allowed;
+}
+
+/* Year list */
+.cal-year-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  padding: 4px 0;
+}
+
+.cal-year-item {
+  padding: 6px 4px;
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  border: none;
+  background: #f9fafb;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #374151;
+  transition: background 0.12s;
+}
+.cal-year-item:hover   { background: #eff6ff; color: #2563eb; }
+.cal-year-item--active { background: #2563eb; color: #ffffff; font-weight: 600; }
+
+/* ── Dark mode ──────────────────────────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  .filter-btn           { border-color: #374151; color: #9ca3af; }
+  .filter-btn:hover     { background: #1f2937; color: #d1d5db; }
+  .filter-btn--active   { background: rgba(37,99,235,0.18); color: #60a5fa; border-color: #3b82f6; }
+  .filter-clear-btn     { background: rgba(220,38,38,0.1); border-color: #ef4444; color: #f87171; }
+  .filter-custom-row    { background: #1f2937; border-color: #374151; }
+  .filter-apply-btn     { background: rgba(37,99,235,0.18); border-color: #3b82f6; color: #60a5fa; }
+  .filter-apply-btn:hover { background: rgba(37,99,235,0.28); }
+
+  .cal-trigger          { background: #111827; border-color: #374151; color: #9ca3af; }
+  .cal-trigger--set     { color: #f9fafb; }
+  .cal-trigger--open    { border-color: #3b82f6; }
+  .cal-dropdown         { background: #1f2937; border-color: #374151; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+  .cal-nav              { background: #111827; border-color: #374151; color: #d1d5db; }
+  .cal-nav:hover        { background: #374151; }
+  .cal-month-btn        { color: #f9fafb; }
+  .cal-month-btn:hover  { background: #374151; }
+  .cal-day              { color: #d1d5db; }
+  .cal-day:hover:not(.cal-day--disabled) { background: rgba(37,99,235,0.2); color: #60a5fa; }
+  .cal-day--selected    { background: #2563eb !important; color: #fff !important; }
+  .cal-day--disabled    { color: #4b5563; }
+  .cal-year-item        { background: #111827; color: #d1d5db; }
+  .cal-year-item:hover  { background: rgba(37,99,235,0.2); color: #60a5fa; }
+  .cal-year-item--active { background: #2563eb; color: #fff; }
+}

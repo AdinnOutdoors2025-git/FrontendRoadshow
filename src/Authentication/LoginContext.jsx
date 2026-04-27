@@ -406,14 +406,14 @@ export const useAuth = () => {
         throw new Error('useAuth must be used within a LoginProvider');
     }
 
-    // எங்கே store ஆனாலும் token எடுக்கும்
+
     const getToken = () => {
         return localStorage.getItem('authToken') 
             || sessionStorage.getItem('authToken') 
             || null;
     };
 
-    // Protected API calls-க்கு ready-made headers
+    // Protected API calls ready-made headers
     const getAuthHeaders = () => ({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${getToken()}`
